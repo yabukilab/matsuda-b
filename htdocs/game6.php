@@ -110,37 +110,6 @@
             color: #fff;
             font-size: 1.2em;
         }
-        /* Dark Mode */
-        body.dark-mode {
-            background-color: #333;
-            color: #fff;
-        }
-        .container.dark-mode {
-            background-color: #444;
-            border-top-color: #1a1a1a;
-            box-shadow: 0 0 10px rgba(255,255,255,0.1);
-        }
-        header.dark-mode {
-            background-color: #555;
-            border-bottom-color: #333;
-        }
-        .stars i.dark-mode {
-            color: #999;
-        }
-        main.dark-mode {
-            background-color: #333;
-        }
-        .item.dark-mode {
-            background-color: #666;
-            border-color: #444;
-        }
-        .item.dark-mode h3,
-        .item.dark-mode p {
-            color: #fff;
-        }
-        .item.dark-mode .delete-icon {
-            color: #ccc;
-        }
         .theme-switch {
             position: fixed;
             top: 20px;
@@ -154,12 +123,12 @@
         }
     </style>
 </head>
-<body class="dark-mode">
+<body>
     <button class="theme-switch" id="theme-switch">
         <i class="fas fa-adjust"></i>
     </button>
-    <div class="container dark-mode">
-        <header class="dark-mode">
+    <div class="container">
+        <header>
             <div class="circle">
                 <i class="fas fa-gamepad"></i>
             </div>
@@ -175,18 +144,18 @@
                 <i class="fas fa-pen"></i>
             </div>
         </header>
-        <main class="dark-mode">
-            <div class="item dark-mode">
+        <main>
+            <div class="item">
                 <h3 class="editable">項目1</h3>
                 <p class="editable">掲示板</p>
                 <i class="fas fa-trash-alt delete-icon"></i>
             </div>
-            <div class="item dark-mode">
+            <div class="item">
                 <h3 class="editable">項目2</h3>
                 <p class="editable">掲示板</p>
                 <i class="fas fa-trash-alt delete-icon"></i>
             </div>
-            <div class="item dark-mode">
+            <div class="item">
                 <h3 class="editable">項目3</h3>
                 <p class="editable">掲示板</p>
                 <i class="fas fa-trash-alt delete-icon"></i>
@@ -254,7 +223,7 @@
 
         document.getElementById('add-item').addEventListener('click', function() {
             var newItem = document.createElement('div');
-            newItem.classList.add('item', 'dark-mode');
+            newItem.classList.add('item');
             newItem.innerHTML = `
                 <h3 class="editable">新しい項目</h3>
                 <p class="editable">掲示板</p>
@@ -276,13 +245,7 @@
             });
         });
 
-        // Dark mode toggle functionality
-        document.getElementById('theme-switch').addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-            document.querySelectorAll('.container, header, main, .item').forEach(function(item) {
-                item.classList.toggle('dark-mode');
-            });
-        });
+        // Dark mode toggle functionality (removed for light mode only)
     </script>
 </body>
 </html>
