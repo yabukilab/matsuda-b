@@ -18,6 +18,22 @@ $stmt->execute();
 $rating = $stmt->fetch(PDO::FETCH_ASSOC);
 $avgRating = round($rating['avg_rating'], 1);
 
+//評価を送信
+if(isset($_POST['submit'])) {
+    $rating = $_POST['rating'];
+    $gameID = $_POST['gameID'];
+
+    $sql = "INSERT INTO valuation (GameID, Rating) VALUES (:gameID, :rating)";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':gameID', $gameID, PDO::PARAM_INT);
+    $stmt->bindParam(':rating', $rating, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+        echo "評価が送信されました";
+    } else {
+        echo "エラー: " . $stmt->errorInfo()[2];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +67,19 @@ $avgRating = round($rating['avg_rating'], 1);
                 ?>
                 <span><?php echo h($avgRating); ?></span>
             </div>
+           
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                評価: <select name="rating" required>
+                <option value="">評価を選択</option>
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+                    </select>
+            <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
+            <input type="submit" name="submit" value="評価する">
+            </form>
         </header>
         <main>
             <div class="item">
