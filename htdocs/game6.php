@@ -10,6 +10,8 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
         }
         .container {
             width: 100%;
@@ -19,12 +21,14 @@
             border-top: 10px solid #0078d7;
             box-sizing: border-box;
             overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         header {
             display: flex;
             align-items: center;
             padding: 20px;
             border-bottom: 2px solid #ccc;
+            background-color: #f5f5f5;
         }
         .circle {
             width: 100px;
@@ -48,12 +52,15 @@
         .stars {
             display: flex;
             align-items: center;
+            color: #4a90e2;
         }
         .stars i {
             font-size: 2em;
-            color: #4a90e2;
             margin: 0 5px;
             cursor: pointer;
+        }
+        .stars .selected {
+            color: gold;
         }
         .pen-icon {
             margin-left: 20px;
@@ -79,6 +86,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            margin-bottom: 20px;
+            position: relative;
         }
         .item h3,
         .item p {
@@ -93,11 +102,64 @@
             background-color: #316bbf;
             border-radius: 5px;
         }
+        .delete-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.2em;
+        }
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        .container.dark-mode {
+            background-color: #444;
+            border-top-color: #1a1a1a;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+        header.dark-mode {
+            background-color: #555;
+            border-bottom-color: #333;
+        }
+        .stars i.dark-mode {
+            color: #999;
+        }
+        main.dark-mode {
+            background-color: #333;
+        }
+        .item.dark-mode {
+            background-color: #666;
+            border-color: #444;
+        }
+        .item.dark-mode h3,
+        .item.dark-mode p {
+            color: #fff;
+        }
+        .item.dark-mode .delete-icon {
+            color: #ccc;
+        }
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #4a90e2;
+            z-index: 1000;
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <header>
+<body class="dark-mode">
+    <button class="theme-switch" id="theme-switch">
+        <i class="fas fa-adjust"></i>
+    </button>
+    <div class="container dark-mode">
+        <header class="dark-mode">
             <div class="circle">
                 <i class="fas fa-gamepad"></i>
             </div>
@@ -113,20 +175,24 @@
                 <i class="fas fa-pen"></i>
             </div>
         </header>
-        <main>
-            <div class="item">
-                <h3 class="editable">項目</h3>
+        <main class="dark-mode">
+            <div class="item dark-mode">
+                <h3 class="editable">項目1</h3>
                 <p class="editable">掲示板</p>
+                <i class="fas fa-trash-alt delete-icon"></i>
             </div>
-            <div class="item">
-                <h3 class="editable">項目</h3>
+            <div class="item dark-mode">
+                <h3 class="editable">項目2</h3>
                 <p class="editable">掲示板</p>
+                <i class="fas fa-trash-alt delete-icon"></i>
             </div>
-            <div class="item">
-                <h3 class="editable">項目</h3>
+            <div class="item dark-mode">
+                <h3 class="editable">項目3</h3>
                 <p class="editable">掲示板</p>
+                <i class="fas fa-trash-alt delete-icon"></i>
             </div>
         </main>
+        <button id="add-item">項目を追加する</button>
     </div>
 
     <script>
@@ -166,6 +232,13 @@
             });
         });
 
+        document.querySelectorAll('.delete-icon').forEach(function(icon) {
+            icon.addEventListener('click', function() {
+                var item = this.closest('.item');
+                item.remove();
+            });
+        });
+
         document.querySelectorAll('.stars i').forEach(function(star) {
             star.addEventListener('click', function() {
                 var value = this.getAttribute('data-value');
@@ -176,6 +249,38 @@
                         s.classList.remove('selected');
                     }
                 });
+            });
+        });
+
+        document.getElementById('add-item').addEventListener('click', function() {
+            var newItem = document.createElement('div');
+            newItem.classList.add('item', 'dark-mode');
+            newItem.innerHTML = `
+                <h3 class="editable">新しい項目</h3>
+                <p class="editable">掲示板</p>
+                <i class="fas fa-trash-alt delete-icon"></i>
+            `;
+            document.querySelector('main').appendChild(newItem);
+
+            // Make new elements editable
+            newItem.querySelector('h3').addEventListener('click', function() {
+                makeEditable(this);
+            });
+            newItem.querySelector('p').addEventListener('click', function() {
+                makeEditable(this);
+            });
+
+            // Add delete functionality
+            newItem.querySelector('.delete-icon').addEventListener('click', function() {
+                newItem.remove();
+            });
+        });
+
+        // Dark mode toggle functionality
+        document.getElementById('theme-switch').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelectorAll('.container, header, main, .item').forEach(function(item) {
+                item.classList.toggle('dark-mode');
             });
         });
     </script>
