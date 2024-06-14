@@ -19,7 +19,7 @@ $rating = $stmt->fetch(PDO::FETCH_ASSOC);
 $avgRating = round($rating['avg_rating'], 1);
 
 //評価を送信
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     $rating = $_POST['rating'];
     $gameID = $_POST['gameID'];
 
@@ -29,9 +29,11 @@ if(isset($_POST['submit'])) {
     $stmt->bindParam(':rating', $rating, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
-        echo "評価が送信されました";
+        echo "<script>alert('評価が送信されました');</script>";
+        header("Location: game3.php"); // ここで別のページにリダイレクト
+        exit(); // header関数の後にexitを呼び出す
     } else {
-        echo "エラー: " . $stmt->errorInfo()[2];
+        echo "<script>alert('エラー: " . $stmt->errorInfo()[2] . "');</script>";
     }
 }
 ?>
@@ -91,7 +93,7 @@ if(isset($_POST['submit'])) {
         .stars {
             display: flex;
             align-items: center;
-            color: gold;
+            color: #4a90e2;
         }
         .stars i {
             font-size: 2em;
@@ -160,39 +162,62 @@ if(isset($_POST['submit'])) {
             color: #4a90e2;
             z-index: 1000;
         }
+        /* フォームスタイル */
+        .rating-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: auto;
+        }
+        .rating-form .stars i {
+            font-size: 2em;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .rating-form .stars i:hover,
+        .rating-form .stars i.selected {
+            color: gold;
+        }
+        .rating-form input[type="submit"] {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .rating-form input[type="submit"]:hover {
+            background-color: #005bb5;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <div class="circle">
-            <i class="fas fa-gamepad"></i>
+                <i class="fas fa-gamepad"></i>
             </div>
-            <h1><?php echo h($game['Title']); ?></h1>
-            <div class="stars">
-                <?php
-                $fullStars = floor($avgRating);
-                $halfStar = ($avgRating - $fullStars) >= 0.5;
-                $emptyStars = 5 - $fullStars - ($halfStar ? 1 : 0);
-
-                for ($i = 0; $i < $fullStars; $i++) {
-                    echo '<i class="fas fa-star"></i>';
-                }
-                if ($halfStar) {
-                    echo '<i class="fas fa-star-half-alt"></i>';
-                }
-                for ($i = 0; $i < $emptyStars; $i++) {
-                    echo '<i class="far fa-star"></i>';
-                }
-                ?>
-                <span><?php echo h($avgRating); ?></span>
-            </div>
-            <button onclick="location.href='./game3_valiation.php'">
-            <div class="pen-icon" id="edit-icon">
-                <i class="fas fa-pen"></i>
-            </div>
-            </button>
-            
+            <h1><?php echo htmlspecialchars($game['Title']); ?></h1>
+            <form class="rating-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <div class="stars">
+                    <input type="radio" id="rating1" name="rating" value="1" required style="display:none;">
+                    <label for="rating1"><i class="fas fa-star" data-value="1"></i></label>
+                    <input type="radio" id="rating2" name="rating" value="2" style="display:none;">
+                    <label for="rating2"><i class="fas fa-star" data-value="2"></i></label>
+                    <input type="radio" id="rating3" name="rating" value="3" style="display:none;">
+                    <label for="rating3"><i class="fas fa-star" data-value="3"></i></label>
+                    <input type="radio" id="rating4" name="rating" value="4" style="display:none;">
+                    <label for="rating4"><i class="fas fa-star" data-value="4"></i></label>
+                    <input type="radio" id="rating5" name="rating" value="5" style="display:none;">
+                    <label for="rating5"><i class="fas fa-star" data-value="5"></i></label>
+                </div>
+                <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
+                
+                <input type="submit" name="submit" value="評価する">
+                
+            </form>
         </header>
         <main>
             <div class="item">
@@ -209,5 +234,20 @@ if(isset($_POST['submit'])) {
             </div>
         </main>
     </div>
+
+    <script>
+        document.querySelectorAll('.stars i').forEach(star => {
+            star.addEventListener('click', function() {
+                let rating = this.getAttribute('data-value');
+                document.getElementById('rating' + rating).checked = true;
+                document.querySelectorAll('.stars i').forEach(s => {
+                    s.classList.remove('selected');
+                    if (s.getAttribute('data-value') <= rating) {
+                        s.classList.add('selected');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
