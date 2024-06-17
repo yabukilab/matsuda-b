@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
 
-$gameID = 3; // ゲームIDを指定
+$gameID = 4; // ゲームIDを指定
 
 // ゲームの詳細を取得
 $sql = "SELECT * FROM games WHERE GameID = :gameID";
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
 
     if ($stmt->execute()) {
         echo "<script>alert('評価が送信されました');</script>";
-        header("Location: game3.php"); // ここで別のページにリダイレクト
+        header("Location: game4.php"); // ここで別のページにリダイレクト
         exit(); // header関数の後にexitを呼び出す
     } else {
         echo "<script>alert('エラー: " . $stmt->errorInfo()[2] . "');</script>";
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
     <title>サブページ</title>
     <link rel="stylesheet" href="styles_sub.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+   
 </head>
 <body>
     <div class="container">
