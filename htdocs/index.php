@@ -69,6 +69,7 @@ try {
 }
 ?>
 </main>
+    <button onclick="location.href='edit.php'" class="edit-button">編集</button>
 </div>
 
 </body>
