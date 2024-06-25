@@ -1,0 +1,194 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #1451cd;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideIn 1s ease-out;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 20px;
+    animation: fadeIn 2s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.game {
+    background: #fff;
+    border: 2px solid #007BFF;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    width: 220px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+.game:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.game:hover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(45deg);
+    animation: shine 1s ease-out;
+}
+
+@keyframes shine {
+    from {
+        left: -150%;
+    }
+    to {
+        left: 150%;
+    }
+}
+
+.circle {
+    background: radial-gradient(circle, #fff, #ddd);
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 40px;
+    height: 100px;
+    line-height: 100px;
+    margin-bottom: 10px;
+    width: 100px;
+    color: #007BFF;
+}
+
+.circle i {
+    vertical-align: middle;
+}
+
+.star {
+    color: #FFD700;
+    font-size: 24px;
+    margin-bottom: 10px;
+    /* アニメーションを無効にする */
+    /* animation: starGlow 1.5s ease infinite; */
+}
+
+/* アニメーションの定義を削除またはコメントアウトする */
+/*
+@keyframes starGlow {
+    0%, 100% {
+        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
+    }
+    50% {
+        text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700;
+    }
+}
+*/
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .game {
+        width: 100%;
+    }
+}
+
+/* サブページのスタイル */
+.item {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    border: solid 3px #000000;
+}
+.item:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+}
+
+.item p {
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+    .item {
+        width: 100%;
+    }
+}
+
+/* 星のデザイン */
+.stars {
+    display: flex;
+    align-items: center;
+}
+
+.stars i {
+    color: #cb3434; /* 星の色を金色に */
+    margin-right: 5px;
+}
+
+.stars span {
+    font-size: 1.2rem;
+    margin-left: 10px;
+    color: #333;
+}
