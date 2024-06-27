@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>商品修正aaaaa</title>
+		<title>商品修正</title>
 	</head>
 	<body>
 		<?php
