@@ -2,43 +2,42 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>DB登録</title>
+		<title>DB変更</title>
 	</head>
 	<body>
-		<?php
+	<?php
+require_once '_database_conf.php';
+require_once '_h.php';
 
-		require_once '_database_conf.php';
-		require_once '_h.php';
+$pro_GameID=$_POST['GameID'];
+$pro_title=$_POST['title'];
+$pro_gaiyou=$_POST['gaiyou'];
 
-		$pro_Title=$_POST['title'];
-		//$=$_POST[''];
-		//$=$_POST[''];
+try
+{
+	$db = new PDO($dsn, $dbUser, $dbPass);
+	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		try{
-			if($pro_Title=='')
-			{
-				print'タイトルが入力されていません。<br />';	
-		}
-		$db = new PDO($dsn, $dbUser, $dbPass);
-				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$sql='UPDATE games SET title=:title,gaiyou=:gaiyou WHERE GameID=:GameID';
+	$stmt=$db->prepare($sql);
+	$stmt->bindValue(':GameID', $pro_GameID, PDO::PARAM_INT);
+	$stmt->bindValue(':title', $pro_title, PDO::PARAM_STR);
+	$stmt->bindValue(':gaiyou', $pro_gaiyou, PDO::PARAM_STR);
+	$stmt->execute();
 
-				$sql='UPDATE FROM games VALUES :Title';
-				$stmt=$db->prepare($sql);
-				$stmt->bindValue(':Title', $pro_Title, PDO::PARAM_STR);
-				
-				$stmt->execute();
+	$db=null;
 
-				$db=null;
+	print '修正しました。<br />';
 
-				print '追加しました。<br />';
+}
+catch(Exception$e)
+{
+	echo 'エラーが発生しました。内容: ' . h($e->getMessage());
+	 exit();
+}
 
-		}
-		catch(PDOException$e)
-		{
-			echo 'エラーが発生しました。内容: ' . h($e->getMessage());
-			exit();
-		}
-
-		?>
-		<a href="edit.php">戻る</a>
+?>
+<a href="edit.php">戻る</a>
+</body>
+</html>
