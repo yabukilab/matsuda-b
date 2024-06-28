@@ -12,6 +12,7 @@
 
 		ゲームタイトルを入力してください。<br />
 		<input type="text" name="title" style="width:100px"><br />
+		<input type="text" name="gaiyou" style="width:500px; height:50px;"><br />
 	
 
 		<input type="button" onclick="history.back()" value="戻る">
