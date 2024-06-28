@@ -69,7 +69,7 @@ try {
 }
 ?>
 </main>
-    <button onclick="location.href='edit.php'" class="edit-button">編集</button>
+    <button onclick="location.href='edit.php'" class="edit-button" style="opacity: 0;">編集</button>
 </div>
 
 </body>
