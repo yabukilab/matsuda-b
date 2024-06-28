@@ -62,7 +62,8 @@ try {
         echo "<span>{$avgRating}</span>";
         echo "</div>";
 
-        echo "<div class=\"title\"><a href=\"{$link}\">{$title}</a></div>";
+        echo "<div class=\"title\"><a href=\"{$link}\">{$title}</a>(ID: {$gameID})</div>";
+        
         echo "</div>";
     }
 } catch (PDOException $e) {

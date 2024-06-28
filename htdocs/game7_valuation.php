@@ -18,7 +18,7 @@ $stmt->execute();
 $rating = $stmt->fetch(PDO::FETCH_ASSOC);
 $avgRating = round($rating['avg_rating'], 1);
 
-//評価を送信
+// 評価を送信
 if (isset($_POST['submit'])) {
     $rating = $_POST['rating'];
     $gameID = $_POST['gameID'];
@@ -30,11 +30,61 @@ if (isset($_POST['submit'])) {
 
     if ($stmt->execute()) {
         echo "<script>alert('評価が送信されました');</script>";
-        header("Location: game7.php"); // ここで別のページにリダイレクト
-        exit(); // header関数の後にexitを呼び出す
+        header("Location: game7.php");
+        exit();
     } else {
         echo "<script>alert('エラー: " . $stmt->errorInfo()[2] . "');</script>";
     }
+}
+
+// ウィキ内容を取得
+$sql = "SELECT * FROM wiki_content WHERE GameID = :gameID";
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':gameID', $gameID, PDO::PARAM_INT);
+$stmt->execute();
+$wiki_contents = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// ウィキ内容を更新
+if (isset($_POST['submit_wiki'])) {
+    $content = $_POST['content'];
+    $section = $_POST['section'];
+
+    $sql = "SELECT ID FROM wiki_content WHERE GameID = :gameID AND Section = :section";
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':gameID', $gameID, PDO::PARAM_INT);
+$stmt->bindParam(':section', $section, PDO::PARAM_STR);
+$stmt->execute();
+
+if ($stmt->fetch()) {
+    // レコードが存在する場合は更新
+    $sql = "UPDATE wiki_content SET Content = :content WHERE GameID = :gameID AND Section = :section";
+} else {
+    // レコードが存在しない場合は挿入
+    $sql = "INSERT INTO wiki_content (GameID, Section, Content) VALUES (:gameID, :section, :content)";
+}
+
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':gameID', $gameID, PDO::PARAM_INT);
+$stmt->bindParam(':section', $section, PDO::PARAM_STR);
+$stmt->bindParam(':content', $content, PDO::PARAM_STR);
+$stmt->execute();
+}
+
+// コメントを取得
+$sql = "SELECT * FROM comments WHERE GameID = :gameID ORDER BY CreatedAt DESC";
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':gameID', $gameID, PDO::PARAM_INT);
+$stmt->execute();
+$comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// コメントを投稿
+if (isset($_POST['submit_comment'])) {
+    $comment = $_POST['comment'];
+    $sql = "INSERT INTO comments (GameID, Comment) VALUES (:gameID, :comment)";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':gameID', $gameID, PDO::PARAM_INT);
+    $stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
+    $stmt->execute();
 }
 ?>
 
@@ -46,7 +96,6 @@ if (isset($_POST['submit'])) {
     <title>サブページ</title>
     <link rel="stylesheet" href="styles_sub.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   
 </head>
 <body>
     <div class="container">
@@ -69,23 +118,35 @@ if (isset($_POST['submit'])) {
                     <label for="rating5"><i class="fas fa-star" data-value="5"></i></label>
                 </div>
                 <input type="hidden" name="gameID" value="<?php echo $gameID; ?>">
-                
                 <input type="submit" name="submit" value="評価する">
-                
             </form>
         </header>
         <main>
+            <?php foreach ($wiki_contents as $content): ?>
             <div class="item">
-                <h3>項目</h3>
-                <p>表示板</p>
+                <h3><?php echo htmlspecialchars($content['Section']); ?></h3>
+                <p id="content-<?php echo $content['ID']; ?>"><?php echo nl2br(htmlspecialchars($content['Content'])); ?></p>
+                <button onclick="editContent(<?php echo $content['ID']; ?>)">編集</button>
+                <form id="edit-form-<?php echo $content['ID']; ?>" style="display:none;" method="post">
+                    <textarea name="content"><?php echo htmlspecialchars($content['Content']); ?></textarea>
+                    <input type="hidden" name="section" value="<?php echo htmlspecialchars($content['Section']); ?>">
+                    <input type="submit" name="submit_wiki" value="保存">
+                </form>
             </div>
-            <div class="item">
-                <h3>項目</h3>
-                <p>表示板</p>
-            </div>
-            <div class="item">
-                <h3>項目</h3>
-                <p>表示板</p>
+            <?php endforeach; ?>
+
+            <div class="comments">
+                <h3>コメント</h3>
+                <form method="post">
+                    <textarea name="comment" required></textarea>
+                    <input type="submit" name="submit_comment" value="コメントを投稿">
+                </form>
+                <?php foreach ($comments as $comment): ?>
+                <div class="comment">
+                    <p><?php echo nl2br(htmlspecialchars($comment['Comment'])); ?></p>
+                    <small><?php echo $comment['CreatedAt']; ?></small>
+                </div>
+                <?php endforeach; ?>
             </div>
         </main>
     </div>
@@ -103,6 +164,13 @@ if (isset($_POST['submit'])) {
                 });
             });
         });
+
+        function editContent(id) {
+            var content = document.getElementById('content-' + id);
+            var form = document.getElementById('edit-form-' + id);
+            content.style.display = 'none';
+            form.style.display = 'block';
+        }
     </script>
 </body>
 </html>
