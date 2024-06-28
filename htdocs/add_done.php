@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>DB登録</title>
+		<title>DB追加</title>
 	</head>
 	<body>
 		<?php
@@ -11,6 +11,7 @@
 			require_once '_h.php';
 
 			$pro_Title=$_POST['title'];
+			$pro_gaiyou=$_POST['gaiyou'];
 			
 
 			try
@@ -19,9 +20,10 @@
 				$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-				$sql='INSERT INTO games(Title) VALUES (:Title)';
+				$sql='INSERT INTO games(Title, gaiyou) VALUES (:Title, :gaiyou)';
 				$stmt=$db->prepare($sql);
 				$stmt->bindValue(':Title', $pro_Title, PDO::PARAM_STR);
+				$stmt->bindValue(':gaiyou', $pro_gaiyou, PDO::PARAM_STR);
 				
 				$stmt->execute();
 
