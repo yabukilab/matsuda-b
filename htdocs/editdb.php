@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>商品修正</title>
+		<title>情報修正</title>
 	</head>
 	<body>
 		<?php
@@ -15,6 +15,13 @@
 			} else {
 				$title = null;
 			}
+			if ($title === null) {
+				// Display the input form
+				echo '<form action="" method="GET">';
+				echo 'ゲームタイトル: <input type="text" name="Title"><br>';
+				echo '<input type="submit" value="変更" >';
+				echo '</form>';
+			} else {
 
 			try
 			{
@@ -33,13 +40,13 @@
 
 				if($rec==false)
 				{
-					print'商品がコードが正しくありません。';
-					print'<a href="index.php">戻る</a>';
+					print'タイトル名が正しくありません。';
+					print'<a href="edit.php">戻る</a>';
 					print '<br />';
 					exit();
 				}
 
-				$pro_name = $rec['name'];
+				$title = $rec['Title'];
 				$pro_price = $rec['price'];
 
 			}
@@ -48,21 +55,21 @@
 				echo 'エラーが発生しました。内容: ' . h($e->getMessage());
 	 			exit();
 			}
+		}
+
 
 		?>
 
-		商品修正<br />
+		ゲーム情報修正<br />
 		<br />
 
-		<form method="post" action="edit_done.php">
+		<form method="post" action="editdb_done.php">
 
-		商品コード <?php print $pro_code; ?><br />
-		<input type="hidden" name="code" value="<?php print $pro_code; ?>"><br />
 
-		商品名<br />
-		<input type="text" name="name" style="width:200px" value="<?php print $pro_name; ?>"><br />
-		価格<br />
-		<input type="text" name="price" style="width:50px" value="<?php print $pro_price; ?>">円<br /><br />
+		ゲーム名<br />
+		<input type="text" name="title" style="width:200px" value="<?php print $title; ?>"><br />
+		//価格<br />
+		//<input type="text" name="price" style="width:50px" value="<?php print $pro_price; ?>">円<br /><br />
 
 		<input type="button" onclick="history.back()" value="戻る">
 		<input type="submit" value="ＯＫ">
