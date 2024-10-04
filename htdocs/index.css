@@ -1,0 +1,48 @@
+body {
+    background: #f6f8be;
+}
+
+
+div.head {
+    padding: 0 0 0 2%;
+    background: #2AB8EA;
+    color: white;
+}
+
+div.team {
+    padding: 0 0 0 2%;
+    background: #d63b3b;
+    color: white;
+}
+
+.btn-all {
+    background-color: rgba(236, 25, 145, 0.473);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 5px 126px;
+    font-size: 20px;
+    background-color: rgba(205, 205, 205, 0.473);
+    color: rgb(0, 0, 0);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: black;
+}
+
+.letter {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 15px;
+}
