@@ -1,16 +1,17 @@
 * {
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 body {
-    background: #f6f8be;
+    background: url('IMG_9626.jpg') no-repeat center center fixed; /* 画像を背景に設定 */
+    background-size: cover; /* 画像を画面にフィットさせる */
 }
 
 div.class {
     width: 1200px;
     height: 60px; 
-    background: #2AB8EA;
+    background: rgba(42, 184, 234, 0.8); /* 背景色を少し透明にして画像が見えるように */
     color: white;
     border-radius: 10px;
     border: 2px;
@@ -22,6 +23,24 @@ div.class {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 20px auto; /* 表を中央揃えにするためのスタイル */
+    background-color: yellow; /* 表の背景色を黄色に設定 */
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2; /* ヘッダーの背景色を変更したい場合はここで設定 */
 }
 
 .footer {

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset='utf-8' />
-  <title>（実験・演習用）</title>
+  <title>津田沼駅東側エリア - ゆずカフェ</title>
   <link rel="stylesheet" type="text/css" href="part2.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -11,12 +11,15 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: url('IMG_9626.jpg') no-repeat center center fixed; /* 画像を背景に設定 */
+      background-size: cover; /* 画像を画面にフィットさせる */
     }
 
     .main {
       text-align: center;
       margin-bottom: 20px; /* コンテンツ下部に余白を追加 */
     }
+
     /* タイトルのスタイル */
     .section-title {
       font-size: 32px; /* フォントサイズを大きく */
@@ -24,16 +27,35 @@
       color: orange; /* 文字色をオレンジに */
       padding: 10px; /* パディングを追加 */
       background-color: white; /* 背景色を白に */
-      border: 2px solid white; /* 枠線を白に */
+      border-radius: 20px; /* 角を丸くする */
       display: inline-block; /* タイトルの周りに余白を持たせるための設定 */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
     }
 
-    /* 画像を横に並べるためのスタイル */
+    /* 情報ボックスのスタイル */
+    .info {
+      margin: 0 auto; /* 中央揃え */
+      width: 80%; /* 幅を調整 */
+    }
+
+    /* 画像スライドショーのスタイル */
     .image-container {
-      display: flex;
-      justify-content: center; /* 画像を中央揃えにする */
-      gap: 20px; /* 画像の間に余白を追加 */
-      margin-bottom: 20px; /* 画像の下部に余白を追加 */
+      position: relative; /* スライドショーの親要素 */
+      width: 400px; /* 幅を固定 */
+      height: 500px; /* 高さを固定 */
+      overflow: hidden; /* はみ出した部分を隠す */
+      margin: 0 auto; /* 中央揃え */
+    }
+
+    .slides {
+      display: flex; /* 画像を横に並べる */
+      transition: transform 0.5s ease; /* スライドのトランジション */
+      width: calc(400px * 5); /* 全スライドの幅を計算 */
+    }
+
+    .slides img {
+      width: 400px; /* 画像の幅 */
+      height: 500px; /* 画像の高さ */
     }
 
     /* 表のスタイル */
@@ -41,6 +63,7 @@
       width: 60%;
       border-collapse: collapse;
       margin: 20px auto; /* 表を中央揃えにするためのスタイル */
+      background-color: yellow; /* 表の背景色を黄色に設定 */
     }
 
     th,
@@ -51,7 +74,7 @@
     }
 
     th {
-      background-color: #f2f2f2;
+      background-color: #f2f2f2; /* ヘッダーの背景色 */
     }
 
     .footer {
@@ -72,16 +95,19 @@
 
   <div class="main">
     <div class="info">
-      <div class="section-title">ゆずカフェ</div> <!-- 追加されたタイトル -->
-      
-      <!-- 画像を横に並べるコンテナ -->
+      <div class="section-title">ゆずカフェ</div>
+
+      <!-- 画像スライドショー -->
       <div class="image-container">
-        <!-- 画像1 -->
-        <img src="IMG_9604.jpg" alt="説明文" width="400" height="500">
-        <!-- 画像2 -->
-        <img src="IMG_9610.jpg" alt="説明文" width="400" height="500">
+        <div class="slides">
+          <img src="IMG_9604.jpg" alt="ゆずカフェの画像1">
+          <img src="IMG_9610.jpg" alt="ゆずカフェの画像2">
+          <img src="IMG_9612.jpg" alt="ゆずカフェの画像3">
+          <img src="IMG_9616.jpg" alt="ゆずカフェの画像4">
+          <img src="IMG_9617.jpg" alt="ゆずカフェの画像5">
+        </div>
       </div>
-      
+
       <!-- 表の作成 -->
       <table>
         <tbody>
@@ -91,7 +117,7 @@
           </tr>
           <tr>
             <td>住所</td>
-            <td><a href="https://maps.app.goo.gl/iw1JVAoDpwxxVSjw7">千葉県船橋市前原東3-5-10</a></td> <!-- リンクを追加 --></td>
+            <td><a href="https://maps.app.goo.gl/iw1JVAoDpwxxVSjw7">千葉県船橋市前原東3-5-10</a></td>
           </tr>
           <tr>
             <td>アクセス</td>
@@ -109,6 +135,23 @@
   <div class="footer">
     <span class="letter">©松田研究室 B班</span>
   </div>
+
+  <script>
+    let currentIndex = 0; // 現在のインデックス
+    const slides = document.querySelector('.slides'); // スライドの親要素
+    const totalSlides = document.querySelectorAll('.slides img').length; // 画像の総数
+
+    function showNextSlide() {
+      if (currentIndex === totalSlides - 1) {
+        currentIndex = 0; // 5枚目の後は1枚目に戻る
+      } else {
+        currentIndex += 1; // 次のインデックスに進む
+      }
+      slides.style.transform = `translateX(-${currentIndex * 400}px)`; // スライドを移動
+    }
+
+    setInterval(showNextSlide, 3000); // 3秒ごとにスライドを切り替え
+  </script>
 
 </body>
 
