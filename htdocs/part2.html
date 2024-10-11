@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset='utf-8' />
+  <title>（実験・演習用）</title>
+  <link rel="stylesheet" type="text/css" href="part2.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画像表示の例</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表の例</title>
+
+  <style>
+    /* 全体を中央揃えにするために必要なスタイル */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .main {
+      text-align: center;
+    }
+
+    /* 表のスタイル */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px auto; /* 表を中央揃えにするためのスタイル */
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    /* 画像のスタイル */
+    img {
+      display: block;
+      margin: 0 auto; /* 画像を中央揃えにするためのスタイル */
+    }
+
+    .footer {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="class">
+    <h1>津田沼駅東側エリア</h1>
+  </div>
+
+  <div class="main">
+    <div class="info">
+      <!-- 画像を表示 -->
+      <img src="IMG_9604.jpg" alt="説明文" width="300" height="200">
+
+      <!-- 表の作成 -->
+      <table>
+        <tbody>
+          <tr>
+            <td>営業時間</td>
+            <td>水木金土日 10:00~17:00</td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td>千葉県船橋市前原東3-5-10</td>
+          </tr>
+          <tr>
+            <td>アクセス</td>
+            <td>津田沼駅北口徒歩8分</td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td>090-9153-9057</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="letter">©松田研究室 B班</span>
+  </div>
+
+</body>
+
+</html>
