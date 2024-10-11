@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset='utf-8' />
+  <title>津田沼駅東側エリア - ゆずカフェ</title>
+  <link rel="stylesheet" type="text/css" href="part2.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ページ全体にスクロールできるようにする */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('IMG_9626.jpg') no-repeat center center fixed; /* 画像を背景に設定 */
+      background-size: cover; /* 画像を画面にフィットさせる */
+    }
+
+    .main {
+      text-align: center;
+      margin-bottom: 20px; /* コンテンツ下部に余白を追加 */
+    }
+
+    /* タイトルのスタイル */
+    .section-title {
+      font-size: 32px; /* フォントサイズを大きく */
+      margin: 10px 0; /* 上下に余白を追加 */
+      color: orange; /* 文字色をオレンジに */
+      padding: 10px; /* パディングを追加 */
+      background-color: white; /* 背景色を白に */
+      border-radius: 20px; /* 角を丸くする */
+      display: inline-block; /* タイトルの周りに余白を持たせるための設定 */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
+    }
+
+    /* 情報ボックスのスタイル */
+    .info {
+      margin: 0 auto; /* 中央揃え */
+      width: 80%; /* 幅を調整 */
+    }
+
+    /* 画像スライドショーのスタイル */
+    .image-container {
+      position: relative; /* スライドショーの親要素 */
+      width: 400px; /* 幅を固定 */
+      height: 500px; /* 高さを固定 */
+      overflow: hidden; /* はみ出した部分を隠す */
+      margin: 0 auto; /* 中央揃え */
+    }
+
+    .slides {
+      display: flex; /* 画像を横に並べる */
+      transition: transform 0.5s ease; /* スライドのトランジション */
+      width: calc(400px * 5); /* 全スライドの幅を計算 */
+    }
+
+    .slides img {
+      width: 400px; /* 画像の幅 */
+      height: 500px; /* 画像の高さ */
+    }
+
+    /* 表のスタイル */
+    table {
+      width: 60%;
+      border-collapse: collapse;
+      margin: 20px auto; /* 表を中央揃えにするためのスタイル */
+      background-color: yellow; /* 表の背景色を黄色に設定 */
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2; /* ヘッダーの背景色 */
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="class">
+    <h1>津田沼駅東側エリア</h1>
+  </div>
+
+  <div class="main">
+    <div class="info">
+      <div class="section-title">ゆずカフェ</div>
+
+      <!-- 画像スライドショー -->
+      <div class="image-container">
+        <div class="slides">
+          <img src="IMG_9604.jpg" alt="ゆずカフェの画像1">
+          <img src="IMG_9610.jpg" alt="ゆずカフェの画像2">
+          <img src="IMG_9612.jpg" alt="ゆずカフェの画像3">
+          <img src="IMG_9616.jpg" alt="ゆずカフェの画像4">
+          <img src="IMG_9617.jpg" alt="ゆずカフェの画像5">
+        </div>
+      </div>
+
+      <!-- 表の作成 -->
+      <table>
+        <tbody>
+          <tr>
+            <td>営業時間</td>
+            <td>水木金土日 10:00~17:00</td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td><a href="https://maps.app.goo.gl/iw1JVAoDpwxxVSjw7">千葉県船橋市前原東3-5-10</a></td>
+          </tr>
+          <tr>
+            <td>アクセス</td>
+            <td>津田沼駅北口徒歩8分</td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td>090-9153-9057</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="letter">©松田研究室 B班</span>
+  </div>
+
+  <script>
+    let currentIndex = 0; // 現在のインデックス
+    const slides = document.querySelector('.slides'); // スライドの親要素
+    const totalSlides = document.querySelectorAll('.slides img').length; // 画像の総数
+
+    function showNextSlide() {
+      if (currentIndex === totalSlides - 1) {
+        currentIndex = 0; // 5枚目の後は1枚目に戻る
+      } else {
+        currentIndex += 1; // 次のインデックスに進む
+      }
+      slides.style.transform = `translateX(-${currentIndex * 400}px)`; // スライドを移動
+    }
+
+    setInterval(showNextSlide, 3000); // 3秒ごとにスライドを切り替え
+  </script>
+
+</body>
+
+</html>
