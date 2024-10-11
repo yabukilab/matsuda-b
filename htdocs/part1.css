@@ -9,14 +9,14 @@ body {
 
 div.class {
     width: 1200px;
-    height: 60px; 
+    height: 60px;
     background: #2AB8EA;
     color: white;
     border-radius: 10px;
     border: 2px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: auto;
+    margin: 25px;
     margin-bottom: 20px;
 
     display: flex;
