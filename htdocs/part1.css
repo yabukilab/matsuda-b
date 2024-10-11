@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    background: #f6f8be;
+}
+
+div.class {
+    width: 1200px;
+    height: 60px; 
+    background: #2AB8EA;
+    color: white;
+    border-radius: 10px;
+    border: 2px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: auto;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: black;
+}
+
+.letter {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 15px;
+}
