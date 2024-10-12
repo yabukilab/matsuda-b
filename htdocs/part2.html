@@ -17,8 +17,8 @@
 
     /* タイトルのスタイル */
     .section-title {
-      font-size: 32px; /* フォントサイズを大きく */
-      margin: 10px 0; /* 上下に余白を追加 */
+      font-size: 40px; /* フォントサイズを大きく */
+      margin: 12px 0; /* 上下に余白を追加 */
       color: orange; /* 文字色をオレンジに */
       padding: 10px; /* パディングを追加 */
       background-color: white; /* 背景色を白に */
@@ -54,7 +54,7 @@
 
     /* 表のスタイル */
     table {
-      width: 60%;
+      width: 80%;
       border-collapse: collapse;
       margin: 20px auto; /* 表を中央揃えにするためのスタイル */
       background-color: yellow; /* 表の背景色を黄色に設定 */
@@ -94,6 +94,44 @@
       <!-- 画像スライドショー -->
       <div class="image-container">
         <div class="slides" id="slides1">
+          <img src="IMG_9604.jpg">
+          <img src="IMG_9610.jpg">
+          <img src="IMG_9612.jpg">
+          <img src="IMG_9616.jpg">
+          <img src="IMG_9617.jpg">
+        </div>
+      </div>
+
+      <!-- 表の作成 -->
+      <table>
+        <tbody>
+          <tr>
+            <td><strong>営業時間</strong></td>
+            <td>水木金土日 10:00~17:00 (L.O. 16:30)  　定休日 月火</td>
+          </tr>
+          <tr>
+            <td><strong>住所</strong></td>
+            <td><a href="https://maps.app.goo.gl/iw1JVAoDpwxxVSjw7">千葉県船橋市前原東3-5-10</a></td>
+          </tr>
+          <tr>
+            <td><strong>アクセス</strong></td>
+            <td>JR津田沼駅北口徒歩8分 新京成新津田沼駅徒歩7分</td>
+          </tr>
+          <tr>
+            <td><strong>電話番号</strong></td>
+            <td><a href="tel:090-9153-9057">090-9153-9057</a></td>
+          </tr>
+          <tr>
+            <td><strong>支払い方法</strong></td>
+            <td>現金 QRコード決済 カード払い(VISA Master)</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <!-- 2つ目の情報ボックス -->
+      <div class="section-title">ゆずカフェ（追加情報）</div>
+      <div class="image-container">
+        <div class="slides" id="slides2">
           <img src="IMG_9604.jpg" alt="ゆずカフェの画像1">
           <img src="IMG_9610.jpg" alt="ゆずカフェの画像2">
           <img src="IMG_9612.jpg" alt="ゆずカフェの画像3">
@@ -123,11 +161,11 @@
           </tr>
         </tbody>
       </table>
-      
-      <!-- 2つ目の情報ボックス -->
-      <div class="section-title">ゆずカフェ（追加情報）</div>
+
+      <!-- 3つ目の情報ボックス -->
+      <div class="section-title">ゆずカフェ（再追加情報）</div>
       <div class="image-container">
-        <div class="slides" id="slides2">
+        <div class="slides" id="slides3">
           <img src="IMG_9604.jpg" alt="ゆずカフェの画像1">
           <img src="IMG_9610.jpg" alt="ゆずカフェの画像2">
           <img src="IMG_9612.jpg" alt="ゆずカフェの画像3">
@@ -167,10 +205,13 @@
   <script>
     let currentIndex1 = 0; // 最初のスライドのインデックス
     let currentIndex2 = 0; // 2つ目のスライドのインデックス
+    let currentIndex3 = 0; // 3つ目のスライドのインデックス
     const slides1 = document.querySelector('#slides1'); // 最初のスライドの親要素
     const slides2 = document.querySelector('#slides2'); // 2つ目のスライドの親要素
+    const slides3 = document.querySelector('#slides3'); // 3つ目のスライドの親要素
     const totalSlides1 = document.querySelectorAll('#slides1 img').length; // 最初のスライドの総数
     const totalSlides2 = document.querySelectorAll('#slides2 img').length; // 2つ目のスライドの総数
+    const totalSlides3 = document.querySelectorAll('#slides3 img').length; // 3つ目のスライドの総数
 
     function showNextSlide(slides, currentIndex, totalSlides) {
       if (currentIndex === totalSlides - 1) {
@@ -185,6 +226,7 @@
     setInterval(() => {
       currentIndex1 = showNextSlide(slides1, currentIndex1, totalSlides1); // 最初のスライドを更新
       currentIndex2 = showNextSlide(slides2, currentIndex2, totalSlides2); // 2つ目のスライドを更新
+      currentIndex3 = showNextSlide(slides3, currentIndex3, totalSlides3); // 3つ目のスライドを更新
     }, 3000); // 3秒ごとにスライドを切り替え
   </script>
 
