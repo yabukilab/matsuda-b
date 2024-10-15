@@ -10,6 +10,23 @@
     color: #333;
   }
   
+  .home-link {
+    position: fixed; /* ページをスクロールしても位置を固定 */
+    top: 10px; /* 上から10pxの位置に配置 */
+    left: 10px; /* 左から10pxの位置に配置 */
+    font-size: 30px; /* 文字の大きさ */
+    background-color: #2E7D32; /* 背景色を緑に */
+    padding: 10px; /* パディングを追加 */
+    border-radius: 8px; /* 角を丸く */
+    box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2); /* 軽い影を追加 */
+    color: rgb(255, 255, 255); /* 文字色を白に */
+    text-decoration: none; /* 下線を削除 */
+  }
+  
+  .home-link a:hover {
+    background-color: #3376db; /* ホバー時の背景色変更 */
+  }
+
   div.head {
     width: 100%;
     height: 60px;

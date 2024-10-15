@@ -82,6 +82,11 @@
 </head>
 
 <body>
+  
+  <!-- 左上に表示されるHOMEリンク -->
+  <div class="home-link">
+    <a href="index.html">HOME</a>
+  </div>
 
   <div class="class">
     <h1>津田沼駅東側エリア</h1>
@@ -107,7 +112,7 @@
         <tbody>
           <tr>
             <td><strong>営業時間</strong></td>
-            <td>水木金土日 10:00~17:00 (L.O. 16:30)  　定休日 月火</td>
+            <td>水木金土日 10:00 ~ 17:00 (L.O. 16:30)  　定休日 月火</td>
           </tr>
           <tr>
             <td><strong>住所</strong></td>
@@ -115,7 +120,7 @@
           </tr>
           <tr>
             <td><strong>アクセス</strong></td>
-            <td>JR津田沼駅北口徒歩8分 新京成新津田沼駅徒歩7分</td>
+            <td>JR津田沼駅北口徒歩10分 新京成新津田沼駅徒歩9分</td>
           </tr>
           <tr>
             <td><strong>電話番号</strong></td>
@@ -129,14 +134,13 @@
       </table>
       
       <!-- 2つ目の情報ボックス -->
-      <div class="section-title">ゆずカフェ（追加情報）</div>
+      <div class="section-title">鎌倉パスタ DINING-イオンモール津田沼店</div>
       <div class="image-container">
         <div class="slides" id="slides2">
-          <img src="IMG_9604.jpg" alt="ゆずカフェの画像1">
-          <img src="IMG_9610.jpg" alt="ゆずカフェの画像2">
-          <img src="IMG_9612.jpg" alt="ゆずカフェの画像3">
-          <img src="IMG_9616.jpg" alt="ゆずカフェの画像4">
-          <img src="IMG_9617.jpg" alt="ゆずカフェの画像5">
+          <img src="無題24_20241015191614.PNG" >
+          <img src="IMG_9945.jpg">
+          <img src="IMG_9947.jpg">
+          <img src="IMG_9952.jpg">
         </div>
       </div>
 
@@ -144,57 +148,28 @@
       <table>
         <tbody>
           <tr>
-            <td>営業時間</td>
-            <td>水木金土日 10:00~17:00</td>
+            <td><strong>営業時間</strong></td>
+            <td>年中無休 11:00 ~ 22:00 (L.O. 21:00)　　定休日 施設の休業次第</td>
           </tr>
           <tr>
-            <td>住所</td>
-            <td><a href="https://maps.app.goo.gl/iw1JVAoDpwxxVSjw7">千葉県船橋市前原東3-5-10</a></td>
+            <td><strong>住所</strong></td>
+            <td><a href="https://maps.app.goo.gl/ZSUtBH6FJorWtFXJ6">千葉県習志野市津田沼1-23-1 イオンモール津田沼3階</a></td>
           </tr>
           <tr>
-            <td>アクセス</td>
-            <td>津田沼駅北口徒歩8分</td>
+            <td><strong>アクセス</strong></td>
+            <td>津田沼駅北口徒歩7分</td>
           </tr>
           <tr>
-            <td>電話番号</td>
-            <td>090-9153-9057</td>
+            <td><strong>電話番号</strong></td>
+            <td><a href="tel:047-455-6209">047-455-6209</a></td>
+          </tr>
+          <tr>
+            <td><strong>支払い方法</strong></td>
+            <td>現金 QRコード決済 電子マネー カード払い(VISA Master)</td>
           </tr>
         </tbody>
       </table>
 
-      <!-- 3つ目の情報ボックス -->
-      <div class="section-title">ゆずカフェ（再追加情報）</div>
-      <div class="image-container">
-        <div class="slides" id="slides3">
-          <img src="IMG_9604.jpg" alt="ゆずカフェの画像1">
-          <img src="IMG_9610.jpg" alt="ゆずカフェの画像2">
-          <img src="IMG_9612.jpg" alt="ゆずカフェの画像3">
-          <img src="IMG_9616.jpg" alt="ゆずカフェの画像4">
-          <img src="IMG_9617.jpg" alt="ゆずカフェの画像5">
-        </div>
-      </div>
-
-      <!-- 表の作成 -->
-      <table>
-        <tbody>
-          <tr>
-            <td>営業時間</td>
-            <td>水木金土日 10:00~17:00</td>
-          </tr>
-          <tr>
-            <td>住所</td>
-            <td><a href="https://maps.app.goo.gl/iw1JVAoDpwxxVSjw7">千葉県船橋市前原東3-5-10</a></td>
-          </tr>
-          <tr>
-            <td>アクセス</td>
-            <td>津田沼駅北口徒歩8分</td>
-          </tr>
-          <tr>
-            <td>電話番号</td>
-            <td>090-9153-9057</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 
@@ -205,13 +180,10 @@
   <script>
     let currentIndex1 = 0; // 最初のスライドのインデックス
     let currentIndex2 = 0; // 2つ目のスライドのインデックス
-    let currentIndex3 = 0; // 3つ目のスライドのインデックス
     const slides1 = document.querySelector('#slides1'); // 最初のスライドの親要素
     const slides2 = document.querySelector('#slides2'); // 2つ目のスライドの親要素
-    const slides3 = document.querySelector('#slides3'); // 3つ目のスライドの親要素
     const totalSlides1 = document.querySelectorAll('#slides1 img').length; // 最初のスライドの総数
     const totalSlides2 = document.querySelectorAll('#slides2 img').length; // 2つ目のスライドの総数
-    const totalSlides3 = document.querySelectorAll('#slides3 img').length; // 3つ目のスライドの総数
 
     function showNextSlide(slides, currentIndex, totalSlides) {
       if (currentIndex === totalSlides - 1) {
@@ -226,7 +198,6 @@
     setInterval(() => {
       currentIndex1 = showNextSlide(slides1, currentIndex1, totalSlides1); // 最初のスライドを更新
       currentIndex2 = showNextSlide(slides2, currentIndex2, totalSlides2); // 2つ目のスライドを更新
-      currentIndex3 = showNextSlide(slides3, currentIndex3, totalSlides3); // 3つ目のスライドを更新
     }, 3000); // 3秒ごとにスライドを切り替え
   </script>
 
