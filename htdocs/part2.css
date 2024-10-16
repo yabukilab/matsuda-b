@@ -125,6 +125,30 @@
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
+  .footer {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .footer-links {
+    position: absolute;
+    left: 10px; /* ページの左端に寄せる */
+    top: 50%;
+    transform: translateY(-50%); /* 縦方向に中央揃え */
+  }
+  
+  .footer-links a {
+    color: white; /* 文字色を白に設定 */
+    margin-right: 20px; /* 各リンクの間に余白を追加 */
+    text-decoration: none; /* 下線を消す */
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline; /* ホバー時に下線を表示 */
+  }
   
   .prev, .next {
     cursor: pointer;
