@@ -107,7 +107,9 @@ div.class {
 .carousel .slide {
   display: none;
   width: 100%;
+  justify-content: center; /* 画像を中央揃えにする */
 }
+
 
 .carousel .active {
   display: block;
@@ -115,7 +117,7 @@ div.class {
 
 .carousel img {
   width: 100%;
-  height: auto; 
+  max-width: 400px; /* 最大幅を400pxに設定 */
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
