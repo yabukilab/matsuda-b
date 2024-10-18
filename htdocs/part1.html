@@ -10,10 +10,9 @@
 
     <title>Magazine Layout</title>
 
-    <link rel="stylesheet" href="main.css">        
+    <link rel="stylesheet" href="main.css">
 
     <style>
-
         * {
 
             margin: 0;
@@ -127,6 +126,63 @@
 
         }
 
+        .footer {
+            width: 100%;
+            height: auto;
+            /* 自動に変更 */
+            background-color: #3d2010;
+            display: flex;
+            flex-direction: column;
+            /* 縦並びに変更 */
+            align-items: center;
+            /* 中央揃え */
+            padding: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            /* 横並びに変更 */
+            gap: 20px;
+            /* 各リンクの間に余白を追加 */
+        }
+
+        .footer-links {
+            display: flex;
+            /* 横並び */
+            gap: 20px;
+            /* 各リンクの間に余白を追加 */
+        }
+
+        .footer-links a {
+            color: white;
+            /* 文字色を白に設定 */
+            text-decoration: none;
+            /* 下線を消す */
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+            /* ホバー時に下線を表示 */
+        }
+
+        .footer {
+            width: 100%;
+            height: auto;
+            background-color: #3d2010;
+            display: flex;
+            justify-content: space-between;
+            /* 左右に配置 */
+            align-items: center;
+            /* 中央揃え */
+            padding: 20px;
+            color: white;
+        }
+
+        .letter {
+            margin-left: auto;
+            /* 右側に寄せる */
+        }
     </style>
 
 </head>
@@ -141,7 +197,7 @@
 
             <div class="section-left">
 
-                <img id="dynamic-image" src="lachere1.jpg" alt="Acai Bowl">        
+                <img id="dynamic-image" src="lachere1.jpg" alt="Acai Bowl">
 
             </div>
 
@@ -210,8 +266,16 @@
 
     </div>
 
-
-
+    <div class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="part1.html">①西側</a>
+            <a href="part2.html">②東側</a>
+            <a href="part3.html">③南側</a>
+            <a href="part4.html">④西側</a>
+        </div>
+        <span class="letter">©松田研究室 B班</span>
+    </div>
 
     <script>
 
@@ -219,7 +283,7 @@
 
         const fogonImages = ["fogon1.jpg", "fogon2.jpg", "fogon3.jpg", "fogon4.jpg", "fogon5.jpg", "fogon6.jpg"];
 
-        
+
 
         let lachereIndex = 0;
 
