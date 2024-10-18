@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset='utf-8' />
+  <title>（実験・演習用）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="part4.css">
+</head>
+
+<body>
+
+  <div class="team">
+    <h1>Viit tudanuma (ビート津田沼)</h1>
+  </div>
+
+  <!-- Shop 1 Section -->
+  <div class="shop1">
+    <h2>無印良品</h2>
+  </div>
+
+  <div class="carousel" id="carousel1">
+    <div class="slide active"><img src="iimage1.jpg" alt="Image 1"></div>
+    <div class="slide"><img src="iimage2.jpg" alt="Image 2"></div>
+    <div class="slide"><img src="iimage3.jpg" alt="Image 3"></div>
+    <button class="prev" data-carousel="carousel1">&lt;</button>
+    <button class="next" data-carousel="carousel1">&gt;</button>
+  </div>
+
+  <div class="info1">
+    場所 1階
+  </div>
+
+  <!-- Shop 2 Section -->
+  <div class="shop2">
+    <h2>駿河屋</h2>
+  </div>
+
+  <div class="carousel" id="carousel2">
+    <div class="slide active"><img src="iiimage1.jpg" alt="Image 1"></div>
+    <div class="slide"><img src="iiimage2.jpg" alt="Image 2"></div>
+    <div class="slide"><img src="iiimage3.jpg" alt="Image 3"></div>
+    <button class="prev" data-carousel="carousel2">&lt;</button>
+    <button class="next" data-carousel="carousel2">&gt;</button>
+  </div>
+
+  <div class="info2">
+    場所 3階
+  </div>
+
+<!-- Table-like section for info3 -->
+<div class="info3">
+  <table>
+    <tr>
+      <td><span class="address">住所</span>〒274-0825 千葉県船橋市前原西2丁目19-1</td>
+    </tr>
+    <tr>
+      <td><span class="hours">営業時間</span>年中無休 10:00〜20:00</td>
+    </tr>
+  </table>
+</div>
+
+  <div class="footer">
+    <span class="letter">©松田研究室 B班</span>
+  </div>
+
+  <script>
+    // Carousel handling function
+    function setupCarousel(carouselId) {
+      let currentSlide = 0;
+      const carousel = document.getElementById(carouselId);
+      const slides = carousel.querySelectorAll('.slide');
+      const totalSlides = slides.length;
+
+      function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      carousel.querySelector('.next').addEventListener('click', nextSlide);
+      carousel.querySelector('.prev').addEventListener('click', prevSlide);
+    }
+
+    // Initialize both carousels
+    setupCarousel('carousel1');
+    setupCarousel('carousel2');
+  </script>
+</body>
+
+</html>
