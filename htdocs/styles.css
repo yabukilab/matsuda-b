@@ -79,6 +79,35 @@ body {
   gap: 20px; /* 各リンクの間に余白を追加 */
 }
 
+.footer-links {
+  display: flex; /* 横並び */
+  gap: 20px; /* 各リンクの間に余白を追加 */
+}
+
+.footer-links a {
+  color: white; /* 文字色を白に設定 */
+  text-decoration: none; /* 下線を消す */
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: #1B5E20;
+  display: flex;
+  justify-content: space-between; /* 左右に配置 */
+  align-items: center; /* 中央揃え */
+  padding: 20px;
+  color: white;
+}
+
+.letter {
+  margin-left: auto; /* 右側に寄せる */
+}
+
 .carousel {
   position: relative;
   width: 100%;
