@@ -1,220 +1,31 @@
-/* すべての画面に共通のスタイル */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #dfffe1;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-}
-
-.home-link {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  font-size: 30px;
-  background-color: #37f040;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2);
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-}
-
-.home-link:hover {
-  background-color: #3376db;
-}
-
-div.head {
-  width: 100%;
-  height: 60px;
-  background: #4CAF50;
-  z-index: 1000;
-  margin-bottom: 30px;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-div.class {
-  width: 100%;
-  height: 70px;
-  background: #2E7D32;
-  color: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  margin: auto;
-  margin-bottom: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
-
-.btn-all {
-  background-color: #A5D6A7;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 25px;
-  padding: 12px;
-  border-radius: 10px;
-}
-
-.btn {
-  text-decoration: none;
-  padding: 10px 50px;
-  font-size: 22px;
-  background-color: #66BB6A;
-  color: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-}
-
-.footer {
-  width: 100%;
-  height: 80px;
-  background-color: #1B5E20;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 25px;
-  color: white;
-}
-
-.letter {
-  margin-left: auto;
-  font-size: 16px;
-}
-
-.carousel {
-  position: relative;
-  width: 70%;
-  max-width: 700px;
-  margin: 0 auto; /* コンテナを中央揃えにする */
-  overflow: hidden;
-  text-align: center; /* スライドの中身を中央揃え */
-}
-
-
-.carousel .slide {
-  display: none;
-  width: 100%;
-}
-
-.carousel .active {
-  display: block;
-}
-
+/* 全画面共通のスタイル */
 .carousel img {
-  width: 40%;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  display: block; /* 中央揃えのためにブロック要素に */
-  margin: 0 auto; /* 中央揃え */
+  width: 90%;  /* 画像の幅を少し小さく */
+  height: auto;
+  margin: 0 auto;  /* 中央揃え */
+  display: block;  /* ブロック要素に変更 */
 }
 
 .footer {
-  position: relative;
-  text-align: center;
+  justify-content: space-between; /* footerの両端に要素を配置 */
   padding: 20px;
-  background-color: #555e59;
-  color: white;
 }
 
-.footer-links {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+.footer .letter {
+  margin-left: auto; /* 松田研究室B班を右に揃える */
 }
 
-.footer-links a {
-  color: white;
-  margin-right: 20px;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 12px;
-  background-color: rgba(75, 68, 68, 0.6);
-  color: white;
-  font-size: 44px;
-  border: none;
-  line-height: 0;
-  border-radius: 50%;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.prev {
-  left: 12px;
-}
-
-.next {
-  right: 12px;
-}
-
-/* スマートフォン向けのレスポンシブ対応 */
 @media (max-width: 768px) {
-  .home-link {
-    font-size: 20px;
-    padding: 8px;
-  }
-
-  div.head {
-    font-size: 18px;
-  }
-
-  .btn-all {
-    flex-direction: column; /* ボタンを縦並びにする */
-  }
-
-  .btn {
-    padding: 10px 30px;
-  }
-
   .carousel img {
-    height: 250px; /* 画像の高さを小さくする */
+    width: 100%;  /* スマホでは画面幅いっぱいに */
   }
 
   .footer {
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px;
+    flex-direction: column; /* スマホでは縦並び */
   }
 
-  .footer-links {
-    position: relative;
-    left: 0;
-    top: 0;
-    transform: none;
-    margin-bottom: 10px;
+  .footer .letter {
+    margin-left: 0;  /* 松田研究室B班を中央揃えに戻す */
+    text-align: right; /* スマホでも右寄せ */
   }
 }
