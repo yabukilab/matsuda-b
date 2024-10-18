@@ -105,9 +105,11 @@ div.class {
   position: relative;
   width: 100%;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0 auto; /* コンテナを中央揃えにする */
   overflow: hidden;
+  text-align: center; /* スライドの中身を中央揃え */
 }
+
 
 .carousel .slide {
   display: none;
