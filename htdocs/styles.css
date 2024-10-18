@@ -6,7 +6,7 @@
 
 
 body {
-  background: #fdf5ce;
+  background: #F5DEB3;
   font-family: 'Arial', sans-serif;
   color: #333;
 }
@@ -14,7 +14,7 @@ body {
 .head {
   width: 100%;
   height: 60px;
-  background: #4CAF50;
+  background: #533518;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,7 +30,7 @@ body {
   max-width: 1000px;
   /* 最大幅を設定 */
   height: 70px;
-  background: #2E7D32;
+  background: #98b540;
   color: white;
   border-radius: 12px;
   margin: auto;
@@ -51,7 +51,6 @@ body {
   gap: 15px;
   margin-bottom: 25px;
   padding: 12px;
-  border-radius: 10px;
 }
 
 .btn {
@@ -60,7 +59,7 @@ body {
   /* 修正: パディングを調整 */
   font-size: 18px;
   /* 読みやすさのために少し小さく */
-  background-color: #66BB6A;
+  background-color: #449048;
   color: white;
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -75,7 +74,7 @@ body {
   width: 100%;
   height: auto;
   /* 自動に変更 */
-  background-color: #1B5E20;
+  background-color: #3d2010;
   display: flex;
   flex-direction: column;
   /* 縦並びに変更 */
@@ -115,7 +114,7 @@ body {
 .footer {
   width: 100%;
   height: auto;
-  background-color: #1B5E20;
+  background-color: #3d2010;
   display: flex;
   justify-content: space-between;
   /* 左右に配置 */
