@@ -3,38 +3,34 @@
   padding: 0;
   box-sizing: border-box;
 }
-.home-link {
-  margin-top: 60px; /* 上に余白を追加 */
-  text-align: left; /* 左揃え */
-  padding-left: 20px; /* 左にパディングを追加 */
-}
+
 body {
-  background: #dfffe1; /* Brighter green background */
+  background: #dfffe1;
   font-family: 'Arial', sans-serif;
   color: #333;
 }
 
 .home-link {
-  position: fixed; /* ページをスクロールしても位置を固定 */
-  top: 10px; /* 上から10pxの位置に配置 */
-  left: 10px; /* 左から10pxの位置に配置 */
-  font-size: 30px; /* 文字の大きさ */
-  background-color: #37f040; /* 背景色を緑に */
-  padding: 10px; /* パディングを追加 */
-  border-radius: 8px; /* 角を丸く */
-  box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2); /* 軽い影を追加 */
-  color: rgb(255, 255, 255); /* 文字色を白に */
-  text-decoration: none; /* 下線を削除 */
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  background-color: #37f040;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2);
+  color: #fff;
+  text-decoration: none;
 }
 
 .home-link a:hover {
-  background-color: #3376db; /* ホバー時の背景色変更 */
+  background-color: #3376db;
 }
 
-div.head {
+.head {
   width: 100%;
   height: 60px;
-  background: #4CAF50; /* Vivid green */
+  background: #4CAF50;
   z-index: 1000;
   margin-bottom: 30px;
   font-size: 24px;
@@ -46,10 +42,10 @@ div.head {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-div.class {
+.class {
   width: 1200px;
   height: 70px;
-  background: #2E7D32; /* Darker, vivid green */
+  background: #2E7D32;
   color: white;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -63,7 +59,7 @@ div.class {
 }
 
 .btn-all {
-  background-color: #A5D6A7; /* Vibrant mint green */
+  background-color: #A5D6A7;
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -77,7 +73,7 @@ div.class {
   text-decoration: none;
   padding: 10px 124px;
   font-size: 22px;
-  background-color: #66BB6A; /* Bright green */
+  background-color: #66BB6A;
   color: white;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -89,27 +85,20 @@ div.class {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
-
-.letter {
-  font-size: 16px;
-}
-
-/* Carousel Styling */
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 900px; /* Increased width for a bolder look */
+  max-width: 900px;
   margin: 0 auto;
   overflow: hidden;
-  text-align: center; /* 画像を中央に揃える */
+  text-align: center;
 }
 
 .carousel .slide {
   display: none;
   width: 100%;
-  justify-content: center; /* 画像を中央揃えにする */
+  justify-content: center;
 }
-
 
 .carousel .active {
   display: block;
@@ -117,11 +106,11 @@ div.class {
 
 .carousel img {
   width: 100%;
-  max-width: 400px; /* 最大幅を400pxに設定 */
+  max-width: 400px;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; /* 左右の余白を自動調整して中央に揃える */
+  margin: 0 auto;
 }
 
 .prev, .next {
@@ -130,7 +119,7 @@ div.class {
   top: 50%;
   transform: translateY(-50%);
   padding: 12px;
-  background-color: #555e59(75, 68, 68, 0.6);
+  background-color: rgba(85, 94, 89, 0.6);
   color: white;
   font-size: 44px;
   border: none;
@@ -152,47 +141,26 @@ div.class {
 
 .footer {
   width: 100%;
-  height: auto; /* 自動に変更 */
   background-color: #1B5E20;
   display: flex;
-  flex-direction: column; /* 縦並びに変更 */
-  align-items: center; /* 中央揃え */
-  padding: 20px; /* パディングを追加 */
-  color: white;
-}
-
-.footer-links {
-  display: flex; /* 横並びに変更 */
-  gap: 20px; /* 各リンクの間に余白を追加 */
-}
-
-.footer-links {
-  display: flex; /* 横並び */
-  gap: 20px; /* 各リンクの間に余白を追加 */
-}
-
-.footer-links a {
-  color: white; /* 文字色を白に設定 */
-  text-decoration: none; /* 下線を消す */
-}
-
-.footer-links a:hover {
-  text-decoration: underline; /* ホバー時に下線を表示 */
-}
-
-.footer {
-  width: 100%;
-  height: auto;
-  background-color: #1B5E20;
-  display: flex;
-  justify-content: space-between; /* 左右に配置 */
-  align-items: center; /* 中央揃え */
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   color: white;
 }
 
-.letter {
-  margin-left: auto; /* 右側に寄せる */
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -201,14 +169,14 @@ div.class {
     padding: 8px;
   }
 
-  div.class {
-    width: 90%; /* クラスの幅を調整 */
+  .class {
+    width: 90%;
     font-size: 18px;
   }
 
   .carousel img {
-    height: auto; /* 高さを自動に */
-    max-width: 100%; /* 画像の幅を画面幅に合わせる */
+    height: auto;
+    max-width: 100%;
   }
 
   .footer {
@@ -219,6 +187,5 @@ div.class {
 
   .footer .letter {
     text-align: right;
-    margin-left: 0;
   }
 }
