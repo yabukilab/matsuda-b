@@ -124,6 +124,8 @@ div.class {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  display: block; /* 中央揃えのためにブロック要素に */
+  margin: 0 auto; /* 中央揃え */
 }
 
 .footer {
