@@ -3,11 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-.home-link {
-  margin-top: 60px; /* 上に余白を追加 */
-  text-align: left; /* 左揃え */
-  padding-left: 20px; /* 左にパディングを追加 */
-}
+
 body {
   background: #dfffe1; /* Brighter green background */
   font-family: 'Arial', sans-serif;
@@ -62,163 +58,99 @@ div.class {
   font-size: 22px;
 }
 
-.btn-all {
-  background-color: #A5D6A7; /* Vibrant mint green */
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 25px;
-  padding: 12px;
-  border-radius: 10px;
+.main {
+  text-align: center;
+  margin-bottom: 20px; /* コンテンツ下部に余白を追加 */
 }
 
-.btn {
-  text-decoration: none;
-  padding: 10px 124px;
-  font-size: 22px;
-  background-color: #66BB6A; /* Bright green */
-  color: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.section-title {
+  font-size: 40px; /* フォントサイズを大きく */
+  margin: 12px 0; /* 上下に余白を追加 */
+  color: orange; /* 文字色をオレンジに */
+  padding: 10px; /* パディングを追加 */
+  background-color: white; /* 背景色を白に */
+  border-radius: 20px; /* 角を丸くする */
+  display: inline-block; /* タイトルの周りに余白を持たせるための設定 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+.info {
+  margin: 0 auto; /* 中央揃え */
+  width: 80%; /* 幅を調整 */
 }
 
-
-.letter {
-  font-size: 16px;
+.image-container {
+  position: relative; /* スライドショーの親要素 */
+  width: 400px; /* 幅を固定 */
+  height: 500px; /* 高さを固定 */
+  overflow: hidden; /* はみ出した部分を隠す */
+  margin: 0 auto; /* 中央揃え */
 }
 
-/* Carousel Styling */
-.carousel {
-  position: relative;
-  width: 100%;
-  max-width: 900px; /* Increased width for a bolder look */
-  margin: 0 auto;
-  overflow: hidden;
-  text-align: center; /* 画像を中央に揃える */
+.slides {
+  display: flex; /* スライドを横に並べる */
+  transition: transform 0.5s ease; /* スライドの切り替えにアニメーションを追加 */
 }
 
-.carousel .slide {
-  display: none;
-  width: 100%;
-  justify-content: center; /* 画像を中央揃えにする */
+.slides img {
+  width: 400px; /* 画像の幅を固定 */
+  height: 500px; /* 画像の高さを固定 */
 }
 
-
-.carousel .active {
-  display: block;
+table {
+  width: 80%; /* 表の幅を80%に */
+  margin: 20px auto; /* 中央揃え */
+  border-collapse: collapse; /* 表の罫線を統合 */
+  background-color: yellow; /* 背景色を黄色に */
 }
 
-.carousel img {
-  width: 100%;
-  max-width: 400px; /* 最大幅を400pxに設定 */
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; /* 左右の余白を自動調整して中央に揃える */
+th,
+td {
+  border: 1px solid black; /* 罫線を黒に */
+  padding: 8px; /* パディングを追加 */
+  text-align: center; /* 中央揃え */
 }
 
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 12px;
-  background-color: #555e59(75, 68, 68, 0.6);
-  color: white;
-  font-size: 44px;
-  border: none;
-  line-height: 0;
-  border-radius: 50%;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.prev {
-  left: 12px;
-}
-
-.next {
-  right: 12px;
+th {
+  background-color: #f2f2f2; /* ヘッダー行の背景色 */
 }
 
 .footer {
-  width: 100%;
-  height: auto; /* 自動に変更 */
-  background-color: #1B5E20;
-  display: flex;
-  flex-direction: column; /* 縦並びに変更 */
-  align-items: center; /* 中央揃え */
+  text-align: center; /* 中央揃え */
   padding: 20px; /* パディングを追加 */
-  color: white;
+  background-color: #333; /* 背景色を濃いグレーに */
+  color: white; /* 文字色を白に */
 }
 
 .footer-links {
-  display: flex; /* 横並びに変更 */
-  gap: 20px; /* 各リンクの間に余白を追加 */
-}
-
-.footer-links {
-  display: flex; /* 横並び */
-  gap: 20px; /* 各リンクの間に余白を追加 */
+  margin-bottom: 10px; /* フッター内のリンクの下に余白を追加 */
 }
 
 .footer-links a {
-  color: white; /* 文字色を白に設定 */
-  text-decoration: none; /* 下線を消す */
+  color: white; /* リンクの文字色 */
+  margin: 0 10px; /* 左右に余白を追加 */
+  text-decoration: none; /* 下線を削除 */
 }
 
 .footer-links a:hover {
   text-decoration: underline; /* ホバー時に下線を表示 */
 }
 
-.footer {
-  width: 100%;
-  height: auto;
-  background-color: #1B5E20;
-  display: flex;
-  justify-content: space-between; /* 左右に配置 */
-  align-items: center; /* 中央揃え */
-  padding: 20px;
-  color: white;
-}
-
-.letter {
-  margin-left: auto; /* 右側に寄せる */
-}
-
 @media (max-width: 768px) {
   .home-link {
-    font-size: 20px;
-    padding: 8px;
+      font-size: 20px; /* ホームリンクのフォントサイズを小さく */
+      padding: 8px; /* パディングを調整 */
   }
 
-  div.class {
-    width: 90%; /* クラスの幅を調整 */
-    font-size: 18px;
+  .info {
+      width: 90%; /* 小さな画面では幅を90%に */
   }
 
-  .carousel img {
-    height: auto; /* 高さを自動に */
-    max-width: 100%; /* 画像の幅を画面幅に合わせる */
+  .image-container {
+      width: 100%; /* 小さな画面では幅を100%に */
   }
 
-  .footer {
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px;
-  }
-
-  .footer .letter {
-    text-align: right;
-    margin-left: 0;
+  .slides img {
+      width: 100%; /* 小さな画面では画像の幅を100%に */
   }
 }

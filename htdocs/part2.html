@@ -6,83 +6,9 @@
   <title>津田沼駅東側エリア - ゆずカフェ</title>
   <link rel="stylesheet" type="text/css" href="part2.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* ページ全体にスクロールできるようにする */
-    
-
-    .main {
-      text-align: center;
-      margin-bottom: 20px; /* コンテンツ下部に余白を追加 */
-    }
-
-    /* タイトルのスタイル */
-    .section-title {
-      font-size: 40px; /* フォントサイズを大きく */
-      margin: 12px 0; /* 上下に余白を追加 */
-      color: orange; /* 文字色をオレンジに */
-      padding: 10px; /* パディングを追加 */
-      background-color: white; /* 背景色を白に */
-      border-radius: 20px; /* 角を丸くする */
-      display: inline-block; /* タイトルの周りに余白を持たせるための設定 */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
-    }
-
-    /* 情報ボックスのスタイル */
-    .info {
-      margin: 0 auto; /* 中央揃え */
-      width: 80%; /* 幅を調整 */
-    }
-
-    /* 画像スライドショーのスタイル */
-    .image-container {
-      position: relative; /* スライドショーの親要素 */
-      width: 400px; /* 幅を固定 */
-      height: 500px; /* 高さを固定 */
-      overflow: hidden; /* はみ出した部分を隠す */
-      margin: 0 auto; /* 中央揃え */
-    }
-
-    .slides {
-      display: flex; /* 画像を横に並べる */
-      transition: transform 0.5s ease; /* スライドのトランジション */
-    }
-
-    .slides img {
-      width: 400px; /* 画像の幅 */
-      height: 500px; /* 画像の高さ */
-    }
-
-    /* 表のスタイル */
-    table {
-      width: 80%;
-      border-collapse: collapse;
-      margin: 20px auto; /* 表を中央揃えにするためのスタイル */
-      background-color: yellow; /* 表の背景色を黄色に設定 */
-    }
-
-    th,
-    td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: center;
-    }
-
-    th {
-      background-color: #f2f2f2; /* ヘッダーの背景色 */
-    }
-
-    .footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #333;
-      color: white;
-      position: relative;
-    }
-  </style>
 </head>
 
 <body>
-  
   <!-- 左上に表示されるHOMEリンク -->
   <div class="home-link">
     <a href="index.html">HOME</a>
@@ -112,7 +38,7 @@
         <tbody>
           <tr>
             <td><strong>営業時間</strong></td>
-            <td>水木金土日 10:00 ~ 17:00 (L.O. 16:30)  　定休日 月火</td>
+            <td>水木金土日 10:00 ~ 17:00 (L.O. 16:30) 　定休日 月火</td>
           </tr>
           <tr>
             <td><strong>住所</strong></td>
@@ -132,7 +58,7 @@
           </tr>
         </tbody>
       </table>
-      
+
       <!-- 2つ目の情報ボックス -->
       <div class="section-title">鎌倉パスタ DINING-イオンモール津田沼店</div>
       <div class="image-container">
@@ -184,30 +110,7 @@
     <span class="letter">©松田研究室 B班</span>
   </div>
 
-  <script>
-    let currentIndex1 = 0; // 最初のスライドのインデックス
-    let currentIndex2 = 0; // 2つ目のスライドのインデックス
-    const slides1 = document.querySelector('#slides1'); // 最初のスライドの親要素
-    const slides2 = document.querySelector('#slides2'); // 2つ目のスライドの親要素
-    const totalSlides1 = document.querySelectorAll('#slides1 img').length; // 最初のスライドの総数
-    const totalSlides2 = document.querySelectorAll('#slides2 img').length; // 2つ目のスライドの総数
-
-    function showNextSlide(slides, currentIndex, totalSlides) {
-      if (currentIndex === totalSlides - 1) {
-        currentIndex = 0; // 最後の後は最初に戻る
-      } else {
-        currentIndex += 1; // 次のインデックスに進む
-      }
-      slides.style.transform = `translateX(-${currentIndex * 400}px)`; // スライドを移動
-      return currentIndex; // 更新されたインデックスを返す
-    }
-
-    setInterval(() => {
-      currentIndex1 = showNextSlide(slides1, currentIndex1, totalSlides1); // 最初のスライドを更新
-      currentIndex2 = showNextSlide(slides2, currentIndex2, totalSlides2); // 2つ目のスライドを更新
-    }, 3000); // 3秒ごとにスライドを切り替え
-  </script>
-
+  <script src="part2.js"></script>
 </body>
 
 </html>
