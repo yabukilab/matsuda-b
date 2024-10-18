@@ -97,6 +97,7 @@ div.class {
 }
 
 .letter {
+  margin-left: auto;
   font-size: 16px;
 }
 
@@ -118,7 +119,7 @@ div.class {
 }
 
 .carousel img {
-  width: 100%;
+  width: 40%;
   height: 400px;
   object-fit: cover;
   border-radius: 12px;
