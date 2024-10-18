@@ -5,51 +5,36 @@
 }
 
 body {
-  background: #dfffe1; /* Brighter green background */
+  background: #dfffe1;
   font-family: 'Arial', sans-serif;
   color: #333;
 }
 
 .home-link {
-  position: fixed; /* ページをスクロールしても位置を固定 */
-  top: 10px; /* 上から10pxの位置に配置 */
-  left: 10px; /* 左から10pxの位置に配置 */
-  font-size: 30px; /* 文字の大きさ */
-  background-color: #37f040; /* 背景色を緑に */
-  padding: 10px; /* パディングを追加 */
-  border-radius: 8px; /* 角を丸く */
-  box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2); /* 軽い影を追加 */
-  color: rgb(255, 255, 255); /* 文字色を白に */
-  text-decoration: none; /* 下線を削除 */
+  position: fixed;
+  top: 70px; /* Adjust this value as needed */
+  left: 10px;
+  padding: 10px;
+  font-size: 30px;
+  background-color: #37f040;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2);
+  text-decoration: none;
 }
 
-.home-link a:hover {
-  background-color: #3376db; /* ホバー時の背景色変更 */
+.home-link:hover {
+  background-color: #3376db;
 }
 
-div.head {
-  width: 100%;
-  height: 60px;
-  background: #4CAF50; /* Vivid green */
-  z-index: 1000;
-  margin-bottom: 30px;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-div.class {
-  width: 1200px;
+.class {
+  max-width: 1200px;
+  width: 90%;
   height: 70px;
-  background: #2E7D32; /* Darker, vivid green */
+  background: #2E7D32;
   color: white;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: auto;
   margin-bottom: 25px;
   display: flex;
