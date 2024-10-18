@@ -2,73 +2,108 @@
 <html lang="ja">
 
 <head>
-  <meta charset='utf-8' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>津田沼駅東側エリア - ゆずカフェ</title>
   <link rel="stylesheet" type="text/css" href="part2.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* ページ全体にスクロールできるようにする */
-    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #dfffe1;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+    }
+
+    .home-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 10px;
+      font-size: 30px;
+      background-color: #37f040;
+      color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2);
+      text-decoration: none;
+    }
+
+    .home-link:hover {
+      background-color: #3376db;
+    }
+
+    .class {
+      width: 1200px;
+      margin: auto;
+      margin-bottom: 25px;
+      background: #2E7D32;
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
 
     .main {
       text-align: center;
-      margin-bottom: 20px; /* コンテンツ下部に余白を追加 */
+      margin-bottom: 20px;
     }
 
-    /* タイトルのスタイル */
     .section-title {
-      font-size: 40px; /* フォントサイズを大きく */
-      margin: 12px 0; /* 上下に余白を追加 */
-      color: orange; /* 文字色をオレンジに */
-      padding: 10px; /* パディングを追加 */
-      background-color: white; /* 背景色を白に */
-      border-radius: 20px; /* 角を丸くする */
-      display: inline-block; /* タイトルの周りに余白を持たせるための設定 */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
+      font-size: 40px;
+      margin: 12px 0;
+      color: orange;
+      padding: 10px;
+      background-color: white;
+      border-radius: 20px;
+      display: inline-block;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    /* 情報ボックスのスタイル */
     .info {
-      margin: 0 auto; /* 中央揃え */
-      width: 80%; /* 幅を調整 */
+      margin: 0 auto;
+      width: 80%;
     }
 
-    /* 画像スライドショーのスタイル */
     .image-container {
-      position: relative; /* スライドショーの親要素 */
-      width: 400px; /* 幅を固定 */
-      height: 500px; /* 高さを固定 */
-      overflow: hidden; /* はみ出した部分を隠す */
-      margin: 0 auto; /* 中央揃え */
+      position: relative;
+      width: 400px;
+      height: 500px;
+      overflow: hidden;
+      margin: 0 auto;
     }
 
     .slides {
-      display: flex; /* 画像を横に並べる */
-      transition: transform 0.5s ease; /* スライドのトランジション */
+      display: flex;
+      transition: transform 0.5s ease;
     }
 
     .slides img {
-      width: 400px; /* 画像の幅 */
-      height: 500px; /* 画像の高さ */
+      width: 400px;
+      height: 500px;
     }
 
-    /* 表のスタイル */
     table {
       width: 80%;
       border-collapse: collapse;
-      margin: 20px auto; /* 表を中央揃えにするためのスタイル */
-      background-color: yellow; /* 表の背景色を黄色に設定 */
+      margin: 20px auto;
+      background-color: yellow;
     }
 
-    th,
-    td {
+    th, td {
       border: 1px solid black;
       padding: 8px;
       text-align: center;
     }
 
     th {
-      background-color: #f2f2f2; /* ヘッダーの背景色 */
+      background-color: #f2f2f2;
     }
 
     .footer {
@@ -76,14 +111,30 @@
       padding: 20px;
       background-color: #333;
       color: white;
-      position: relative;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .letter {
+      margin-left: auto;
     }
   </style>
 </head>
 
 <body>
-  
-  <!-- 左上に表示されるHOMEリンク -->
   <div class="home-link">
     <a href="index.html">HOME</a>
   </div>
@@ -96,7 +147,6 @@
     <div class="info">
       <div class="section-title">ゆずカフェ</div>
 
-      <!-- 画像スライドショー -->
       <div class="image-container">
         <div class="slides" id="slides1">
           <img src="IMG_9604.jpg" alt="cafe1">
@@ -107,12 +157,11 @@
         </div>
       </div>
 
-      <!-- 表の作成 -->
       <table>
         <tbody>
           <tr>
             <td><strong>営業時間</strong></td>
-            <td>水木金土日 10:00 ~ 17:00 (L.O. 16:30)  　定休日 月火</td>
+            <td>水木金土日 10:00 ~ 17:00 (L.O. 16:30) 定休日 月火</td>
           </tr>
           <tr>
             <td><strong>住所</strong></td>
@@ -120,7 +169,7 @@
           </tr>
           <tr>
             <td><strong>アクセス</strong></td>
-            <td>JR津田沼駅北口徒歩10分　新京成新津田沼駅徒歩9分</td>
+            <td>JR津田沼駅北口徒歩10分　　新京成新津田沼駅徒歩9分</td>
           </tr>
           <tr>
             <td><strong>電話番号</strong></td>
@@ -132,9 +181,9 @@
           </tr>
         </tbody>
       </table>
-      
-      <!-- 2つ目の情報ボックス -->
+
       <div class="section-title">鎌倉パスタ DINING-イオンモール津田沼店</div>
+
       <div class="image-container">
         <div class="slides" id="slides2">
           <img src="無題24_20241015191614.PNG" alt="pasta">
@@ -144,12 +193,11 @@
         </div>
       </div>
 
-      <!-- 表の作成 -->
       <table>
         <tbody>
           <tr>
             <td><strong>営業時間</strong></td>
-            <td>年中無休 11:00 ~ 22:00 (L.O. 21:00)　　定休日 施設の休業次第</td>
+            <td>年中無休 11:00 ~ 22:00 (L.O. 21:00) 定休日 施設の休業次第</td>
           </tr>
           <tr>
             <td><strong>住所</strong></td>
@@ -169,7 +217,6 @@
           </tr>
         </tbody>
       </table>
-
     </div>
   </div>
 
@@ -185,29 +232,24 @@
   </div>
 
   <script>
-    let currentIndex1 = 0; // 最初のスライドのインデックス
-    let currentIndex2 = 0; // 2つ目のスライドのインデックス
-    const slides1 = document.querySelector('#slides1'); // 最初のスライドの親要素
-    const slides2 = document.querySelector('#slides2'); // 2つ目のスライドの親要素
-    const totalSlides1 = document.querySelectorAll('#slides1 img').length; // 最初のスライドの総数
-    const totalSlides2 = document.querySelectorAll('#slides2 img').length; // 2つ目のスライドの総数
+    let currentIndex1 = 0;
+    let currentIndex2 = 0;
+    const slides1 = document.querySelector('#slides1');
+    const slides2 = document.querySelector('#slides2');
+    const totalSlides1 = slides1.querySelectorAll('img').length;
+    const totalSlides2 = slides2.querySelectorAll('img').length;
 
     function showNextSlide(slides, currentIndex, totalSlides) {
-      if (currentIndex === totalSlides - 1) {
-        currentIndex = 0; // 最後の後は最初に戻る
-      } else {
-        currentIndex += 1; // 次のインデックスに進む
-      }
+      currentIndex = (currentIndex + 1) % totalSlides; // 次のスライドに進む
       slides.style.transform = `translateX(-${currentIndex * 400}px)`; // スライドを移動
-      return currentIndex; // 更新されたインデックスを返す
+      return currentIndex;
     }
 
     setInterval(() => {
-      currentIndex1 = showNextSlide(slides1, currentIndex1, totalSlides1); // 最初のスライドを更新
-      currentIndex2 = showNextSlide(slides2, currentIndex2, totalSlides2); // 2つ目のスライドを更新
+      currentIndex1 = showNextSlide(slides1, currentIndex1, totalSlides1);
+      currentIndex2 = showNextSlide(slides2, currentIndex2, totalSlides2);
     }, 3000); // 3秒ごとにスライドを切り替え
   </script>
 
 </body>
-
 </html>

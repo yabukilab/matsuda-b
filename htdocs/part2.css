@@ -12,16 +12,17 @@ body {
 
 .home-link {
   position: fixed;
-  top: 10px;
+  top: 70px; /* Adjust this value as needed */
   left: 10px;
+  padding: 10px;
   font-size: 30px;
   background-color: #37f040;
-  padding: 10px;
+  color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2);
-  color: #fff;
   text-decoration: none;
 }
+
 
 .home-link a:hover {
   background-color: #3376db;
