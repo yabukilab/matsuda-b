@@ -5,18 +5,15 @@
 }
 
 body {
-  background: #fdf5ce; /* Brighter green background */
+  background: #fdf5ce;
   font-family: 'Arial', sans-serif;
   color: #333;
 }
 
-div.head {
+.head {
   width: 100%;
   height: 60px;
-  background:#4CAF50; /* Vivid green */
-  z-index: 1000;
-  margin-bottom: 30px;
-  font-size: 24px;
+  background: #4CAF50;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,28 +22,27 @@ div.head {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-div.team {
-  width: 1200px;
+.team {
+  width: 100%; /* 100%に変更 */
+  max-width: 1000px; /* 最大幅を設定 */
   height: 70px;
-  background: #2E7D32; /* Darker, vivid green */
+  background: #2E7D32;
   color: white;
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: auto;
+  margin: auto; /* 中央揃え */
   margin-bottom: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .btn-all {
-  background-color: #A5D6A7; /* Vibrant mint green */
+  background-color: #A5D6A7;
   display: flex;
+  flex-wrap: wrap; /* 追加: ラップ */
   justify-content: center;
   gap: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   margin-bottom: 25px;
   padding: 12px;
   border-radius: 10px;
@@ -54,12 +50,11 @@ div.team {
 
 .btn {
   text-decoration: none;
-  padding: 10px 124px;
-  font-size: 22px;
-  background-color: #66BB6A; /* Bright green */
+  padding: 10px 15px; /* 修正: パディングを調整 */
+  font-size: 18px; /* 読みやすさのために少し小さく */
+  background-color: #66BB6A;
   color: white;
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -70,24 +65,53 @@ div.team {
 
 .footer {
   width: 100%;
-  height: 80px;
+  height: auto; /* 自動に変更 */
   background-color: #1B5E20;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 25px;
+  flex-direction: column; /* 縦並びに変更 */
+  align-items: center; /* 中央揃え */
+  padding: 20px; /* パディングを追加 */
+  color: white;
+}
+
+.footer-links {
+  display: flex; /* 横並びに変更 */
+  gap: 20px; /* 各リンクの間に余白を追加 */
+}
+
+.footer-links {
+  display: flex; /* 横並び */
+  gap: 20px; /* 各リンクの間に余白を追加 */
+}
+
+.footer-links a {
+  color: white; /* 文字色を白に設定 */
+  text-decoration: none; /* 下線を消す */
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: #1B5E20;
+  display: flex;
+  justify-content: space-between; /* 左右に配置 */
+  align-items: center; /* 中央揃え */
+  padding: 20px;
   color: white;
 }
 
 .letter {
-  font-size: 16px;
+  margin-left: auto; /* 右側に寄せる */
 }
 
-/* Carousel Styling */
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 900px; /* Increased width for a bolder look */
+  max-width: 900px;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -103,10 +127,25 @@ div.team {
 
 .carousel img {
   width: 100%;
-  height: 550px; /* Increased height */
+  height: auto; /* 高さを自動調整 */
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.info {
+  display: flex;
+  flex-direction: column; /* 縦並びに変更 */
+  align-items: center; /* 中央揃え */
+}
+
+.map-text {
+  padding: 20px; /* パディングを追加 */
+  text-align: center; /* 中央揃え */
+}
+
+.map-container {
+  text-align: center;
+  margin-top: 20px; /* 上部のマージンを追加 */
 }
 
 .prev, .next {

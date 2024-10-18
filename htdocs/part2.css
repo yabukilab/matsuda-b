@@ -1,178 +1,215 @@
+/* すべての画面に共通のスタイル */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background: #dfffe1; /* Brighter green background */
-    font-family: 'Arial', sans-serif;
-    color: #333;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #dfffe1;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.home-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  background-color: #37f040;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2);
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background-color: #3376db;
+}
+
+div.head {
+  width: 100%;
+  height: 60px;
+  background: #4CAF50;
+  z-index: 1000;
+  margin-bottom: 30px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+div.class {
+  width: 100%;
+  height: 70px;
+  background: #2E7D32;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  margin: auto;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.btn-all {
+  background-color: #A5D6A7;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 10px 50px;
+  font-size: 22px;
+  background-color: #66BB6A;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.footer {
+  width: 100%;
+  height: 80px;
+  background-color: #1B5E20;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 25px;
+  color: white;
+}
+
+.letter {
+  font-size: 16px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel .slide {
+  display: none;
+  width: 100%;
+}
+
+.carousel .active {
+  display: block;
+}
+
+.carousel img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  background-color: #555e59;
+  color: white;
+}
+
+.footer-links {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.footer-links a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 12px;
+  background-color: rgba(75, 68, 68, 0.6);
+  color: white;
+  font-size: 44px;
+  border: none;
+  line-height: 0;
+  border-radius: 50%;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+  left: 12px;
+}
+
+.next {
+  right: 12px;
+}
+
+/* スマートフォン向けのレスポンシブ対応 */
+@media (max-width: 768px) {
   .home-link {
-    position: fixed; /* ページをスクロールしても位置を固定 */
-    top: 10px; /* 上から10pxの位置に配置 */
-    left: 10px; /* 左から10pxの位置に配置 */
-    font-size: 30px; /* 文字の大きさ */
-    background-color: #2E7D32; /* 背景色を緑に */
-    padding: 10px; /* パディングを追加 */
-    border-radius: 8px; /* 角を丸く */
-    box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2); /* 軽い影を追加 */
-    color: rgb(255, 255, 255); /* 文字色を白に */
-    text-decoration: none; /* 下線を削除 */
-  }
-  
-  .home-link a:hover {
-    background-color: #3376db; /* ホバー時の背景色変更 */
+    font-size: 20px;
+    padding: 8px;
   }
 
   div.head {
-    width: 100%;
-    height: 60px;
-    background: #4CAF50; /* Vivid green */
-    z-index: 1000;
-    margin-bottom: 30px;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-size: 18px;
   }
-  
-  div.class {
-    width: 1200px;
-    height: 70px;
-    background: #2E7D32; /* Darker, vivid green */
-    color: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: auto;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-  }
-  
+
   .btn-all {
-    background-color: #A5D6A7; /* Vibrant mint green */
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 25px;
-    padding: 12px;
-    border-radius: 10px;
+    flex-direction: column; /* ボタンを縦並びにする */
   }
-  
+
   .btn {
-    text-decoration: none;
-    padding: 10px 124px;
-    font-size: 22px;
-    background-color: #66BB6A; /* Bright green */
-    color: white;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px 30px;
   }
-  
-  .btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-  }
-  
-  .footer {
-    width: 100%;
-    height: 80px;
-    background-color: #1B5E20;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 25px;
-    color: white;
-  }
-  
-  .letter {
-    font-size: 16px;
-  }
-  
-  /* Carousel Styling */
-  .carousel {
-    position: relative;
-    width: 100%;
-    max-width: 900px; /* Increased width for a bolder look */
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  
-  .carousel .slide {
-    display: none;
-    width: 100%;
-  }
-  
-  .carousel .active {
-    display: block;
-  }
-  
+
   .carousel img {
-    width: 100%;
-    height: 550px; /* Increased height */
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    height: 250px; /* 画像の高さを小さくする */
   }
+
   .footer {
-    position: relative;
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
   }
-  
+
   .footer-links {
-    position: absolute;
-    left: 10px; /* ページの左端に寄せる */
-    top: 50%;
-    transform: translateY(-50%); /* 縦方向に中央揃え */
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    margin-bottom: 10px;
   }
-  
-  .footer-links a {
-    color: white; /* 文字色を白に設定 */
-    margin-right: 20px; /* 各リンクの間に余白を追加 */
-    text-decoration: none; /* 下線を消す */
-  }
-  
-  .footer-links a:hover {
-    text-decoration: underline; /* ホバー時に下線を表示 */
-  }
-  
-  .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 12px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    font-size: 44px;
-    border: none;
-    line-height: 0;
-    border-radius: 50%;
-  }
-  
-  .prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  .prev {
-    left: 12px;
-  }
-  
-  .next {
-    right: 12px;
-  }
-  
+}
