@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .home-link {
-  margin-top: 20px; /* 上に余白を追加 */
+  margin-top: 40px; /* 上に余白を追加 */
   text-align: left; /* 左揃え */
   padding-left: 20px; /* 左にパディングを追加 */
 }
