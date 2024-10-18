@@ -85,16 +85,6 @@ div.class {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
-.footer {
-  width: 100%;
-  height: 80px;
-  background-color: #1B5E20;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 25px;
-  color: white;
-}
 
 .letter {
   font-size: 16px;
@@ -127,30 +117,6 @@ div.class {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   margin: 0 auto; /* 左右の余白を自動調整して中央に揃える */
 }
-.footer {
-  position: relative;
-  text-align: center;
-  padding: 20px;
-  background-color: #555e59;
-  color: white;
-}
-
-.footer-links {
-  position: absolute;
-  left: 10px; /* ページの左端に寄せる */
-  top: 50%;
-  transform: translateY(-50%); /* 縦方向に中央揃え */
-}
-
-.footer-links a {
-  color: white; /* 文字色を白に設定 */
-  margin-right: 20px; /* 各リンクの間に余白を追加 */
-  text-decoration: none; /* 下線を消す */
-}
-
-.footer-links a:hover {
-  text-decoration: underline; /* ホバー時に下線を表示 */
-}
 
 .prev, .next {
   cursor: pointer;
@@ -177,6 +143,52 @@ div.class {
 .next {
   right: 12px;
 }
+
+.footer {
+  width: 100%;
+  height: auto; /* 自動に変更 */
+  background-color: #1B5E20;
+  display: flex;
+  flex-direction: column; /* 縦並びに変更 */
+  align-items: center; /* 中央揃え */
+  padding: 20px; /* パディングを追加 */
+  color: white;
+}
+
+.footer-links {
+  display: flex; /* 横並びに変更 */
+  gap: 20px; /* 各リンクの間に余白を追加 */
+}
+
+.footer-links {
+  display: flex; /* 横並び */
+  gap: 20px; /* 各リンクの間に余白を追加 */
+}
+
+.footer-links a {
+  color: white; /* 文字色を白に設定 */
+  text-decoration: none; /* 下線を消す */
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: #1B5E20;
+  display: flex;
+  justify-content: space-between; /* 左右に配置 */
+  align-items: center; /* 中央揃え */
+  padding: 20px;
+  color: white;
+}
+
+.letter {
+  margin-left: auto; /* 右側に寄せる */
+}
+
 @media (max-width: 768px) {
   .home-link {
     font-size: 20px;
