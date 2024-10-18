@@ -104,7 +104,7 @@ div.class {
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto; /* コンテナを中央揃えにする */
   overflow: hidden;
   text-align: center; /* スライドの中身を中央揃え */
