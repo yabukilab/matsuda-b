@@ -108,6 +108,26 @@ div.team {
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+.info {
+  display: flex; /* フレックスボックスで横並びにする */
+}
+
+.map-text {
+  flex: 1; /* 左側のテキストエリア */
+  padding: 20px; /* パディングを追加 */
+}
+
+.map-container {
+  flex: 1; /* 右側のマップエリア */
+  text-align: center; /* マップを中央揃え */
+}
+.map-text h3 {
+  font-size: 24px; /* 見出しのサイズを大きくする */
+}
+
+.map-text p {
+  font-size: 18px; /* 段落のサイズを大きくする */
+}
 
 .prev, .next {
   cursor: pointer;

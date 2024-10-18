@@ -129,7 +129,7 @@
     position: relative;
     text-align: center;
     padding: 20px;
-    background-color: #5c6660;
+    background-color: #555e59;
     color: white;
   }
   
@@ -156,7 +156,7 @@
     top: 50%;
     transform: translateY(-50%);
     padding: 12px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #555e59(75, 68, 68, 0.6);
     color: white;
     font-size: 44px;
     border: none;
