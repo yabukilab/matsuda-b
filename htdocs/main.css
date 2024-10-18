@@ -176,3 +176,18 @@ h1 {
     }
 
 }
+
+.footer-links {
+    text-align: left; /* リンクを左寄せ */
+  }
+  
+  .footer-links a {
+    color: white; /* 文字を白く */
+    text-decoration: none; /* 下線を消す */
+  }
+  
+  .footer {
+    background-color: #333; /* 背景色を変更する場合 */
+    padding: 10px; /* パディングを追加する場合 */
+  }
+  
