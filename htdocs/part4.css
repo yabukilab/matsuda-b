@@ -65,8 +65,6 @@ div.shop2 {
 .carousel img {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
-  /* Maintain 16:9 aspect ratio */
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
