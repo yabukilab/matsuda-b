@@ -124,6 +124,8 @@ div.class {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  margin-left: 0; /* 左側の余白をゼロに */
+  padding-left: 0; /* 左側のパディングをゼロに */
 }
 .footer {
   position: relative;
