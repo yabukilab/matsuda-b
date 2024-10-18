@@ -15,13 +15,14 @@ body {
 
     font-family: 'Hiragino Kaku Gothic Pro', sans-serif;
 
-    background-color: rgb(230, 230, 142)!important;
+    background: linear-gradient(to bottom, rgb(242, 250, 126), rgb(175, 241, 162)) !important; /* 緑から白のグラデーション */
 
     color: #030303;
 
     line-height: 1.6;
 
 }
+
 
 
 
