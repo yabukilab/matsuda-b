@@ -24,7 +24,7 @@ body {
 
 .team {
   width: 100%; /* 100%に変更 */
-  max-width: 1200px; /* 最大幅を設定 */
+  max-width: 1000px; /* 最大幅を設定 */
   height: 70px;
   background: #2E7D32;
   color: white;
