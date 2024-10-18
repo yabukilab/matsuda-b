@@ -175,3 +175,30 @@ div.class {
 .next {
   right: 12px;
 }
+@media (max-width: 768px) {
+  .home-link {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  div.class {
+    width: 90%; /* クラスの幅を調整 */
+    font-size: 18px;
+  }
+
+  .carousel img {
+    height: auto; /* 高さを自動に */
+    max-width: 100%; /* 画像の幅を画面幅に合わせる */
+  }
+
+  .footer {
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .footer .letter {
+    text-align: right;
+    margin-left: 0;
+  }
+}
