@@ -155,7 +155,6 @@ h1 {
 
 
 
-
 @media screen and (max-width: 768px) {
 
     .content-block {
@@ -177,17 +176,17 @@ h1 {
 
 }
 
+.footer {
+    background-color: #333; /* 背景色 */
+    padding: 10px; /* パディングを追加 */
+}
+
 .footer-links {
     text-align: left; /* リンクを左寄せ */
-  }
-  
-  .footer-links a {
+}
+
+.footer-links a {
     color: white; /* 文字を白く */
     text-decoration: none; /* 下線を消す */
-  }
-  
-  .footer {
-    background-color: #333; /* 背景色を変更する場合 */
-    padding: 10px; /* パディングを追加する場合 */
-  }
-  
+    display: block; /* 各リンクをブロック要素にする */
+}
