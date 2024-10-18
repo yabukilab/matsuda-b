@@ -23,34 +23,18 @@ body {
   text-decoration: none;
 }
 
-
-.home-link a:hover {
+.home-link:hover {
   background-color: #3376db;
 }
 
-.head {
-  width: 100%;
-  height: 60px;
-  background: #4CAF50;
-  z-index: 1000;
-  margin-bottom: 30px;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
 .class {
-  width: 1200px;
+  max-width: 1200px;
+  width: 90%;
   height: 70px;
   background: #2E7D32;
   color: white;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: auto;
   margin-bottom: 25px;
   display: flex;
@@ -72,7 +56,7 @@ body {
 
 .btn {
   text-decoration: none;
-  padding: 10px 124px;
+  padding: 10px 20px; /* Adjusted for smaller screens */
   font-size: 22px;
   background-color: #66BB6A;
   color: white;
@@ -88,21 +72,10 @@ body {
 
 .carousel {
   position: relative;
-  width: 100%;
-  max-width: 900px;
+  max-width: 100%; /* Set max-width to 100% for responsiveness */
   margin: 0 auto;
   overflow: hidden;
   text-align: center;
-}
-
-.carousel .slide {
-  display: none;
-  width: 100%;
-  justify-content: center;
-}
-
-.carousel .active {
-  display: block;
 }
 
 .carousel img {
@@ -152,6 +125,7 @@ body {
 
 .footer-links {
   display: flex;
+  flex-wrap: wrap; /* Allows wrapping for small screens */
   gap: 20px;
 }
 
@@ -176,13 +150,10 @@ body {
   }
 
   .carousel img {
-    height: auto;
-    max-width: 100%;
+    max-width: 100%; /* Ensure images fit smaller screens */
   }
 
   .footer {
-    flex-direction: column;
-    justify-content: center;
     padding: 10px;
   }
 
