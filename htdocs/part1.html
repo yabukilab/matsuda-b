@@ -14,116 +14,60 @@
 
     <style>
         * {
-
             margin: 0;
-
             padding: 0;
-
             box-sizing: border-box;
-
         }
 
-
-
-
-
+        body {
+            overflow-x: hidden;
+            /* Prevents horizontal overflow */
+        }
 
         .container {
-
             max-width: 900px;
-
             margin: 0 auto;
-
             padding: 20px;
-
         }
-
-
-
 
         .section {
-
             display: flex;
-
             margin-bottom: 50px;
-
         }
-
-
-
 
         .section-left {
-
             flex: 1;
-
             margin-right: 20px;
-
         }
-
-
-
 
         .section-left img {
-
             width: 100%;
-
             border-radius: 8px;
-
         }
-
-
-
 
         .section-right {
-
             flex: 2;
-
         }
-
-
-
 
         .section-right h2 {
-
             font-size: 24px;
-
             margin-bottom: 15px;
-
         }
-
-
-
 
         .section-right p {
-
             font-size: 16px;
-
             color: #555;
-
         }
 
-
-
-
         @media screen and (max-width: 768px) {
-
             .section {
-
                 flex-direction: column;
-
             }
-
-
-
 
             .section-left {
-
                 margin-right: 0;
-
                 margin-bottom: 20px;
-
             }
-
         }
 
         .footer {
