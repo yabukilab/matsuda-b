@@ -20,16 +20,20 @@ body {
   color: white;
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
 }
 
 .team {
-  width: 100%; /* 100%に変更 */
-  max-width: 1000px; /* 最大幅を設定 */
+  width: 100%;
+  /* 100%に変更 */
+  max-width: 1000px;
+  /* 最大幅を設定 */
   height: 70px;
   background: #2E7D32;
   color: white;
   border-radius: 12px;
-  margin: auto; /* 中央揃え */
+  margin: auto;
+  /* 中央揃え */
   margin-bottom: 25px;
   display: flex;
   align-items: center;
@@ -40,7 +44,8 @@ body {
 .btn-all {
   background-color: #A5D6A7;
   display: flex;
-  flex-wrap: wrap; /* 追加: ラップ */
+  flex-wrap: wrap;
+  /* 追加: ラップ */
   justify-content: center;
   gap: 15px;
   margin-bottom: 25px;
@@ -50,8 +55,10 @@ body {
 
 .btn {
   text-decoration: none;
-  padding: 10px 15px; /* 修正: パディングを調整 */
-  font-size: 18px; /* 読みやすさのために少し小さく */
+  padding: 10px 15px;
+  /* 修正: パディングを調整 */
+  font-size: 18px;
+  /* 読みやすさのために少し小さく */
   background-color: #66BB6A;
   color: white;
   border-radius: 12px;
@@ -65,32 +72,43 @@ body {
 
 .footer {
   width: 100%;
-  height: auto; /* 自動に変更 */
+  height: auto;
+  /* 自動に変更 */
   background-color: #1B5E20;
   display: flex;
-  flex-direction: column; /* 縦並びに変更 */
-  align-items: center; /* 中央揃え */
-  padding: 20px; /* パディングを追加 */
+  flex-direction: column;
+  /* 縦並びに変更 */
+  align-items: center;
+  /* 中央揃え */
+  padding: 20px;
+  /* パディングを追加 */
   color: white;
 }
 
 .footer-links {
-  display: flex; /* 横並びに変更 */
-  gap: 20px; /* 各リンクの間に余白を追加 */
+  display: flex;
+  /* 横並びに変更 */
+  gap: 20px;
+  /* 各リンクの間に余白を追加 */
 }
 
 .footer-links {
-  display: flex; /* 横並び */
-  gap: 20px; /* 各リンクの間に余白を追加 */
+  display: flex;
+  /* 横並び */
+  gap: 20px;
+  /* 各リンクの間に余白を追加 */
 }
 
 .footer-links a {
-  color: white; /* 文字色を白に設定 */
-  text-decoration: none; /* 下線を消す */
+  color: white;
+  /* 文字色を白に設定 */
+  text-decoration: none;
+  /* 下線を消す */
 }
 
 .footer-links a:hover {
-  text-decoration: underline; /* ホバー時に下線を表示 */
+  text-decoration: underline;
+  /* ホバー時に下線を表示 */
 }
 
 .footer {
@@ -98,14 +116,17 @@ body {
   height: auto;
   background-color: #1B5E20;
   display: flex;
-  justify-content: space-between; /* 左右に配置 */
-  align-items: center; /* 中央揃え */
+  justify-content: space-between;
+  /* 左右に配置 */
+  align-items: center;
+  /* 中央揃え */
   padding: 20px;
   color: white;
 }
 
 .letter {
-  margin-left: auto; /* 右側に寄せる */
+  margin-left: auto;
+  /* 右側に寄せる */
 }
 
 .carousel {
@@ -127,28 +148,35 @@ body {
 
 .carousel img {
   width: 100%;
-  height: auto; /* 高さを自動調整 */
+  height: auto;
+  /* 高さを自動調整 */
   object-fit: cover;
   border-radius: 12px;
 }
 
 .info {
   display: flex;
-  flex-direction: column; /* 縦並びに変更 */
-  align-items: center; /* 中央揃え */
+  flex-direction: column;
+  /* 縦並びに変更 */
+  align-items: center;
+  /* 中央揃え */
 }
 
 .map-text {
-  padding: 20px; /* パディングを追加 */
-  text-align: center; /* 中央揃え */
+  padding: 20px;
+  /* パディングを追加 */
+  text-align: center;
+  /* 中央揃え */
 }
 
 .map-container {
   text-align: center;
-  margin-top: 20px; /* 上部のマージンを追加 */
+  margin-top: 20px;
+  /* 上部のマージンを追加 */
 }
 
-.prev, .next {
+.prev,
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -162,7 +190,8 @@ body {
   border-radius: 50%;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 

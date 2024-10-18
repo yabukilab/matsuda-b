@@ -8,14 +8,13 @@ body {
   background: #F5DEB3;
   font-family: 'Raleway', sans-serif;
   color: #333;
-  padding: 20px;
 }
 
 div.team {
   width: 100%;
   max-width: 1200px;
   height: 70px;
-  background: #64411d;
+  background: #533518;
   color: white;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -24,7 +23,8 @@ div.team {
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  font-family: 'Dancing Script', cursive; /* 手書き風フォント */
+  font-family: 'Dancing Script', cursive;
+  /* 手書き風フォント */
 }
 
 div.shop1,
@@ -42,7 +42,8 @@ div.shop2 {
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  font-family: 'Dancing Script', cursive; /* 手書き風フォント */
+  font-family: 'Dancing Script', cursive;
+  /* 手書き風フォント */
 }
 
 /* Carousel Styling */
@@ -74,7 +75,7 @@ div.shop2 {
 .prev,
 .next {
   cursor: pointer;
-  position: absolute;
+  position: auto;
   top: 50%;
   transform: translateY(-50%);
   padding: 12px;
@@ -111,7 +112,8 @@ div.shop2 {
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  font-family: 'Raleway', sans-serif; /* おしゃれなフォント */
+  font-family: 'Raleway', sans-serif;
+  /* おしゃれなフォント */
 }
 
 .info3 table {
@@ -126,7 +128,8 @@ div.shop2 {
 .info3 td {
   padding: 10px;
   border-bottom: 1px solid #ccc;
-  font-family: 'Raleway', sans-serif; /* おしゃれなフォント */
+  font-family: 'Raleway', sans-serif;
+  /* おしゃれなフォント */
 }
 
 .address,
@@ -137,17 +140,64 @@ div.shop2 {
 
 .footer {
   width: 100%;
-  height: 80px;
-  background-color: #3C2F2F;
+  height: auto;
+  /* 自動に変更 */
+  background-color: #3d2010;
   display: flex;
+  flex-direction: column;
+  /* 縦並びに変更 */
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 25px;
+  /* 中央揃え */
+  padding: 20px;
   color: white;
-  font-family: 'Dancing Script', cursive; /* 手書き風フォント */
+}
+
+.footer-links {
+  display: flex;
+  /* 横並びに変更 */
+  gap: 20px;
+  /* 各リンクの間に余白を追加 */
+}
+
+.footer-links {
+  display: flex;
+  /* 横並び */
+  gap: 20px;
+  /* 各リンクの間に余白を追加 */
+}
+
+.footer-links a {
+  color: white;
+  /* 文字色を白に設定 */
+  text-decoration: none;
+  /* 下線を消す */
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+  /* ホバー時に下線を表示 */
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: #3d2010;
+  display: flex;
+  justify-content: space-between;
+  /* 左右に配置 */
+  align-items: center;
+  /* 中央揃え */
+  padding: 20px;
+  color: white;
+}
+
+.letter {
+  margin-left: auto;
+  /* 右側に寄せる */
 }
 
 @media (max-width: 768px) {
+
   div.team,
   div.shop1,
   div.shop2 {
