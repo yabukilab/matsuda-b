@@ -1,4 +1,3 @@
-/* すべての画面に共通のスタイル */
 * {
   margin: 0;
   padding: 0;
@@ -6,32 +5,32 @@
 }
 
 body {
-  background: #dfffe1;
+  background: #dfffe1; /* Brighter green background */
   font-family: 'Arial', sans-serif;
   color: #333;
 }
 
 .home-link {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  font-size: 30px;
-  background-color: #37f040;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2);
-  color: rgb(255, 255, 255);
-  text-decoration: none;
+  position: fixed; /* ページをスクロールしても位置を固定 */
+  top: 10px; /* 上から10pxの位置に配置 */
+  left: 10px; /* 左から10pxの位置に配置 */
+  font-size: 30px; /* 文字の大きさ */
+  background-color: #37f040; /* 背景色を緑に */
+  padding: 10px; /* パディングを追加 */
+  border-radius: 8px; /* 角を丸く */
+  box-shadow: 0 2px 4px rgba(33, 186, 224, 0.2); /* 軽い影を追加 */
+  color: rgb(255, 255, 255); /* 文字色を白に */
+  text-decoration: none; /* 下線を削除 */
 }
 
-.home-link:hover {
-  background-color: #3376db;
+.home-link a:hover {
+  background-color: #3376db; /* ホバー時の背景色変更 */
 }
 
 div.head {
   width: 100%;
   height: 60px;
-  background: #4CAF50;
+  background: #4CAF50; /* Vivid green */
   z-index: 1000;
   margin-bottom: 30px;
   font-size: 24px;
@@ -44,12 +43,13 @@ div.head {
 }
 
 div.class {
-  width: 100%;
+  width: 1200px;
   height: 70px;
-  background: #2E7D32;
+  background: #2E7D32; /* Darker, vivid green */
   color: white;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: auto;
   margin-bottom: 25px;
   display: flex;
@@ -59,7 +59,7 @@ div.class {
 }
 
 .btn-all {
-  background-color: #A5D6A7;
+  background-color: #A5D6A7; /* Vibrant mint green */
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -71,9 +71,9 @@ div.class {
 
 .btn {
   text-decoration: none;
-  padding: 10px 50px;
+  padding: 10px 124px;
   font-size: 22px;
-  background-color: #66BB6A;
+  background-color: #66BB6A; /* Bright green */
   color: white;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -85,27 +85,19 @@ div.class {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
-.footer {
-  width: 100%;
-  height: 80px;
-  background-color: #1B5E20;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 25px;
-  color: white;
-}
 
 .letter {
   font-size: 16px;
 }
 
+/* Carousel Styling */
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 900px;
+  max-width: 900px; /* Increased width for a bolder look */
   margin: 0 auto;
   overflow: hidden;
+  text-align: center; /* 画像を中央に揃える */
 }
 
 .carousel .slide {
@@ -119,35 +111,11 @@ div.class {
 
 .carousel img {
   width: 100%;
-  height: 400px;
+  height: auto; 
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.footer {
-  position: relative;
-  text-align: center;
-  padding: 20px;
-  background-color: #555e59;
-  color: white;
-}
-
-.footer-links {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.footer-links a {
-  color: white;
-  margin-right: 20px;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
+  margin: 0 auto; /* 左右の余白を自動調整して中央に揃える */
 }
 
 .prev, .next {
@@ -156,7 +124,7 @@ div.class {
   top: 50%;
   transform: translateY(-50%);
   padding: 12px;
-  background-color: rgba(75, 68, 68, 0.6);
+  background-color: #555e59(75, 68, 68, 0.6);
   color: white;
   font-size: 44px;
   border: none;
@@ -176,27 +144,65 @@ div.class {
   right: 12px;
 }
 
-/* スマートフォン向けのレスポンシブ対応 */
+.footer {
+  width: 100%;
+  height: auto; /* 自動に変更 */
+  background-color: #1B5E20;
+  display: flex;
+  flex-direction: column; /* 縦並びに変更 */
+  align-items: center; /* 中央揃え */
+  padding: 20px; /* パディングを追加 */
+  color: white;
+}
+
+.footer-links {
+  display: flex; /* 横並びに変更 */
+  gap: 20px; /* 各リンクの間に余白を追加 */
+}
+
+.footer-links {
+  display: flex; /* 横並び */
+  gap: 20px; /* 各リンクの間に余白を追加 */
+}
+
+.footer-links a {
+  color: white; /* 文字色を白に設定 */
+  text-decoration: none; /* 下線を消す */
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: #1B5E20;
+  display: flex;
+  justify-content: space-between; /* 左右に配置 */
+  align-items: center; /* 中央揃え */
+  padding: 20px;
+  color: white;
+}
+
+.letter {
+  margin-left: auto; /* 右側に寄せる */
+}
+
 @media (max-width: 768px) {
   .home-link {
     font-size: 20px;
     padding: 8px;
   }
 
-  div.head {
+  div.class {
+    width: 90%; /* クラスの幅を調整 */
     font-size: 18px;
   }
 
-  .btn-all {
-    flex-direction: column; /* ボタンを縦並びにする */
-  }
-
-  .btn {
-    padding: 10px 30px;
-  }
-
   .carousel img {
-    height: 250px; /* 画像の高さを小さくする */
+    height: auto; /* 高さを自動に */
+    max-width: 100%; /* 画像の幅を画面幅に合わせる */
   }
 
   .footer {
@@ -205,11 +211,8 @@ div.class {
     padding: 10px;
   }
 
-  .footer-links {
-    position: relative;
-    left: 0;
-    top: 0;
-    transform: none;
-    margin-bottom: 10px;
+  .footer .letter {
+    text-align: right;
+    margin-left: 0;
   }
 }
