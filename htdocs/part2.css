@@ -74,7 +74,7 @@ body {
 
 .slides {
   display: flex; /* スライドを横に並べる */
-  transition: transform 0.5s ease; /* スライドの切り替えにアニメーションを追加 */
+  transition: transform 1.0s ease; /* スライドの切り替えにアニメーションを追加 */
 }
 
 .slides img {
@@ -132,11 +132,11 @@ th {
   }
 
   .image-container {
-      width: 100%; /* 小さな画面では幅を100%に */
+      width: 80%; /* 小さな画面では幅を100%に */
   }
 
   .slides img {
-      width: 100%; /* 小さな画面では画像の幅を100%に */
+      width: 80%; /* 小さな画面では画像の幅を100%に */
   }
 }
   .class {
