@@ -82,6 +82,24 @@ body {
   height: 500px; /* 画像の高さを固定 */
 }
 
+/* スライダーの親コンテナ */
+.slider-container {
+  width: 100%;         /* スライダーの幅を画面いっぱいに */
+  overflow: hidden;    /* スライドが表示領域からはみ出ないように */
+}
+
+/* スライド要素 */
+#slides1, #slides2 {
+  display: flex;       /* スライドを横並びに表示 */
+  transition: transform 0.5s ease;  /* アニメーションをスムーズに */
+}
+
+#slides1 img, #slides2 img {
+  width: 100%;         /* 各スライドの幅を親要素いっぱいにする */
+  flex-shrink: 0;      /* スライドが縮小しないように */
+}
+
+
 table {
   width: 80%; /* 表の幅を80%に */
   margin: 20px auto; /* 中央揃え */
@@ -139,6 +157,4 @@ th {
       width: 80%; /* 小さな画面では画像の幅を100%に */
   }
 }
-  .class {
-      font-size: 16px;
-  }
+ 
