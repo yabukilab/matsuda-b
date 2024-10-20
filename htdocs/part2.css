@@ -64,39 +64,56 @@ body {
   width: 80%; /* 幅を調整 */
 }
 
-.image-container {
-  position: relative; /* スライドショーの親要素 */
-  width: 400px; /* 幅を固定 */
-  height: 500px; /* 高さを固定 */
-  overflow: hidden; /* はみ出した部分を隠す */
-  margin: 0 auto; /* 中央揃え */
+/* Carousel Styling */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;  /* Smaller width */
+  margin: 0 auto 20px auto;
+  overflow: hidden;
 }
 
-.slides {
-  display: flex; /* スライドを横に並べる */
-  transition: transform 1.0s ease; /* スライドの切り替えにアニメーションを追加 */
+.carousel .slide {
+  display: none;
+  width: 100%;
 }
 
-.slides img {
-  width: 400px; /* 画像の幅を固定 */
-  height: 500px; /* 画像の高さを固定 */
+.carousel .active {
+  display: block;
 }
 
-/* スライダーの親コンテナ */
-.slider-container {
-  width: 100%;         /* スライダーの幅を画面いっぱいに */
-  overflow: hidden;    /* スライドが表示領域からはみ出ないように */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 44px;
+  border: none;
+  line-height: 0;
+  border-radius: 50%;
+  z-index: 10; /* ボタンを画像の前に表示 */
 }
 
-/* スライド要素 */
-#slides1, #slides2 {
-  display: flex;       /* スライドを横並びに表示 */
-  transition: transform 0.5s ease;  /* アニメーションをスムーズに */
+/* ナビゲーションボタンの位置調整 */
+.prev {
+  left: 10%; /* 左に10%位置調整 (画像が60%なので) */
 }
 
-#slides1 img, #slides2 img {
-  width: 100%;         /* 各スライドの幅を親要素いっぱいにする */
-  flex-shrink: 0;      /* スライドが縮小しないように */
+.next {
+  right: 10%; /* 右に10%位置調整 */
+}
+
+.carousel img {
+  width: 60%; /* 画像の幅を60%に設定 */
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* 画像を中央揃えに */
 }
 
 
@@ -157,4 +174,3 @@ th {
       width: 80%; /* 小さな画面では画像の幅を100%に */
   }
 }
- 

@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>津田沼駅東側エリア - ゆずカフェ</title>
   <link rel="stylesheet" type="text/css" href="part2.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -23,21 +22,21 @@
     <div class="info">
       <div class="section-title">ゆずカフェ</div>
 
-      <div class="image-container">
-        <div class="slides" id="slides1">
-          <img src="IMG_9604.jpg" alt="cafe1">
-          <img src="IMG_9610.jpg" alt="cafe2">
-          <img src="IMG_9612.jpg" alt="cafe3">
-          <img src="IMG_9616.jpg" alt="cafe4">
-          <img src="IMG_9617.jpg" alt="cafe5">
-        </div>
+      <div class="carousel" id="carousel1">
+        <div class="slide active"><img src="IMG_9604.jpg" alt="Image 1"></div>
+        <div class="slide"><img src="IMG_9610.jpg" alt="Image 2"></div>
+        <div class="slide"><img src="IMG_9612.jpg" alt="Image 3"></div>
+        <div class="slide"><img src="IMG_9616.jpg" alt="Image 4"></div>
+        <div class="slide"><img src="IMG_9617.jpg" alt="Image 5"></div>
+        <button class="prev" data-carousel="carousel1">&lt;</button>
+        <button class="next" data-carousel="carousel1">&gt;</button>
       </div>
-
+  
       <table>
         <tbody>
           <tr>
             <td><strong>営業時間</strong></td>
-            <td>水木金土日 10:00 ~ 17:00 (L.O. 16:30) 　定休日 月火</td>
+            <td>水木金土日 10:00 ~ 17:00 (L.O. 16:30) 定休日 月火</td>
           </tr>
           <tr>
             <td><strong>住所</strong></td>
@@ -45,7 +44,7 @@
           </tr>
           <tr>
             <td><strong>アクセス</strong></td>
-            <td>JR津田沼駅北口徒歩10分　　新京成新津田沼駅徒歩9分</td>
+            <td>JR津田沼駅北口徒歩10分 新京成新津田沼駅徒歩9分</td>
           </tr>
           <tr>
             <td><strong>電話番号</strong></td>
@@ -61,15 +60,15 @@
       <!-- 2つ目の情報ボックス -->
       <div class="section-title">鎌倉パスタ DINING-イオンモール津田沼店</div>
 
-      <div class="image-container">
-        <div class="slides" id="slides2">
-          <img src="無題24_20241015191614.PNG" alt="pasta">
-          <img src="IMG_9945.jpg" alt="pasta">
-          <img src="IMG_9947.jpg" alt="pasta">
-          <img src="IMG_9952.jpg" alt="pasta">
-        </div>
+      <div class="carousel" id="carousel2">
+        <div class="slide active"><img src="IMG_9945.jpg" alt="Image 1"></div>
+        <div class="slide"><img src="IMG_9947.jpg" alt="Image 2"></div>
+        <div class="slide"><img src="無題24_20241015191614.PNG" alt="Image 3"></div>
+        <div class="slide"><img src="IMG_9952.jpg" alt="Image 4"></div>
+        <button class="prev" data-carousel="carousel2">&lt;</button>
+        <button class="next" data-carousel="carousel2">&gt;</button>
       </div>
-
+  
       <table>
         <tbody>
           <tr>
@@ -82,7 +81,7 @@
           </tr>
           <tr>
             <td><strong>アクセス</strong></td>
-            <td>津田沼駅北口徒歩7分　　　新京成新津田沼駅徒歩2分</td>
+            <td>津田沼駅北口徒歩7分 新京成新津田沼駅徒歩2分</td>
           </tr>
           <tr>
             <td><strong>電話番号</strong></td>
@@ -108,7 +107,61 @@
     <span class="letter">©松田研究室 B班</span>
   </div>
 
-  <script src="part2.js"></script>
+  <script>
+    // Carousel handling function with auto-slide functionality
+    function setupCarousel(carouselId, autoSlideInterval = 3000) {
+      let currentSlide = 0;
+      const carousel = document.getElementById(carouselId);
+      const slides = carousel.querySelectorAll('.slide');
+      const totalSlides = slides.length;
+      let autoSlideTimeout;
+
+      function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      function startAutoSlide() {
+        autoSlideTimeout = setInterval(nextSlide, autoSlideInterval);
+      }
+
+      function stopAutoSlide() {
+        clearInterval(autoSlideTimeout);
+      }
+
+      // Start automatic sliding when the page loads
+      startAutoSlide();
+
+      // Stop auto-slide when user interacts manually
+      carousel.querySelector('.next').addEventListener('click', function () {
+        stopAutoSlide();
+        nextSlide();
+        startAutoSlide();
+      });
+
+      carousel.querySelector('.prev').addEventListener('click', function () {
+        stopAutoSlide();
+        prevSlide();
+        startAutoSlide();
+      });
+    }
+
+    // Initialize both carousels with automatic sliding
+    setupCarousel('carousel1', 3000); // 3000ms = 3 seconds interval
+    setupCarousel('carousel2', 3000);
+  
+  </script>
+
 </body>
 
 </html>
