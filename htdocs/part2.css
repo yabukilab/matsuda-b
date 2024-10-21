@@ -121,7 +121,7 @@ body {
 
 
 table {
-  width: 80%; /* 表の幅を80%に */
+  width: 100%; /* 表の幅を80%に */
   margin: 20px auto; /* 中央揃え */
   border-collapse: collapse; /* 表の罫線を統合 */
   background-color: yellow; /* 背景色を黄色に */
