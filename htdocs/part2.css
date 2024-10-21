@@ -57,9 +57,9 @@ body {
   border-radius: 20px; /* 角を丸くする */
   display: inline-block; /* タイトルの周りに余白を持たせるための設定 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を追加 */
-  text-align: center; /* 中央揃え */
-  margin-bottom: 20px; /* 下に20pxの余白 */
-  font-size: 24px; /* タイトルのサイズ */
+  text-align: center;  /* テキストを中央揃え */
+  margin-bottom: 20px; /* 下に余白を追加（改行の効果を強調） */
+  font-size: 24px;     /* タイトルのフォントサイズ */
 }
 
 .info {
