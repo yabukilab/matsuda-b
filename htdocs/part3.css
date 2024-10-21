@@ -1,73 +1,63 @@
-html, body {
-    height: 100%; /* 高さを100%に設定 */
-    margin: 0; /* デフォルトのマージンを削除 */
-    display: flex; /* フレックスボックスを使用 */
-    flex-direction: column; /* 縦に並べる */
-    justify-content: space-between; /* 上下のスペースを均等に分ける */
-    text-align: center; /* 全体を中央揃え */
-}
-
-.footer {
-    position: relative;
-    width: 100%;
-    height: 70px;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.letter {
-    color: white;
-    font-size: 15px;
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 2em;
     color: #333;
     margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 28px;
+    font-size: 1.8em;
     color: #555;
     margin-bottom: 15px;
 }
 
 .subtitle-container {
     background-color: #4CAF50;
-    padding: 15px;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+    max-width: 100%;
+    /* Ensure it doesn't exceed the width */
 }
 
 .subtitle-container h1 {
     color: white;
-    font-size: 28px;
+    font-size: 1.8em;
 }
 
 .shop-info {
     display: flex;
-    flex-direction: column; /* 縦に並べる */
-    align-items: center; /* 中央揃え */
-    flex-grow: 1; /* 残りのスペースを埋める */
-    justify-content: center; /* 中央に配置 */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* Prevents overflow by ensuring content fits inside */
 }
 
 .shop {
     display: flex;
-    flex-direction: column; /* 縦に並べる */
-    align-items: center; /* 中央揃え */
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .shop-photo {
-    width: 600px; /* 幅を600pxに設定（3倍） */
-    height: 600px; /* 高さも600pxに設定（3倍） */
-    object-fit: cover; /* アスペクト比を保ちながらサイズを調整 */
-    margin-bottom: 10px; /* 画像と詳細の間に余白を追加 */
-    cursor: pointer; /* クリックできるようにカーソルを変更 */
+    width: 100%;
+    /* Ensures the image takes the full width of the container */
+    max-width: 800px;
+    /* Sets a maximum width */
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .shop-details {
@@ -75,40 +65,128 @@ h2 {
 }
 
 table {
-    width: auto; /* 幅を自動に設定 */
+    width: 100%;
+    /* Ensure table width doesn't exceed container */
+    max-width: 600px;
     border-collapse: collapse;
     margin-top: 10px;
-    font-size: 24px; /* フォントサイズを3倍に設定 */
-    margin-left: auto; /* 左右のマージンを自動に設定 */
-    margin-right: auto; /* 左右のマージンを自動に設定 */
+    font-size: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 8px;
-    font-size: 24px; /* フォントサイズを3倍に設定 */
-    text-align: center; /* セル内のテキストを中央揃え */
+    text-align: center;
 }
 
 th {
     background-color: #f2f2f2;
-    text-align: center; /* ヘッダーも中央揃え */
 }
 
-td {
-    text-align: center; /* セル内のテキストを中央揃え */
-}
+/* フッター部分 */
 .footer {
-    background-color: #333; /* 背景色 */
-    padding: 10px; /* パディングを追加 */
+    width: auto;
+    /* 100%からautoに変更してはみ出しを防ぐ */
+    background-color: #3d2010;
+    display: flex;
+    flex-direction: column;
+    /* 縦並び */
+    align-items: center;
+    /* 中央揃え */
+    color: white;
+    padding: 20px;
 }
 
 .footer-links {
-    text-align: left; /* リンクを左寄せ */
+    display: flex;
+    flex-direction: row;
+    /* 横並び */
+    gap: 20px;
+    /* 各リンクの間に余白を追加 */
 }
 
 .footer-links a {
-    color: white; /* 文字を白く */
-    text-decoration: none; /* 下線を消す */
-    display: block; /* 各リンクをブロック要素にする */
+    color: white;
+    text-decoration: none;
+    /* 下線を消す */
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    /* ホバー時に下線を表示 */
+}
+
+.letter {
+    margin-top: 10px;
+    /* 上に少し余白を追加 */
+    margin-left: auto;
+}
+
+/* レスポンシブ対応: モバイルデバイス向け */
+@media (max-width: 768px) {
+    .shop-photo {
+        width: 100%;
+        height: auto;
+    }
+
+    .subtitle-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    table {
+        font-size: 1em;
+        width: 100%;
+    }
+
+    .footer {
+        padding: 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        /* リンクを縦並びに変更 */
+        gap: 15px;
+    }
+}
+
+/* レスポンシブ対応: スモールモバイルデバイス向け */
+@media (max-width: 480px) {
+    .shop-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .shop-photo {
+        width: 100%;
+        height: auto;
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+
+    .subtitle-container {
+        padding: 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        /* リンクを縦並びに変更 */
+        gap: 10px;
+    }
+
+    .footer {
+        padding: 10px;
+    }
 }

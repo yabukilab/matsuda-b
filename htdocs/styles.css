@@ -70,64 +70,6 @@ body {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
-.footer {
-  width: 100%;
-  height: auto;
-  /* 自動に変更 */
-  background-color: #3d2010;
-  display: flex;
-  flex-direction: column;
-  /* 縦並びに変更 */
-  align-items: center;
-  /* 中央揃え */
-  padding: 20px;
-  /* パディングを追加 */
-  color: white;
-}
-
-.footer-links {
-  display: flex;
-  /* 横並びに変更 */
-  gap: 20px;
-  /* 各リンクの間に余白を追加 */
-}
-
-.footer-links {
-  display: flex;
-  /* 横並び */
-  gap: 20px;
-  /* 各リンクの間に余白を追加 */
-}
-
-.footer-links a {
-  color: white;
-  /* 文字色を白に設定 */
-  text-decoration: none;
-  /* 下線を消す */
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-  /* ホバー時に下線を表示 */
-}
-
-.footer {
-  width: 100%;
-  height: auto;
-  background-color: #3d2010;
-  display: flex;
-  justify-content: space-between;
-  /* 左右に配置 */
-  align-items: center;
-  /* 中央揃え */
-  padding: 20px;
-  color: white;
-}
-
-.letter {
-  margin-left: auto;
-  /* 右側に寄せる */
-}
 
 .carousel {
   position: relative;
