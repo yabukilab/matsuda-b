@@ -121,7 +121,7 @@ body {
 
 
 table {
-  width: 100%; /* 表の幅を80%に */
+  width: 60%; /* 表の幅を80%に */
   margin: 20px auto; /* 中央揃え */
   border-collapse: collapse; /* 表の罫線を統合 */
   background-color: yellow; /* 背景色を黄色に */
@@ -137,6 +137,8 @@ td {
 th {
   background-color: #f2f2f2; /* ヘッダー行の背景色 */
 }
+
+
 
 .footer {
   text-align: center; /* 中央揃え */
@@ -175,5 +177,9 @@ th {
 
   .slides img {
       width: 80%; /* 小さな画面では画像の幅を100%に */
+  }
+
+  table {
+    width: 100%; /* テーブルの幅を100%に設定 */
   }
 }
