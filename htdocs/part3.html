@@ -20,7 +20,13 @@
     <!-- ここにお店の写真と情報を表示 -->
     <section class="shop-info">
       <div class="shop">
-        <img src="kim1.jpg" alt="お店の写真1" class="shop-photo" id="shop1-photo" onclick="changeImage(0)">
+        <div class="carousel" id="carousel1">
+          <div class="slide active"><img src="kim1.jpg" alt="Image 1"></div>
+          <div class="slide"><img src="kim2.jpg" alt="Image 2"></div>
+          <div class="slide"><img src="S__98484272_0.jpg" alt="Image 3"></div>
+          <button class="prev" data-carousel="carousel2">&lt;</button>
+          <button class="next" data-carousel="carousel2">&gt;</button>
+        </div>
         <div class="shop-details">
         </div>
         <h2>居酒屋きのこ</h2>
@@ -51,7 +57,13 @@
       </div>
 
       <div class="shop">
-        <img src="mi1.jpg" alt="お店の写真2" class="shop-photo" id="shop2-photo" onclick="changeImage(1)">
+        <div class="carousel" id="carousel2">
+          <div class="slide active"><img src="mi1.jpg" alt="Image 1"></div>
+          <div class="slide"><img src="mi2.jpg" alt="Image 2"></div>
+          <div class="slide"><img src="mi3.jpg" alt="Image 3"></div>
+          <button class="prev" data-carousel="carousel2">&lt;</button>
+          <button class="next" data-carousel="carousel2">&gt;</button>
+        </div>
         <div class="shop-details">
         </div>
         <h2>台湾茶屋モクテルストーリー津田沼本店</h2>
@@ -91,5 +103,39 @@
 </body>
 
 </html>
+
+</html>
+<script>
+  // Carousel handling function
+  function setupCarousel(carouselId) {
+    let currentSlide = 0;
+    const carousel = document.getElementById(carouselId);
+    const slides = carousel.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      showSlide(currentSlide);
+    }
+
+    carousel.querySelector('.next').addEventListener('click', nextSlide);
+    carousel.querySelector('.prev').addEventListener('click', prevSlide);
+  }
+
+  // Initialize both carousels
+  setupCarousel('carousel1');
+  setupCarousel('carousel2');
+</script>
+</body>
 
 </html>
