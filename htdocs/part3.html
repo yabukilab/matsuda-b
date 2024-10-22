@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
   <header>
     <div class="subtitle-container">
       <h1>津田沼駅南側おすすめグルメ</h1>
@@ -24,36 +23,34 @@
           <div class="slide active"><img src="kim1.jpg" alt="Image 1"></div>
           <div class="slide"><img src="kim2.jpg" alt="Image 2"></div>
           <div class="slide"><img src="S__98484272_0.jpg" alt="Image 3"></div>
-          <button class="prev" data-carousel="carousel2">&lt;</button>
-          <button class="next" data-carousel="carousel2">&gt;</button>
+          <button class="prev" data-carousel="carousel1">&lt;</button>
+          <button class="next" data-carousel="carousel1">&gt;</button>
         </div>
         <div class="shop-details">
+          <h2>居酒屋きのこ</h2>
+          <table>
+            <tr>
+              <th>住所</th>
+              <td>〒275-0016 千葉県習志野市津田沼2丁目4-231一階</td>
+            </tr>
+            <tr>
+              <th>営業日</th>
+              <td>月、火、水、木、金</td>
+            </tr>
+            <tr>
+              <th>営業時間</th>
+              <td>昼(11:30 - 13:30) 夜(17:00 - 20:30)</td>
+            </tr>
+            <tr>
+              <th>おすすめメニュー</th>
+              <td>からあげ、野菜炒め</td>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <td>047-472-7380</td>
+            </tr>
+          </table>
         </div>
-        <h2>居酒屋きのこ</h2>
-        <table>
-          <tr>
-            <th>住所</th>
-            <td>〒275-0016 千葉県習志野市津田沼2丁目4-231一階</td>
-          </tr>
-          <tr>
-            <th>営業日</th>
-            <td>月、火、水、木、金
-          <tr>
-            <th>営業時間</th>
-            <td>昼(11:30 - 13:30)
-              夜(17:00 - 20:30)
-            </td>
-          </tr>
-          <tr>
-            <th>おすすめメニュー</th>
-            <td>からあげ、野菜炒め</td>
-          </tr>
-          <tr>
-            <th>電話番号</th>
-            <td>047-472-7380
-          </tr>
-        </table>
-      </div>
       </div>
 
       <div class="shop">
@@ -65,77 +62,73 @@
           <button class="next" data-carousel="carousel2">&gt;</button>
         </div>
         <div class="shop-details">
+          <h2>台湾茶屋モクテルストーリー津田沼本店</h2>
+          <table>
+            <tr>
+              <th>住所</th>
+              <td>〒275-0026 千葉県習志野市谷津1丁目11-4</td>
+            </tr>
+            <tr>
+              <th>営業日</th>
+              <td>月、火、金、土、日</td>
+            </tr>
+            <tr>
+              <th>営業時間</th>
+              <td>11:00 - 19:00</td>
+            </tr>
+            <tr>
+              <th>おすすめメニュー</th>
+              <td>ミルクティー各種</td>
+            </tr>
+          </table>
         </div>
-        <h2>台湾茶屋モクテルストーリー津田沼本店</h2>
-        <table>
-          <tr>
-            <th>住所</th>
-            <td>〒275-0026 千葉県習志野市谷津1丁目11-4</td>
-          </tr>
-          <tr>
-            <th>営業日</th>
-            <td>月、火、金、土、日
-          </tr>
-          <tr>
-            <th>営業時間</th>
-            <td>11:00 - 19:00</td>
-          </tr>
-          <tr>
-            <th>おすすめメニュー</th>
-            <td>ミルクティー各種</td>
-          </tr>
-        </table>
-      </div>
       </div>
     </section>
+  </main>
 
-    <div class="footer">
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="part1.html">①西側</a>
-        <a href="part2.html">②東側</a>
-        <a href="part3.html">③南側</a>
-        <a href="part4.html">④北側</a>
-      </div>
-      <span class="letter">©松田研究室 B班</span>
+  <div class="footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="part1.html">①西側</a>
+      <a href="part2.html">②東側</a>
+      <a href="part3.html">③南側</a>
+      <a href="part4.html">④北側</a>
     </div>
+    <span class="letter">©松田研究室 B班</span>
+  </div>
 
-</body>
+  <script>
+    // Carousel handling function
+    function setupCarousel(carouselId) {
+      let currentSlide = 0;
+      const carousel = document.getElementById(carouselId);
+      const slides = carousel.querySelectorAll('.slide');
+      const totalSlides = slides.length;
 
-</html>
+      function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+      }
 
-</html>
-<script>
-  // Carousel handling function
-  function setupCarousel(carouselId) {
-    let currentSlide = 0;
-    const carousel = document.getElementById(carouselId);
-    const slides = carousel.querySelectorAll('.slide');
-    const totalSlides = slides.length;
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+      }
 
-    function showSlide(index) {
-      slides.forEach(slide => slide.classList.remove('active'));
-      slides[index].classList.add('active');
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(currentSlide);
+      }
+
+      carousel.querySelector('.next').addEventListener('click', nextSlide);
+      carousel.querySelector('.prev').addEventListener('click', prevSlide);
     }
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      showSlide(currentSlide);
-    }
+    // Initialize both carousels
+    setupCarousel('carousel1');
+    setupCarousel('carousel2');
+  </script>
 
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      showSlide(currentSlide);
-    }
-
-    carousel.querySelector('.next').addEventListener('click', nextSlide);
-    carousel.querySelector('.prev').addEventListener('click', prevSlide);
-  }
-
-  // Initialize both carousels
-  setupCarousel('carousel1');
-  setupCarousel('carousel2');
-</script>
 </body>
 
 </html>

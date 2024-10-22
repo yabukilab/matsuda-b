@@ -3,7 +3,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     text-align: center;
-  background: #F5DEB3;
+    background: #F5DEB3;
 }
 
 h1 {
@@ -25,7 +25,6 @@ h2 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
     max-width: 100%;
-    /* Ensure it doesn't exceed the width */
 }
 
 .subtitle-container h1 {
@@ -39,7 +38,6 @@ h2 {
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* Prevents overflow by ensuring content fits inside */
 }
 
 .shop {
@@ -52,9 +50,7 @@ h2 {
 
 .shop-photo {
     width: 100%;
-    /* Ensures the image takes the full width of the container */
     max-width: 800px;
-    /* Sets a maximum width */
     height: auto;
     object-fit: cover;
     margin-bottom: 10px;
@@ -67,7 +63,6 @@ h2 {
 
 table {
     width: 100%;
-    /* Ensure table width doesn't exceed container */
     max-width: 600px;
     border-collapse: collapse;
     margin-top: 10px;
@@ -76,8 +71,7 @@ table {
     margin-right: auto;
 }
 
-th,
-td {
+th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
@@ -91,13 +85,10 @@ th {
 /* フッター部分 */
 .footer {
     width: auto;
-    /* 100%からautoに変更してはみ出しを防ぐ */
     background-color: #3d2010;
     display: flex;
     flex-direction: column;
-    /* 縦並び */
     align-items: center;
-    /* 中央揃え */
     color: white;
     padding: 20px;
 }
@@ -105,53 +96,48 @@ th {
 .footer-links {
     display: flex;
     flex-direction: row;
-    /* 横並び */
     gap: 20px;
-    /* 各リンクの間に余白を追加 */
 }
 
 .footer-links a {
     color: white;
     text-decoration: none;
-    /* 下線を消す */
 }
 
 .footer-links a:hover {
     text-decoration: underline;
-    /* ホバー時に下線を表示 */
 }
 
 .letter {
     margin-left: auto;
 }
+
 .carousel {
     position: relative;
     width: 100%;
     max-width: 800px;
-    /* Smaller width */
     margin: 0 auto 20px auto;
     overflow: hidden;
-  }
-  
-  .carousel .slide {
+}
+
+.carousel .slide {
     display: none;
     width: 100%;
-  }
-  
-  .carousel .active {
+}
+
+.carousel .active {
     display: block;
-  }
-  
-  .carousel img {
+}
+
+.carousel img {
     width: 100%;
     height: auto;
     object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .prev,
-  .next {
+}
+
+.prev, .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -163,20 +149,19 @@ th {
     border: none;
     line-height: 0;
     border-radius: 50%;
-  }
-  
-  .prev:hover,
-  .next:hover {
+}
+
+.prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
-  }
-  
-  .prev {
+}
+
+.prev {
     left: 12px;
-  }
-  
-  .next {
+}
+
+.next {
     right: 12px;
-  }
+}
 
 /* レスポンシブ対応: モバイルデバイス向け */
 @media (max-width: 768px) {
@@ -189,57 +174,11 @@ th {
         padding: 20px;
     }
 
-    h1 {
-        font-size: 1.5em;
-    }
-
-    h2 {
-        font-size: 1.3em;
-    }
-
-    table {
-        font-size: 1em;
-        width: 100%;
-    }
-
-    .footer {
-        padding: 15px;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        /* リンクを縦並びに変更 */
-        gap: 15px;
-    }
-}
-
-/* レスポンシブ対応: スモールモバイルデバイス向け */
-@media (max-width: 480px) {
     .shop-info {
         flex-direction: column;
-        align-items: center;
-    }
-
-    .shop-photo {
-        width: 100%;
-        height: auto;
     }
 
     table {
-        font-size: 0.9em;
-    }
-
-    .subtitle-container {
-        padding: 15px;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        /* リンクを縦並びに変更 */
-        gap: 10px;
-    }
-
-    .footer {
-        padding: 10px;
+        font-size: 1.2em;
     }
 }
