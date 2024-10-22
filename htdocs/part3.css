@@ -29,7 +29,7 @@ h2 {
 
 .subtitle-container h1 {
     color: white;
-    font-size: 1.8em;
+    font-size: 3em;
 }
 
 .shop-info {
@@ -48,6 +48,13 @@ h2 {
     width: 100%;
 }
 
+.shop-details h1 {
+    font-size: 2.0em;
+}
+
+.shop-details h2 {
+    font-size: 2.0em;
+}
 .shop-photo {
     width: 100%;
     max-width: 800px;
@@ -75,7 +82,7 @@ th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
-    background-color: #ddd;
+    background-color: hsl(0, 0%, 100%);
 }
 
 th {
