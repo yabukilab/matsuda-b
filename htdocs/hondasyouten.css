@@ -130,7 +130,7 @@ body {
 
 /* ヘッダー */
 header {
-  background-image: url('../htdocs/img/LINE_ALBUM_20241129_241206_1.jpg');
+  background-image: url('img/LINE_ALBUM_20241129_241206_1.jpg');
   background-size: cover;
   background-position: center;
   height: 300px;
