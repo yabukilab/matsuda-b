@@ -1,0 +1,143 @@
+/* 全体のスタイル */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  header h1 {
+    font-size: 3.5rem;
+    margin: 0;
+  }
+  
+  /* 店舗情報セクション */
+  #store-info {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  /* 店舗紹介部分 */
+  .store-description h2 {
+    font-size: 2.8rem;
+    color: #5f9ea0;
+  }
+  
+  .store-description p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-top: 10px;
+    color: #666;
+  }
+  
+  /* 基本情報 */
+  .store-details h2 {
+    font-size: 2.8rem;
+    color: #5f9ea0;
+    margin-top: 30px;
+  }
+  
+  .store-details ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .store-details li {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  /* 店舗写真 */
+  .store-photos h2 {
+    font-size: 2.8rem;
+    color: #5f9ea0;
+    margin-top: 30px;
+  }
+  
+  .store-photos img {
+    width: 40%; /* 画像の幅を40%に設定 */
+    height: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* メニュー */
+  .store-menu h2 {
+    font-size: 2.8rem;
+    color: #5f9ea0;
+    margin-top: 30px;
+  }
+  
+  .store-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .store-menu li {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* アクセス */
+  .store-access h2 {
+    font-size: 2.8rem;
+    color: #5f9ea0;
+    margin-top: 30px;
+  }
+  
+  .store-access iframe {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  /* フッター */
+  footer {
+    background-color: #5f9ea0;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer p {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+  
+  .store-menu a {
+    display: block;  /* 各リンクをブロック要素として扱い、縦に並べる */
+    margin-bottom: 10px;  /* 各リンクの間にスペースを入れる */
+  }
+  
+  /* store-menuとstore-access内のフォントサイズを2.2emに設定 */
+.store-menu, .store-access {
+  font-size: 1.8em;
+}
+
+/* ヘッダー */
+header {
+  background-image: url('../htdocs/img/POM内装.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
