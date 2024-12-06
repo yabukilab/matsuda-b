@@ -130,7 +130,7 @@ body {
 
 /* ヘッダー */
 header {
-  background-image: url('../htdocs/img/津田沼公園1.jpg');
+  background-image: url('img/津田沼公園1.jpg');
   background-size: cover;
   background-position: center;
   height: 300px;

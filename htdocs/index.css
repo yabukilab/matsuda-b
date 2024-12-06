@@ -15,7 +15,7 @@ body {
 
 /* ヘッダー */
 header {
-  background-image: url('../htdocs/img/tsudanuma-smoking-area.jpeg');
+  background-image: url('img/tsudanuma-smoking-area.jpeg');
   background-size: cover;
   background-position: center;
   height: 300px;
