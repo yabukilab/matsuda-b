@@ -141,3 +141,24 @@ header {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
+
+/* Make the heading (h2) text larger */
+.store-photos h2 {
+  font-size: 32px; /* Change to your desired size */
+  font-weight: bold;
+}
+
+/* Make the paragraph text in the .text-content div larger */
+.store-photos .text-content p {
+  font-size: 20px; /* Change to your desired size */
+}
+
+/* Make the strong text (bolded words) larger */
+.store-photos .text-content p strong {
+  font-size: 22px; /* Change to your desired size */
+}
+
+/* Optional: Make the image description text larger */
+.store-photos .image-content img {
+  width: 100%; /* Ensures the image scales with the content */
+}
