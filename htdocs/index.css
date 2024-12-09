@@ -25,8 +25,10 @@ header {
   align-items: center;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  flex-direction: column; /* 追加：要素を縦に並べる */
 }
 
+/* h1スタイル */
 header h1 {
   font-size: 3.5rem;
   font-weight: bold;
@@ -34,6 +36,15 @@ header h1 {
   margin: 0;
   line-height: 1.2;
   letter-spacing: 2px;
+}
+
+/* 実験用サイトのスタイル */
+.experiment-site {
+  display: block;      /* ブロック要素にして縦に並ぶようにする */
+  font-size: 1.7em;    /* フォントサイズを少し大きく */
+  color: #ffffff;      /* 色を青に設定 */
+  font-weight: bold;   /* 太字 */
+  margin-top: 10px;    /* 上に少しスペースを追加 */
 }
 
 /* メインコンテンツ */

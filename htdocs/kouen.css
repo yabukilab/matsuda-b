@@ -140,6 +140,7 @@ header {
   align-items: center;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  flex-direction: column;
 }
 
 .store-access {
@@ -148,4 +149,58 @@ header {
     gap: 10px; /* リンク間のスペース */
   }
   
+  .experiment-site {
+    display: block;      /* ブロック要素にして縦に並ぶようにする */
+    font-size: 1.7em;    /* フォントサイズを少し大きく */
+    color: #ffffff;      /* 色を青に設定 */
+    font-weight: bold;   /* 太字 */
+    margin-top: 10px;    /* 上に少しスペースを追加 */
+  }
+
+  /* ボタンセクション */
+.buttons-section {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* セクションタイトル */
+.buttons-section h2 {
+  font-size: 2rem;
+  color: #5f9ea0;
+  margin-bottom: 20px;
+}
+
+/* ボタンコンテナ */
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* ボタンを中央揃え */
+  gap: 20px; /* ボタン間のスペース */
+}
+
+/* 各ボタン */
+.button {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #5f9ea0;
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ホバー時 */
+.button:hover {
+  background-color: #3b7e7d;
+  transform: translateY(-3px);
+}
+
+/* アクティブ時 */
+.button:active {
+  background-color: #2f6662;
+  transform: translateY(1px);
+}
+
   
