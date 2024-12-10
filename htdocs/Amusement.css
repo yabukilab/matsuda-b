@@ -196,3 +196,82 @@ flex-direction: column;
   background-color: #2f6662;
   transform: translateY(1px);
 }
+
+@media (max-width: 768px) {
+  /* 全体的にフォントサイズを小さくする */
+  body {
+    font-size: 1.4rem;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  /* 店舗紹介セクションのスタイル調整 */
+  .store-description h2, .store-details h2, .store-photos h2, .store-menu h2, .store-access h2 {
+    font-size: 2.2rem;
+  }
+
+  /* 店舗写真のサイズ調整 */
+  .store-photos img {
+    width: 60%; /* 画像の幅を60%に調整 */
+  }
+
+  .store-details li, .store-menu li {
+    font-size: 1.6rem; /* フォントサイズを小さく */
+  }
+
+  /* ボタンのスタイル調整 */
+  .button {
+    font-size: 1.3rem;
+    padding: 12px 20px;
+  }
+
+  /* ボタンが横並びではなく縦並びにする */
+  .buttons-container {
+    flex-direction: column;
+    gap: 10px; /* ボタン間のスペースを少なく */
+  }
+
+  /* iframe（Google Map）の高さ調整 */
+  .store-access iframe {
+    height: 250px;
+  }
+
+  /* フッターのフォントサイズ調整 */
+  footer p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* ヘッダータイトルをさらに小さく */
+  header h1 {
+    font-size: 2rem;
+  }
+
+  /* 店舗紹介部分 */
+  .store-description h2, .store-details h2, .store-photos h2, .store-menu h2, .store-access h2 {
+    font-size: 1.8rem;
+  }
+
+  .store-description p, .store-details li, .store-menu li {
+    font-size: 1.4rem; /* さらにフォントサイズを小さく */
+  }
+
+  /* 画像の幅をさらに広げる */
+  .store-photos img {
+    width: 80%; /* 画像の幅を80%に調整 */
+  }
+
+  /* ボタンのパディングを小さく */
+  .button {
+    padding: 10px 15px;
+    font-size: 1.2rem;
+  }
+
+  /* フッターの余白を調整 */
+  footer p {
+    font-size: 0.9rem;
+  }
+}
