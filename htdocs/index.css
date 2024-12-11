@@ -26,6 +26,7 @@ header {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   flex-direction: column; /* 追加：要素を縦に並べる */
+  text-align: center; /* 中央揃えにする */
 }
 
 /* h1スタイル */
@@ -139,3 +140,101 @@ footer p:first-of-type {
 footer p {
   color: white; /* 白色 */
 }
+
+/* スマホ向けレスポンシブデザイン */
+@media (max-width: 768px) {
+  /* ヘッダー内のh1と.experiment-siteを1列に並べる */
+  header h1 {
+      font-size: 2.1rem;
+  }
+
+  header .experiment-site {
+      font-size: 1.0rem;
+      margin-top: 8px;
+  }
+
+  /* 店舗情報セクション */
+  #store-info {
+      width: 95%; /* 幅をさらに広げる */
+  }
+
+  .store-description p {
+      font-size: 1rem;
+  }
+
+  /* 基本情報 */
+  .store-details h2 {
+      font-size: 2rem;
+  }
+
+  .store-details li {
+      font-size: 1rem;
+  }
+
+  /* 店舗写真 */
+  .store-photos h2 {
+      font-size: 1.91rem;
+  }
+
+  .store-photos img {
+      width: 100%; /* スマホ用に画像を100%幅に変更 */
+  }
+
+  /* メニュー */
+  .store-menu h2 {
+      font-size: 2rem;
+  }
+
+  .store-menu a {
+      font-size: 1rem;
+  }
+
+  /* アクセス */
+  .store-access h2 {
+      font-size: 2rem;
+  }
+
+  .store-access p {
+      font-size: 1rem;
+  }
+
+  /* ボタンセクション */
+  .buttons-section h2 {
+      font-size: 2rem;
+  }
+
+  /* ボタンコンテナ */
+  .buttons-container {
+      flex-direction: column; /* ボタンを縦に並べる */
+  }
+
+  /* 各ボタン */
+  .button {
+      width: 100%; /* ボタン幅を広げる */
+      font-size: 1.4rem;
+      padding: 15px 0;
+  }
+}
+
+  header {
+    background-image: url('img/tsudanuma-smoking-area.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fffefe;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    text-align: center; /* 中央揃えにする */
+  }
+
+  p {
+    font-size: 16.8px; /* スマホサイズの時のフォントサイズ */
+  }
+
+  h2{
+    font-size: 40px;
+  }

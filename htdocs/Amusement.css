@@ -20,31 +20,38 @@ header {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   flex-direction: column;
+  text-align: center; /* 中央揃えにする */
 }
 
+/* ヘッダー内のh1と.experiment-siteの設定 */
 header h1 {
   font-size: 3rem;
   margin: 0;
 }
 
+.experiment-site {
+  font-size: 1.7em;    /* フォントサイズを少し大きく */
+  color: #ffffff;      /* 色を青に設定 */
+  font-weight: bold;   /* 太字 */
+  margin-top: 10px;    /* 上に少しスペースを追加 */
+}
+
 /* 店舗情報セクション */
 #store-info {
-  width: 80%;
+  width: 90%;   /* 幅を少し広げる */
   margin: 40px auto;
-  padding: 20px;
+  padding: 11px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
-/* 共通のセクションタイトル */
-h2 {
+/* 店舗紹介部分 */
+.store-description h2 {
   font-size: 2.8rem;
   color: #5f9ea0;
-  margin-top: 30px;
 }
 
-/* 店舗紹介部分 */
 .store-description p {
   font-size: 1.8rem;
   line-height: 1.6;
@@ -53,22 +60,32 @@ h2 {
 }
 
 /* 基本情報 */
-.store-details ul,
-.store-menu ul {
+.store-details h2 {
+  font-size: 2.8rem;
+  color: #5f9ea0;
+  margin-top: 30px;
+}
+
+.store-details ul {
   list-style-type: none;
   padding: 0;
 }
 
-.store-details li,
-.store-menu li {
+.store-details li {
   font-size: 1.8rem;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #333;
 }
 
 /* 店舗写真 */
+.store-photos h2 {
+  font-size: 2.8rem;
+  color: #5f9ea0;
+  margin-top: 30px;
+}
+
 .store-photos img {
-  width: 40%; /* 画像の幅を40%に設定 */
+  width: 80%; /* スマホ対応：画像の幅を80%に変更 */
   height: auto;
   margin-top: 20px;
   border-radius: 10px;
@@ -77,12 +94,31 @@ h2 {
   margin-right: auto;
 }
 
+/* メニュー */
+.store-menu h2 {
+  font-size: 2.8rem;
+  color: #5f9ea0;
+  margin-top: 30px;
+}
+
+.store-menu a {
+  font-size: 1.8rem;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+}
+
 /* アクセス */
-.store-access iframe {
-  width: 100%;
-  height: 300px;
-  border-radius: 10px;
-  margin-top: 20px;
+.store-access h2 {
+  font-size: 2.8rem;
+  color: #5f9ea0;
+  margin-top: 30px;
+}
+
+.store-access p {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
 /* フッター */
@@ -107,6 +143,7 @@ footer p {
   margin-top: 50px;
 }
 
+/* セクションタイトル */
 .buttons-section h2 {
   font-size: 2rem;
   color: #5f9ea0;
@@ -146,82 +183,103 @@ footer p {
   transform: translateY(1px);
 }
 
-/* スマホ対応（タブレット・スマホ） */
+html, body {
+  overflow-x: hidden; /* 横スクロールを無効化 */
+}
+
+/* スマホ向けレスポンシブデザイン */
 @media (max-width: 768px) {
-  body {
-    font-size: 1.4rem; /* 全体的にフォントサイズを小さく */
-  }
-
+  /* ヘッダー内のh1と.experiment-siteを1列に並べる */
   header h1 {
-    font-size: 2.5rem; /* ヘッダータイトルを調整 */
+      font-size: 1.8rem;
   }
 
-  /* 共通のセクションタイトル */
-  h2 {
-    font-size: 2.2rem;
+  header .experiment-site {
+      font-size: 1.0rem;
+      margin-top: 8px;
   }
 
-  .store-description p,
-  .store-details li,
-  .store-menu li {
-    font-size: 1.6rem; /* フォントサイズ調整 */
+  /* 店舗情報セクション */
+  #store-info {
+      width: 95%; /* 幅をさらに広げる */
+  }
+
+  /* 店舗紹介部分 */
+  .store-description h2 {
+      font-size: 2rem;
+  }
+
+  .store-description p {
+      font-size: 1rem;
+  }
+
+  /* 基本情報 */
+  .store-details h2 {
+      font-size: 2rem;
+  }
+
+  .store-details li {
+      font-size: 1rem;
+  }
+
+  /* 店舗写真 */
+  .store-photos h2 {
+      font-size: 1.91rem;
   }
 
   .store-photos img {
-    width: 80%; /* 画像の幅を80%に調整 */
+      width: 100%; /* スマホ用に画像を100%幅に変更 */
   }
 
-  /* ボタンのスタイル調整 */
-  .button {
-    font-size: 1.3rem;
-    padding: 12px 20px;
+  /* メニュー */
+  .store-menu h2 {
+      font-size: 2rem;
   }
 
-  /* ボタンを縦並びに */
+  .store-menu a {
+      font-size: 1rem;
+  }
+
+  /* アクセス */
+  .store-access h2 {
+      font-size: 2rem;
+  }
+
+  .store-access p {
+      font-size: 1rem;
+  }
+
+  /* ボタンセクション */
+  .buttons-section h2 {
+      font-size: 2rem;
+  }
+
+  /* ボタンコンテナ */
   .buttons-container {
-    flex-direction: column;
-    gap: 10px; /* ボタン間のスペースを少なく */
+      flex-direction: column; /* ボタンを縦に並べる */
   }
 
-  /* Google Map iframeの高さ調整 */
-  .store-access iframe {
-    height: 250px;
-  }
-
-  footer p {
-    font-size: 1rem; /* フッターのフォントサイズ調整 */
-  }
-}
-
-/* スマホ向けの更に小さい調整 */
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 2rem; /* ヘッダータイトルをさらに小さく */
-  }
-
-  h2 {
-    font-size: 1.8rem; /* セクションタイトルの調整 */
-  }
-
-  .store-description p,
-  .store-details li,
-  .store-menu li {
-    font-size: 1.4rem; /* フォントサイズをさらに小さく */
-  }
-
-  .store-photos img {
-    width: 100%; /* 画像の幅を100%に調整 */
-  }
-
+  /* 各ボタン */
   .button {
-    font-size: 1.2rem;
-    padding: 10px 15px; /* ボタンのパディングを調整 */
-  }
-
-  footer p {
-    font-size: 0.9rem; /* フッターの文字サイズ調整 */
+      width: 100%; /* ボタン幅を広げる */
+      font-size: 1.4rem;
+      padding: 15px 0;
   }
 }
 
+  header {
+    background-image: url('img/ゲーセン内部.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fffefe;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    text-align: center; /* 中央揃えにする */
+  }
 
 
