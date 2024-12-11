@@ -13,7 +13,7 @@ body {
   }
 
 /* 店舗情報セクション */
- #store-info {
+  #store-info {
     width: 80%;
     margin: 40px auto;
     padding: 20px;
@@ -23,12 +23,12 @@ body {
   }
 
 /* 店舗紹介部分 */
- .store-description h2 {
+  .store-description h2 {
     font-size: 2.8rem;
     color: #5f9ea0;
   }
 
-   .store-description p {
+  .store-description p {
     font-size: 1.8rem;
     line-height: 1.6;
     margin-top: 10px;
@@ -189,7 +189,7 @@ body {
   .button:hover {
     background-color: #3b7e7d;
     transform: translateY(-3px);
-}
+  }
 
 /* アクティブ時 */
   .button:active {
