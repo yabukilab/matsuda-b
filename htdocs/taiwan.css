@@ -40,7 +40,7 @@ header h1 {
 #store-info {
   width: 90%;   /* 幅を少し広げる */
   margin: 40px auto;
-  padding: 20px;
+  padding: 11px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -267,18 +267,18 @@ html, body {
   }
 }
 
-header {
-  background-image: url('img/LINE_ALBUM_20241129_241129_2.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 200px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fffefe;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  flex-direction: column;
-  text-align: center; /* 中央揃えにする */
-}
+  header {
+    background-image: url('img/LINE_ALBUM_20241129_241129_2.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fffefe;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    text-align: center; /* 中央揃えにする */
+  }
   
