@@ -18,6 +18,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         
         .container {
@@ -129,21 +130,23 @@
             transform: translateY(-1px);
         }
         
-        .btn-menu {
+        .btn-success {
             background: #28a745;
             color: white;
-            margin: 5px;
-            width: calc(50% - 10px);
-            display: inline-block;
         }
         
-        .btn-menu:hover {
+        .btn-success:hover {
             background: #218838;
             transform: translateY(-2px);
         }
         
-        .btn-menu.selected {
-            background: #17a2b8;
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
         }
         
         .error {
@@ -173,10 +176,81 @@
             margin-bottom: 20px;
         }
         
+        .menu-item {
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-2px);
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .menu-item.selected {
+            border-color: #17a2b8;
+            background: #e3f2fd;
+        }
+        
+        .menu-name {
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .menu-price {
+            font-size: 18px;
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .user-info {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #555;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .back-btn:hover {
+            color: #5a6fd8;
+        }
+        
+        .call-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 15px;
+            border: 3px solid #667eea;
+        }
+        
         .order-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin: 20px 0;
         }
         
         .order-table th, .order-table td {
@@ -194,46 +268,90 @@
             width: auto;
             padding: 6px 12px;
             margin: 0;
-            font-size: 14px;
+            font-size: 12px;
         }
         
-        .form-row {
+        .admin-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
+            margin-bottom: 20px;
         }
         
-        .file-upload {
-            border: 2px dashed #e1e5e9;
-            border-radius: 10px;
+        .stat-card {
+            background: #f8f9fa;
             padding: 20px;
+            border-radius: 10px;
             text-align: center;
-            color: #666;
-            cursor: pointer;
-            transition: border-color 0.3s ease;
         }
         
-        .file-upload:hover {
-            border-color: #667eea;
-        }
-        
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: none;
-            border: none;
-            color: #667eea;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        
-        .call-number {
-            font-size: 36px;
+        .stat-number {
+            font-size: 24px;
             font-weight: bold;
             color: #667eea;
-            text-align: center;
-            margin: 20px 0;
+        }
+        
+        .menu-management-item {
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .menu-management-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .menu-info {
+            flex: 1;
+        }
+        
+        .menu-info .menu-name {
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .menu-info .menu-price {
+            font-size: 18px;
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .menu-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .menu-actions .btn {
+            width: auto;
+            padding: 8px 16px;
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .btn-edit {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-edit:hover {
+            background: #e0a800;
+        }
+        
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #c82333;
         }
     </style>
 </head>
@@ -246,335 +364,24 @@
             
             <div class="form-group">
                 <label for="loginId">ログイン番号</label>
-                <input type="text" id="loginId" placeholder="ログイン番号を入力">
+                <input type="text" id="loginId" placeholder="ログイン番号を入力" value="student001">
             </div>
             
             <div class="form-group">
                 <label for="password">パスワード</label>
-                <input type="password" id="password" placeholder="パスワードを入力">
+                <input type="password" id="password" placeholder="パスワードを入力" value="password">
             </div>
             
             <div id="loginError" class="error" style="display: none;"></div>
             
-            <button class="btn btn-primary" onclick="handleLogin()">確定</button>
+            <button class="btn btn-primary" onclick="handleLogin()">ログイン</button>
+            
+            <div style="margin-top: 20px; font-size: 12px; color: #666; text-align: center;">
+                <strong>テスト用アカウント:</strong><br>
+                学生: student001 / password<br>
+                管理者: admin / admin123
+            </div>
         </div>
 
         <!-- TOP画面 -->
-        <div id="top" class="screen">
-            <h2>TOP</h2>
-            <button class="btn btn-primary" onclick="showScreen('purchase')">購入</button>
-            <button class="btn btn-secondary" onclick="showScreen('admin')">管理者</button>
-        </div>
-
-        <!-- 購入画面 -->
-        <div id="purchase" class="screen">
-            <button class="back-btn" onclick="showScreen('top')">← 戻る</button>
-            <h2>本日のメニュー</h2>
-            
-            <div id="purchaseError" class="error" style="display: none;"></div>
-            
-            <div class="menu-grid">
-                <button class="btn btn-menu" onclick="selectMenu('工大ランチ', this)">工大ランチ</button>
-                <button class="btn btn-menu" onclick="selectMenu('カレー', this)">カレー</button>
-                <button class="btn btn-menu" onclick="selectMenu('サンドイッチ', this)">サンドイッチ</button>
-                <button class="btn btn-menu" onclick="selectMenu('そば', this)">そば</button>
-            </div>
-            
-            <button class="btn btn-primary" onclick="confirmOrder()">確定</button>
-        </div>
-
-        <!-- 購入完了画面 -->
-        <div id="purchaseComplete" class="screen">
-            <div class="success">
-                <h2>購入完了</h2>
-                <p>ご購入ありがとうございます！</p>
-                <div class="call-number" id="callNumber">1234</div>
-            </div>
-            <button class="btn btn-primary" onclick="showScreen('top')">TOPに戻る</button>
-        </div>
-
-        <!-- 管理者画面 -->
-        <div id="admin" class="screen">
-            <button class="back-btn" onclick="showScreen('top')">← 戻る</button>
-            <h2>管理者画面</h2>
-            <button class="btn btn-primary" onclick="showScreen('menuEdit')">メニューの編集</button>
-            <button class="btn btn-secondary" onclick="showScreen('orderCheck')">注文内容</button>
-        </div>
-
-        <!-- メニュー編集画面 -->
-        <div id="menuEdit" class="screen">
-            <button class="back-btn" onclick="showScreen('admin')">← 戻る</button>
-            <h2>メニューの編集</h2>
-            
-            <div id="menuEditError" class="error" style="display: none;"></div>
-            
-            <div class="form-group">
-                <label for="menuName">商品名：</label>
-                <input type="text" id="menuName" placeholder="商品名を入力">
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="menuPrice">値段：</label>
-                    <input type="number" id="menuPrice" placeholder="値段を入力">
-                </div>
-                <div class="form-group">
-                    <label for="menuQuantity">販売個数：</label>
-                    <input type="number" id="menuQuantity" placeholder="販売個数を入力">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="menuDate">掲載期日：</label>
-                <input type="date" id="menuDate">
-            </div>
-            
-            <div class="form-group">
-                <label>写真：</label>
-                <div class="file-upload" onclick="document.getElementById('menuPhoto').click()">
-                    <span id="photoStatus">写真を選択してください</span>
-                    <input type="file" id="menuPhoto" style="display: none;" accept="image/*" onchange="updatePhotoStatus()">
-                </div>
-            </div>
-            
-            <button class="btn btn-primary" onclick="registerMenu()">登録</button>
-        </div>
-
-        <!-- メニュー編集完了画面 -->
-        <div id="menuEditComplete" class="screen">
-            <div class="success">
-                <h2>完了</h2>
-                <p>正常に商品は登録されました！</p>
-            </div>
-            <button class="btn btn-primary" onclick="showScreen('admin')">管理者画面に戻る</button>
-        </div>
-
-        <!-- 注文内容確認画面 -->
-        <div id="orderCheck" class="screen">
-            <button class="back-btn" onclick="showScreen('admin')">← 戻る</button>
-            <h2>注文内容</h2>
-            
-            <table class="order-table">
-                <thead>
-                    <tr>
-                        <th>メニュー</th>
-                        <th>番号</th>
-                        <th>受け取り確認</th>
-                    </tr>
-                </thead>
-                <tbody id="orderList">
-                    <tr>
-                        <td>工大ランチ</td>
-                        <td>1234</td>
-                        <td><button class="btn btn-primary">OK</button></td>
-                    </tr>
-                    <tr>
-                        <td>そば</td>
-                        <td>1111</td>
-                        <td><button class="btn btn-primary">OK</button></td>
-                    </tr>
-                    <tr>
-                        <td>カレー</td>
-                        <td>1243</td>
-                        <td><button class="btn btn-primary">OK</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <script>
-        // グローバル変数
-        let selectedMenu = '';
-        let currentUser = '';
-        let orders = [
-            { menu: '工大ランチ', number: '1234', completed: false },
-            { menu: 'そば', number: '1111', completed: false },
-            { menu: 'カレー', number: '1243', completed: false }
-        ];
-
-        // ユーザーデータベース（実際の実装では外部データベースを使用）
-        const users = {
-            'student': { password: 'pass123', role: 'student' },
-            'admin': { password: 'admin123', role: 'admin' },
-            '12345': { password: 'student', role: 'student' }
-        };
-
-        // 画面表示制御
-        function showScreen(screenId) {
-            const screens = document.querySelectorAll('.screen');
-            screens.forEach(screen => screen.classList.remove('active'));
-            document.getElementById(screenId).classList.add('active');
-            
-            // エラーメッセージをクリア
-            clearErrors();
-        }
-
-        // エラーメッセージクリア
-        function clearErrors() {
-            const errorElements = document.querySelectorAll('.error');
-            errorElements.forEach(el => el.style.display = 'none');
-        }
-
-        // ログイン処理
-        function handleLogin() {
-            const loginId = document.getElementById('loginId').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const errorDiv = document.getElementById('loginError');
-
-            // 入力チェック
-            if (!loginId) {
-                showError('loginError', 'ログイン番号が入力されていません');
-                return;
-            }
-            
-            if (!password) {
-                showError('loginError', 'パスワードが入力されていません');
-                return;
-            }
-
-            // 認証処理
-            if (users[loginId] && users[loginId].password === password) {
-                currentUser = loginId;
-                showScreen('top');
-                // 入力フィールドをクリア
-                document.getElementById('loginId').value = '';
-                document.getElementById('password').value = '';
-            } else {
-                showError('loginError', 'ログイン番号、パスワードが一致するものがございません');
-            }
-        }
-
-        // エラー表示
-        function showError(elementId, message) {
-            const errorDiv = document.getElementById(elementId);
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-        }
-
-        // メニュー選択
-        function selectMenu(menuName, button) {
-            // 他のメニューボタンの選択状態を解除
-            const menuButtons = document.querySelectorAll('.btn-menu');
-            menuButtons.forEach(btn => btn.classList.remove('selected'));
-            
-            // 選択されたボタンをハイライト
-            button.classList.add('selected');
-            selectedMenu = menuName;
-            
-            // エラーメッセージを非表示
-            document.getElementById('purchaseError').style.display = 'none';
-        }
-
-        // 注文確定
-        function confirmOrder() {
-            if (!selectedMenu) {
-                showError('purchaseError', 'エラー：メニューを選んで下さい');
-                return;
-            }
-
-            // 呼び出し番号生成（1000-9999のランダム）
-            const callNumber = Math.floor(Math.random() * 9000) + 1000;
-            document.getElementById('callNumber').textContent = callNumber;
-            
-            // 注文をリストに追加
-            orders.push({
-                menu: selectedMenu,
-                number: callNumber.toString(),
-                completed: false
-            });
-            
-            // 選択状態をリセット
-            selectedMenu = '';
-            const menuButtons = document.querySelectorAll('.btn-menu');
-            menuButtons.forEach(btn => btn.classList.remove('selected'));
-            
-            showScreen('purchaseComplete');
-            updateOrderList();
-        }
-
-        // 写真選択状態更新
-        function updatePhotoStatus() {
-            const fileInput = document.getElementById('menuPhoto');
-            const statusSpan = document.getElementById('photoStatus');
-            
-            if (fileInput.files.length > 0) {
-                statusSpan.textContent = `選択済み: ${fileInput.files[0].name}`;
-                statusSpan.style.color = '#28a745';
-            } else {
-                statusSpan.textContent = '写真を選択してください';
-                statusSpan.style.color = '#666';
-            }
-        }
-
-        // メニュー登録
-        function registerMenu() {
-            const menuName = document.getElementById('menuName').value.trim();
-            const menuPrice = document.getElementById('menuPrice').value.trim();
-            const menuQuantity = document.getElementById('menuQuantity').value.trim();
-            const menuDate = document.getElementById('menuDate').value;
-            const menuPhoto = document.getElementById('menuPhoto').files.length > 0;
-
-            let errors = [];
-
-            if (!menuName) errors.push('商品名が編集されていません。');
-            if (!menuPrice) errors.push('値段が編集されていません。');
-            if (!menuQuantity) errors.push('販売個数が編集されていません。');
-            if (!menuDate) errors.push('掲載期日が編集されていません。');
-            if (!menuPhoto) errors.push('写真が追加されていません。');
-
-            if (errors.length > 0) {
-                showError('menuEditError', 'エラー：もう一度確認して下さい！\n' + errors.join('\n'));
-                return;
-            }
-
-            // 入力フィールドをクリア
-            document.getElementById('menuName').value = '';
-            document.getElementById('menuPrice').value = '';
-            document.getElementById('menuQuantity').value = '';
-            document.getElementById('menuDate').value = '';
-            document.getElementById('menuPhoto').value = '';
-            document.getElementById('photoStatus').textContent = '写真を選択してください';
-            document.getElementById('photoStatus').style.color = '#666';
-
-            showScreen('menuEditComplete');
-        }
-
-        // 注文リスト更新
-        function updateOrderList() {
-            const orderList = document.getElementById('orderList');
-            orderList.innerHTML = '';
-
-            orders.forEach((order, index) => {
-                if (!order.completed) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${order.menu}</td>
-                        <td>${order.number}</td>
-                        <td><button class="btn btn-primary" onclick="completeOrder(${index})">OK</button></td>
-                    `;
-                    orderList.appendChild(row);
-                }
-            });
-        }
-
-        // 注文完了処理
-        function completeOrder(index) {
-            orders[index].completed = true;
-            updateOrderList();
-        }
-
-        // Enterキーでログイン
-        document.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter' && document.getElementById('login').classList.contains('active')) {
-                handleLogin();
-            }
-        });
-
-        // 初期表示時に注文リストを更新
-        document.addEventListener('DOMContentLoaded', function() {
-            updateOrderList();
-        });
-    </script>
-</body>
-</html>
+        <div id="top" class=
