@@ -5,7 +5,421 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>津田沼校舎食堂 モバイルオーダーシステム</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .screen {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-edit {
+            background: #ffc107;
+            color: #212529;
+            padding: 8px 15px;
+            margin: 0 5px;
+            width: auto;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            margin: 0 5px;
+            width: auto;
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #c3e6cb;
+            text-align: center;
+        }
+
+        .user-info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #495057;
+            font-weight: bold;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            background: white;
+            border: 2px solid #e1e5e9;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .menu-item:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item.selected {
+            border-color: #28a745;
+            background: #f8fff8;
+        }
+
+        .menu-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .menu-price {
+            font-size: 20px;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: #5a6fd8;
+        }
+
+        .quantity-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .quantity-display {
+            font-size: 16px;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cart-item-price {
+            color: #667eea;
+            font-size: 14px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .total-section {
+            border-top: 2px solid #dee2e6;
+            padding-top: 15px;
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .total-amount {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .call-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e1e5e9;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .order-table th,
+        .order-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .order-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .menu-management-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .menu-info {
+            flex: 1;
+        }
+
+        .menu-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .screen {
+                padding: 20px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -61,9 +475,16 @@
                 <!-- メニューは動的に生成されます -->
             </div>
 
-            <div id="selectedMenuInfo"
-                style="display: none; text-align: center; margin: 20px 0; padding: 15px; background: #e8f5e8; border-radius: 8px;">
-                <strong>選択中: </strong><span id="selectedMenuName"></span> - <span id="selectedMenuPrice"></span>
+            <!-- カート表示 -->
+            <div id="cartSection" class="cart-section" style="display: none;">
+                <div class="cart-header">
+                    <span>🛒 カート</span>
+                    <button class="btn-danger" onclick="clearCart()" style="padding: 5px 10px; font-size: 12px;">全て削除</button>
+                </div>
+                <div id="cartItems"></div>
+                <div class="total-section">
+                    <div class="total-amount">合計: ¥<span id="totalAmount">0</span></div>
+                </div>
             </div>
 
             <button class="btn btn-success" onclick="confirmOrder()" id="orderBtn" disabled>注文確定</button>
@@ -76,6 +497,7 @@
                 <p>お呼び出し番号</p>
                 <div class="call-number" id="callNumber">A001</div>
                 <p>番号が呼ばれるまでお待ちください</p>
+                <div id="orderSummary" style="margin-top: 20px; font-size: 14px; color: #666;"></div>
             </div>
             <button class="btn btn-primary" onclick="showScreen('top')">メインメニューに戻る</button>
         </div>
@@ -176,7 +598,7 @@
     <script>
         // グローバル変数
         let currentUser = null;
-        let selectedMenu = null;
+        let cart = {}; // { menuId: quantity }
         let orderHistory = [];
         let orderCounter = 1;
         let editingMenuId = null;
@@ -214,6 +636,7 @@
             // 購入画面の場合、メニューを更新
             if (screenId === 'purchase') {
                 renderMenuGrid();
+                updateCartDisplay();
             }
 
             // メニュー管理画面の場合、メニューリストを更新
@@ -252,6 +675,9 @@
                     adminBtn.style.display = 'block';
                 }
 
+                // カートをリセット
+                cart = {};
+
                 hideError('loginError');
                 showScreen('top');
             } else {
@@ -262,7 +688,7 @@
         // ログアウト処理
         function logout() {
             currentUser = null;
-            selectedMenu = null;
+            cart = {};
             document.getElementById('loginId').value = '';
             document.getElementById('password').value = '';
             hideError('loginError');
@@ -273,32 +699,95 @@
         function renderMenuGrid() {
             const menuGrid = document.getElementById('menuGrid');
             menuGrid.innerHTML = menuDatabase.map(menu => `
-                <div class="menu-item" onclick="selectMenu('${menu.name}', ${menu.price}, this)">
+                <div class="menu-item" id="menu-${menu.id}">
                     <div class="menu-name">${menu.name}</div>
                     <div class="menu-price">¥${menu.price}</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="updateQuantity(${menu.id}, -1)" ${cart[menu.id] ? '' : 'disabled'}>−</button>
+                        <span class="quantity-display">${cart[menu.id] || 0}</span>
+                        <button class="quantity-btn" onclick="updateQuantity(${menu.id}, 1)">＋</button>
+                    </div>
                 </div>
             `).join('');
         }
 
-        // メニュー選択処理
-        function selectMenu(name, price, element) {
-            // 以前の選択をクリア
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => item.classList.remove('selected'));
+        // 数量更新処理
+        function updateQuantity(menuId, change) {
+            const currentQuantity = cart[menuId] || 0;
+            const newQuantity = Math.max(0, currentQuantity + change);
 
-            // 新しい選択を設定
-            element.classList.add('selected');
-            selectedMenu = { name, price };
+            if (newQuantity === 0) {
+                delete cart[menuId];
+            } else {
+                cart[menuId] = newQuantity;
+            }
 
-            // 選択されたメニュー情報を表示
-            document.getElementById('selectedMenuName').textContent = name;
-            document.getElementById('selectedMenuPrice').textContent = `¥${price}`;
-            document.getElementById('selectedMenuInfo').style.display = 'block';
-
-            // 注文ボタンを有効化
-            document.getElementById('orderBtn').disabled = false;
-
+            renderMenuGrid();
+            updateCartDisplay();
             hideError('purchaseError');
+        }
+
+        // カート表示更新
+        function updateCartDisplay() {
+            const cartSection = document.getElementById('cartSection');
+            const cartItems = document.getElementById('cartItems');
+            const totalAmount = document.getElementById('totalAmount');
+            const orderBtn = document.getElementById('orderBtn');
+
+            const cartEntries = Object.entries(cart);
+            
+            if (cartEntries.length === 0) {
+                cartSection.style.display = 'none';
+                orderBtn.disabled = true;
+                return;
+            }
+
+            cartSection.style.display = 'block';
+            
+            let total = 0;
+            cartItems.innerHTML = cartEntries.map(([menuId, quantity]) => {
+                const menu = menuDatabase.find(m => m.id == menuId);
+                if (!menu) return '';
+                
+                const subtotal = menu.price * quantity;
+                total += subtotal;
+                
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${menu.name}</div>
+                            <div class="cart-item-price">¥${menu.price} × ${quantity} = ¥${subtotal}</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="quantity-btn" onclick="updateQuantity(${menuId}, -1)">−</button>
+                            <span class="quantity-display">${quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${menuId}, 1)">＋</button>
+                            <button class="remove-btn" onclick="removeFromCart(${menuId})">削除</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalAmount.textContent = total.toLocaleString();
+            orderBtn.disabled = false;
+        }
+
+        // カートから商品削除
+        function removeFromCart(menuId) {
+            delete cart[menuId];
+            renderMenuGrid();
+            updateCartDisplay();
+        }
+
+        // カート全削除
+        function clearCart() {
+            if (Object.keys(cart).length === 0) return;
+            
+            if (confirm('カートの中身をすべて削除しますか？')) {
+                cart = {};
+                renderMenuGrid();
+                updateCartDisplay();
+            }
         }
 
         // メニュー管理画面描画
@@ -420,6 +909,13 @@
             }
 
             menuDatabase = menuDatabase.filter(menu => menu.id !== menuId);
+            
+            // カートからも削除
+            if (cart[menuId]) {
+                delete cart[menuId];
+                updateCartDisplay();
+            }
+            
             showSuccess('menuSuccess', `「${menuName}」を削除しました`);
             renderMenuManagement();
         }
@@ -432,20 +928,38 @@
 
         // 注文確定処理
         function confirmOrder() {
-            if (!selectedMenu) {
-                showError('purchaseError', 'メニューを選択してください');
+            if (Object.keys(cart).length === 0) {
+                showError('purchaseError', 'カートが空です。商品を選択してください');
                 return;
             }
 
             // 注文番号を生成
             const callNumber = `A${String(orderCounter).padStart(3, '0')}`;
 
+            // 注文詳細を作成
+            let orderItems = [];
+            let totalPrice = 0;
+            
+            Object.entries(cart).forEach(([menuId, quantity]) => {
+                const menu = menuDatabase.find(m => m.id == menuId);
+                if (menu) {
+                    const subtotal = menu.price * quantity;
+                    orderItems.push({
+                        name: menu.name,
+                        price: menu.price,
+                        quantity: quantity,
+                        subtotal: subtotal
+                    });
+                    totalPrice += subtotal;
+                }
+            });
+
             // 注文を履歴に追加
             const order = {
                 id: orderCounter,
                 callNumber: callNumber,
-                menu: selectedMenu.name,
-                price: selectedMenu.price,
+                items: orderItems,
+                totalPrice: totalPrice,
                 user: currentUser.name,
                 time: new Date().toLocaleTimeString('ja-JP'),
                 status: '調理中'
@@ -456,13 +970,17 @@
 
             // 呼び出し番号を表示
             document.getElementById('callNumber').textContent = callNumber;
+            
+            // 注文内容を表示
+            const orderSummary = document.getElementById('orderSummary');
+            orderSummary.innerHTML = `
+                <strong>注文内容:</strong><br>
+                ${orderItems.map(item => `${item.name} × ${item.quantity}`).join('<br>')}
+                <br><strong>合計: ¥${totalPrice.toLocaleString()}</strong>
+            `;
 
-            // 選択をリセット
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => item.classList.remove('selected'));
-            selectedMenu = null;
-            document.getElementById('selectedMenuInfo').style.display = 'none';
-            document.getElementById('orderBtn').disabled = true;
+            // カートをリセット
+            cart = {};
 
             showScreen('orderComplete');
         }
@@ -470,7 +988,7 @@
         // 管理者統計更新
         function updateAdminStats() {
             const totalOrders = orderHistory.length;
-            const totalRevenue = orderHistory.reduce((sum, order) => sum + order.price, 0);
+            const totalRevenue = orderHistory.reduce((sum, order) => sum + order.totalPrice, 0);
 
             document.getElementById('totalOrders').textContent = totalOrders;
             document.getElementById('totalRevenue').textContent = `¥${totalRevenue.toLocaleString()}`;
@@ -483,8 +1001,10 @@
                 tbody.innerHTML = orderHistory.map(order => `
                     <tr>
                         <td>${order.callNumber}</td>
-                        <td>${order.menu}</td>
-                        <td>¥${order.price}</td>
+                        <td>
+                            ${order.items.map(item => `${item.name} × ${item.quantity}`).join('<br>')}
+                        </td>
+                        <td>¥${order.totalPrice.toLocaleString()}</td>
                         <td>${order.time}</td>
                         <td>
                             <span style="color: ${order.status === '調理中' ? '#ffc107' : '#28a745'}">
