@@ -1,4 +1,4 @@
-/* リセットとベーススタイル */
+/* リセットと共通設定 */
 * {
     margin: 0;
     padding: 0;
@@ -15,11 +15,10 @@ body {
     padding: 20px;
 }
 
-/* コンテナ */
 .container {
     background: white;
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     padding: 40px;
     width: 100%;
     max-width: 500px;
@@ -38,7 +37,6 @@ body {
     background: linear-gradient(90deg, #667eea, #764ba2);
 }
 
-/* 画面遷移 */
 .screen {
     display: none;
     animation: fadeIn 0.3s ease-in;
@@ -49,39 +47,31 @@ body {
 }
 
 @keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(10px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* 見出し */
-h1 {
-    color: #333;
+h1, h2, h3 {
     text-align: center;
-    margin-bottom: 30px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h1 {
     font-size: 24px;
     font-weight: bold;
 }
 
 h2 {
-    color: #555;
-    text-align: center;
-    margin-bottom: 20px;
     font-size: 20px;
+    color: #555;
 }
 
 h3 {
-    color: #555;
-    margin-bottom: 15px;
     font-size: 18px;
+    color: #555;
 }
 
-/* フォーム */
 .form-group {
     margin-bottom: 20px;
 }
@@ -93,9 +83,9 @@ label {
     font-weight: 500;
 }
 
-input[type="text"], 
-input[type="password"], 
-input[type="number"], 
+input[type="text"],
+input[type="password"],
+input[type="number"],
 input[type="date"] {
     width: 100%;
     padding: 12px 16px;
@@ -105,16 +95,265 @@ input[type="date"] {
     transition: border-color 0.3s ease;
 }
 
-input[type="text"]:focus, 
-input[type="password"]:focus, 
-input[type="number"]:focus, 
-input[type="date"]:focus {
+input:focus {
     outline: none;
     border-color: #667eea;
 }
 
-/* ボタン */
 .btn {
     width: 100%;
     padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+    background: #f8f9fa;
+    color: #555;
+    border: 2px solid #e1e5e9;
+}
+
+.btn-secondary:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.error {
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.success {
+    color: #155724;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.menu-item {
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.menu-item:hover {
+    transform: translateY(-2px);
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.menu-item.selected {
+    border-color: #17a2b8;
+    background: #e3f2fd;
+}
+
+.menu-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.menu-price {
+    font-size: 18px;
+    color: #28a745;
+    font-weight: 600;
+}
+
+.user-info {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #555;
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    color: #667eea;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    color: #5a6fd8;
+}
+
+.call-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #667eea;
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: #f8f9ff;
+    border-radius: 15px;
+    border: 3px solid #667eea;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.order-table th,
+.order-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.order-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.order-table .btn {
+    width: auto;
+    padding: 6px 12px;
+    margin: 0;
+    font-size: 12px;
+}
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.menu-management-item {
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-management-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.menu-info {
+    flex: 1;
+}
+
+.menu-info .menu-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.menu-info .menu-price {
+    font-size: 18px;
+    color: #28a745;
+    font-weight: 600;
+}
+
+.menu-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.menu-actions .btn {
+    width: auto;
+    padding: 8px 16px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.btn-edit {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-edit:hover {
+    background: #e0a800;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #c82333;
 }
