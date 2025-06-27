@@ -1,450 +1,34 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>津田沼校舎食堂 モバイルオーダーシステム</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 10px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .screen {
-            display: none;
-            padding: 30px;
-            animation: fadeIn 0.3s ease-in;
-        }
-
-        .screen.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1, h2 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 24px;
-            color: #667eea;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 10px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn-edit {
-            background: #ffc107;
-            color: #212529;
-            padding: 8px 15px;
-            margin: 0 5px;
-            width: auto;
-        }
-
-        .btn-delete {
-            background: #dc3545;
-            color: white;
-            padding: 8px 15px;
-            margin: 0 5px;
-            width: auto;
-        }
-
-        .btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #f5c6cb;
-        }
-
-        .success {
-            background: #d4edda;
-            color: #155724;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #c3e6cb;
-            text-align: center;
-        }
-
-        .user-info {
-            background: #e9ecef;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #495057;
-            font-weight: bold;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .menu-item {
-            background: white;
-            border: 2px solid #e1e5e9;
-            border-radius: 15px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .menu-item:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu-item.selected {
-            border-color: #28a745;
-            background: #f8fff8;
-        }
-
-        .menu-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .menu-price {
-            font-size: 20px;
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .quantity-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: background 0.3s;
-        }
-
-        .quantity-btn:hover {
-            background: #5a6fd8;
-        }
-
-        .quantity-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        .quantity-display {
-            font-size: 16px;
-            font-weight: bold;
-            min-width: 30px;
-            text-align: center;
-        }
-
-        .cart-section {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            font-weight: bold;
-            color: #495057;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-name {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .cart-item-price {
-            color: #667eea;
-            font-size: 14px;
-        }
-
-        .cart-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .remove-btn {
-            background: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .total-section {
-            border-top: 2px solid #dee2e6;
-            padding-top: 15px;
-            margin-top: 15px;
-            text-align: right;
-        }
-
-        .total-amount {
-            font-size: 20px;
-            font-weight: bold;
-            color: #28a745;
-        }
-
-        .call-number {
-            font-size: 48px;
-            font-weight: bold;
-            color: #667eea;
-            text-align: center;
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-
-        .back-btn {
-            background: #6c757d;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        .admin-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid #e1e5e9;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .stat-label {
-            color: #6c757d;
-            margin-top: 5px;
-        }
-
-        .order-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        .order-table th,
-        .order-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .order-table th {
-            background: #f8f9fa;
-            font-weight: bold;
-            color: #495057;
-        }
-
-        .menu-management-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            background: white;
-            border: 1px solid #dee2e6;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .menu-info {
-            flex: 1;
-        }
-
-        .menu-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                margin: 0;
-                border-radius: 0;
-            }
-
-            .screen {
-                padding: 20px;
-            }
-
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .admin-stats {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>津田沼校舎食堂モバイルオーダーシステム</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <div class="container">
         <!-- ログイン画面 -->
         <div id="login" class="screen active">
-            <h1>津田沼校舎食堂 モバイルオーダーシステム</h1>
+            <h1>津田沼校舎食堂モバイルオーダーシステム</h1>
             <p style="text-align: center; margin-bottom: 30px; color: #666;">ログイン番号とパスワードを入力してください</p>
-
+            
             <div class="form-group">
                 <label for="loginId">ログイン番号</label>
                 <input type="text" id="loginId" placeholder="ログイン番号を入力" value="student001">
             </div>
-
+            
             <div class="form-group">
                 <label for="password">パスワード</label>
                 <input type="password" id="password" placeholder="パスワードを入力" value="password">
             </div>
-
+            
             <div id="loginError" class="error" style="display: none;"></div>
-
+            
             <button class="btn btn-primary" onclick="handleLogin()">ログイン</button>
-
+            
             <div style="margin-top: 20px; font-size: 12px; color: #666; text-align: center;">
-                <strong>テスト用アカウント:</strong><br>
+                <strong>テスト用アカウント</strong><br>
                 学生: student001 / password<br>
                 管理者: admin / admin123
             </div>
@@ -458,7 +42,7 @@
             </div>
             <button class="btn btn-primary" onclick="showScreen('purchase')">🍽️ 注文する</button>
             <button class="btn btn-secondary" onclick="showScreen('admin')" id="adminBtn">⚙️ 管理者画面</button>
-            <button class="btn btn-secondary" onclick="logout()">📤 ログアウト</button>
+            <button class="btn btn-secondary" onclick="logout()">🔓 ログアウト</button>
         </div>
 
         <!-- 購入画面 -->
@@ -468,26 +52,26 @@
                 ログイン中: <span id="currentUserName"></span>
             </div>
             <h2>本日のメニュー</h2>
-
+            
             <div id="purchaseError" class="error" style="display: none;"></div>
-
+            
             <div class="menu-grid" id="menuGrid">
                 <!-- メニューは動的に生成されます -->
             </div>
-
-            <!-- カート表示 -->
-            <div id="cartSection" class="cart-section" style="display: none;">
-                <div class="cart-header">
-                    <span>🛒 カート</span>
-                    <button class="btn-danger" onclick="clearCart()" style="padding: 5px 10px; font-size: 12px;">全て削除</button>
+            
+            <!-- 選択されたメニューの表示 -->
+            <div id="selectedMenusInfo" class="selected-menus-section">
+                <h3>選択中のメニュー</h3>
+                <div id="selectedMenusList" class="selected-menus-list">
+                    <p class="no-selection">メニューを選択してください</p>
                 </div>
-                <div id="cartItems"></div>
-                <div class="total-section">
-                    <div class="total-amount">合計: ¥<span id="totalAmount">0</span></div>
+                <div class="order-summary">
+                    <div class="total-price">
+                        合計: <span id="totalPrice">¥0</span>
+                    </div>
+                    <button class="btn btn-success" onclick="confirmOrder()" id="orderBtn" disabled>注文確定</button>
                 </div>
             </div>
-
-            <button class="btn btn-success" onclick="confirmOrder()" id="orderBtn" disabled>注文確定</button>
         </div>
 
         <!-- 注文完了画面 -->
@@ -497,7 +81,15 @@
                 <p>お呼び出し番号</p>
                 <div class="call-number" id="callNumber">A001</div>
                 <p>番号が呼ばれるまでお待ちください</p>
-                <div id="orderSummary" style="margin-top: 20px; font-size: 14px; color: #666;"></div>
+                
+                <!-- 注文内容の表示 -->
+                <div id="orderDetails" class="order-details">
+                    <h3>ご注文内容</h3>
+                    <div id="orderItemsList"></div>
+                    <div class="order-total">
+                        合計: <span id="orderTotalPrice">¥0</span>
+                    </div>
+                </div>
             </div>
             <button class="btn btn-primary" onclick="showScreen('top')">メインメニューに戻る</button>
         </div>
@@ -506,7 +98,7 @@
         <div id="admin" class="screen">
             <button class="back-btn" onclick="showScreen('top')">← 戻る</button>
             <h2>管理者画面</h2>
-
+            
             <div class="admin-stats">
                 <div class="stat-card">
                     <div class="stat-number" id="totalOrders">0</div>
@@ -522,7 +114,7 @@
                 <button class="btn btn-primary" onclick="showScreen('menuManagement')">📝 メニュー編集</button>
                 <button class="btn btn-secondary" onclick="showOrderHistory()">📊 注文履歴</button>
             </div>
-
+            
             <div id="orderHistorySection" style="display: none;">
                 <h3 style="margin: 20px 0 10px 0; color: #555;">注文履歴</h3>
                 <table class="order-table" id="orderHistoryTable">
@@ -532,7 +124,7 @@
                             <th>商品</th>
                             <th>金額</th>
                             <th>時刻</th>
-                            <th>状態</th>
+                            <th>状況</th>
                         </tr>
                     </thead>
                     <tbody id="orderHistoryBody">
@@ -541,7 +133,7 @@
                         </tr>
                     </tbody>
                 </table>
-
+                
                 <button class="btn btn-danger" onclick="clearAllOrders()" style="margin-top: 20px;">すべての注文をクリア</button>
             </div>
         </div>
@@ -550,10 +142,10 @@
         <div id="menuManagement" class="screen">
             <button class="back-btn" onclick="showScreen('admin')">← 戻る</button>
             <h2>メニュー管理</h2>
-
+            
             <div id="menuError" class="error" style="display: none;"></div>
             <div id="menuSuccess" class="success" style="display: none;"></div>
-
+            
             <!-- 新しいメニュー追加 -->
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
                 <h3 style="margin: 0 0 15px 0; color: #555;">新しいメニューを追加</h3>
@@ -567,17 +159,15 @@
                 </div>
                 <button class="btn btn-success" onclick="addNewMenu()">➕ メニューを追加</button>
             </div>
-
+            
             <!-- 既存メニュー一覧 -->
             <h3 style="margin: 20px 0 15px 0; color: #555;">現在のメニュー</h3>
             <div id="menuList"></div>
         </div>
 
         <!-- メニュー編集モーダル -->
-        <div id="editMenuModal"
-            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
-            <div
-                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px;">
+        <div id="editMenuModal" class="modal">
+            <div class="modal-content">
                 <h3 style="margin: 0 0 20px 0; color: #555;">メニューを編集</h3>
                 <div class="form-group">
                     <label for="editMenuName">メニュー名</label>
@@ -598,7 +188,7 @@
     <script>
         // グローバル変数
         let currentUser = null;
-        let cart = {}; // { menuId: quantity }
+        let selectedMenus = []; // 複数選択用の配列
         let orderHistory = [];
         let orderCounter = 1;
         let editingMenuId = null;
@@ -624,21 +214,21 @@
             // すべての画面を非表示
             const screens = document.querySelectorAll('.screen');
             screens.forEach(screen => screen.classList.remove('active'));
-
+            
             // 指定された画面を表示
             document.getElementById(screenId).classList.add('active');
-
+            
             // 管理者画面の場合、統計を更新
             if (screenId === 'admin') {
                 updateAdminStats();
             }
-
+            
             // 購入画面の場合、メニューを更新
             if (screenId === 'purchase') {
                 renderMenuGrid();
-                updateCartDisplay();
+                updateSelectedMenusDisplay();
             }
-
+            
             // メニュー管理画面の場合、メニューリストを更新
             if (screenId === 'menuManagement') {
                 renderMenuManagement();
@@ -649,7 +239,6 @@
         function handleLogin() {
             const loginId = document.getElementById('loginId').value.trim();
             const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('loginError');
 
             if (!loginId || !password) {
                 showError('loginError', 'ログイン番号とパスワードを入力してください');
@@ -662,11 +251,11 @@
                     name: users[loginId].name,
                     role: users[loginId].role
                 };
-
+                
                 // ユーザー名を各画面に設定
                 document.getElementById('currentUserName').textContent = currentUser.name;
                 document.getElementById('topUserName').textContent = currentUser.name;
-
+                
                 // 管理者でない場合は管理者ボタンを非表示
                 const adminBtn = document.getElementById('adminBtn');
                 if (currentUser.role !== 'admin') {
@@ -674,10 +263,7 @@
                 } else {
                     adminBtn.style.display = 'block';
                 }
-
-                // カートをリセット
-                cart = {};
-
+                
                 hideError('loginError');
                 showScreen('top');
             } else {
@@ -688,7 +274,7 @@
         // ログアウト処理
         function logout() {
             currentUser = null;
-            cart = {};
+            selectedMenus = [];
             document.getElementById('loginId').value = '';
             document.getElementById('password').value = '';
             hideError('loginError');
@@ -698,96 +284,135 @@
         // メニューグリッド描画
         function renderMenuGrid() {
             const menuGrid = document.getElementById('menuGrid');
-            menuGrid.innerHTML = menuDatabase.map(menu => `
-                <div class="menu-item" id="menu-${menu.id}">
-                    <div class="menu-name">${menu.name}</div>
-                    <div class="menu-price">¥${menu.price}</div>
-                    <div class="quantity-controls">
-                        <button class="quantity-btn" onclick="updateQuantity(${menu.id}, -1)" ${cart[menu.id] ? '' : 'disabled'}>−</button>
-                        <span class="quantity-display">${cart[menu.id] || 0}</span>
-                        <button class="quantity-btn" onclick="updateQuantity(${menu.id}, 1)">＋</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // 数量更新処理
-        function updateQuantity(menuId, change) {
-            const currentQuantity = cart[menuId] || 0;
-            const newQuantity = Math.max(0, currentQuantity + change);
-
-            if (newQuantity === 0) {
-                delete cart[menuId];
-            } else {
-                cart[menuId] = newQuantity;
-            }
-
-            renderMenuGrid();
-            updateCartDisplay();
-            hideError('purchaseError');
-        }
-
-        // カート表示更新
-        function updateCartDisplay() {
-            const cartSection = document.getElementById('cartSection');
-            const cartItems = document.getElementById('cartItems');
-            const totalAmount = document.getElementById('totalAmount');
-            const orderBtn = document.getElementById('orderBtn');
-
-            const cartEntries = Object.entries(cart);
-            
-            if (cartEntries.length === 0) {
-                cartSection.style.display = 'none';
-                orderBtn.disabled = true;
-                return;
-            }
-
-            cartSection.style.display = 'block';
-            
-            let total = 0;
-            cartItems.innerHTML = cartEntries.map(([menuId, quantity]) => {
-                const menu = menuDatabase.find(m => m.id == menuId);
-                if (!menu) return '';
-                
-                const subtotal = menu.price * quantity;
-                total += subtotal;
+            menuGrid.innerHTML = menuDatabase.map(menu => {
+                const selectedItem = selectedMenus.find(item => item.menu.id === menu.id);
+                const quantity = selectedItem ? selectedItem.quantity : 0;
                 
                 return `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${menu.name}</div>
-                            <div class="cart-item-price">¥${menu.price} × ${quantity} = ¥${subtotal}</div>
-                        </div>
-                        <div class="cart-item-controls">
-                            <button class="quantity-btn" onclick="updateQuantity(${menuId}, -1)">−</button>
-                            <span class="quantity-display">${quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${menuId}, 1)">＋</button>
-                            <button class="remove-btn" onclick="removeFromCart(${menuId})">削除</button>
+                    <div class="menu-item ${quantity > 0 ? 'selected' : ''}" data-menu-id="${menu.id}">
+                        <div class="menu-name">${menu.name}</div>
+                        <div class="menu-price">¥${menu.price}</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" onclick="updateQuantity(${menu.id}, -1)">−</button>
+                            <span class="quantity">${quantity}</span>
+                            <button class="quantity-btn plus" onclick="updateQuantity(${menu.id}, 1)">＋</button>
                         </div>
                     </div>
                 `;
             }).join('');
+        }
 
-            totalAmount.textContent = total.toLocaleString();
+        // 数量更新処理
+        function updateQuantity(menuId, change) {
+            const menu = menuDatabase.find(m => m.id === menuId);
+            if (!menu) return;
+
+            const existingIndex = selectedMenus.findIndex(item => item.menu.id === menuId);
+            
+            if (existingIndex >= 0) {
+                const newQuantity = selectedMenus[existingIndex].quantity + change;
+                if (newQuantity <= 0) {
+                    selectedMenus.splice(existingIndex, 1);
+                } else {
+                    selectedMenus[existingIndex].quantity = newQuantity;
+                }
+            } else if (change > 0) {
+                selectedMenus.push({ menu: menu, quantity: 1 });
+            }
+
+            renderMenuGrid();
+            updateSelectedMenusDisplay();
+            hideError('purchaseError');
+        }
+
+        // 選択メニュー表示更新
+        function updateSelectedMenusDisplay() {
+            const selectedMenusList = document.getElementById('selectedMenusList');
+            const totalPriceElement = document.getElementById('totalPrice');
+            const orderBtn = document.getElementById('orderBtn');
+
+            if (selectedMenus.length === 0) {
+                selectedMenusList.innerHTML = '<p class="no-selection">メニューを選択してください</p>';
+                totalPriceElement.textContent = '¥0';
+                orderBtn.disabled = true;
+                return;
+            }
+
+            const totalPrice = selectedMenus.reduce((sum, item) => sum + (item.menu.price * item.quantity), 0);
+            
+            selectedMenusList.innerHTML = selectedMenus.map(item => `
+                <div class="selected-menu-item">
+                    <div class="selected-menu-info">
+                        <span class="selected-menu-name">${item.menu.name}</span>
+                        <span class="selected-menu-details">¥${item.menu.price} × ${item.quantity}</span>
+                    </div>
+                    <div class="selected-menu-price">¥${item.menu.price * item.quantity}</div>
+                    <button class="remove-btn" onclick="removeMenuItem(${item.menu.id})">×</button>
+                </div>
+            `).join('');
+
+            totalPriceElement.textContent = `¥${totalPrice.toLocaleString()}`;
             orderBtn.disabled = false;
         }
 
-        // カートから商品削除
-        function removeFromCart(menuId) {
-            delete cart[menuId];
+        // メニュー項目削除
+        function removeMenuItem(menuId) {
+            selectedMenus = selectedMenus.filter(item => item.menu.id !== menuId);
             renderMenuGrid();
-            updateCartDisplay();
+            updateSelectedMenusDisplay();
         }
 
-        // カート全削除
-        function clearCart() {
-            if (Object.keys(cart).length === 0) return;
-            
-            if (confirm('カートの中身をすべて削除しますか？')) {
-                cart = {};
-                renderMenuGrid();
-                updateCartDisplay();
+        // 注文確定処理
+        function confirmOrder() {
+            if (selectedMenus.length === 0) {
+                showError('purchaseError', 'メニューを選択してください');
+                return;
             }
+
+            // 注文番号を生成
+            const callNumber = `A${String(orderCounter).padStart(3, '0')}`;
+            
+            // 注文を履歴に追加
+            const order = {
+                id: orderCounter,
+                callNumber: callNumber,
+                items: [...selectedMenus],
+                totalPrice: selectedMenus.reduce((sum, item) => sum + (item.menu.price * item.quantity), 0),
+                user: currentUser.name,
+                time: new Date().toLocaleTimeString('ja-JP'),
+                status: '調理中'
+            };
+            
+            orderHistory.unshift(order);
+            orderCounter++;
+            
+            // 呼び出し番号を表示
+            document.getElementById('callNumber').textContent = callNumber;
+            
+            // 注文内容を表示
+            displayOrderDetails(order);
+            
+            // 選択をリセット
+            selectedMenus = [];
+            updateSelectedMenusDisplay();
+            
+            showScreen('orderComplete');
+        }
+
+        // 注文内容表示
+        function displayOrderDetails(order) {
+            const orderItemsList = document.getElementById('orderItemsList');
+            const orderTotalPrice = document.getElementById('orderTotalPrice');
+            
+            orderItemsList.innerHTML = order.items.map(item => `
+                <div class="order-detail-item">
+                    <span class="order-item-name">${item.menu.name}</span>
+                    <span class="order-item-details">¥${item.menu.price} × ${item.quantity}</span>
+                    <span class="order-item-price">¥${item.menu.price * item.quantity}</span>
+                </div>
+            `).join('');
+            
+            orderTotalPrice.textContent = `¥${order.totalPrice.toLocaleString()}`;
         }
 
         // メニュー管理画面描画
@@ -797,7 +422,7 @@
                 menuList.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">メニューがありません</p>';
                 return;
             }
-
+            
             menuList.innerHTML = menuDatabase.map(menu => `
                 <div class="menu-management-item">
                     <div class="menu-info">
@@ -816,37 +441,37 @@
         function addNewMenu() {
             const name = document.getElementById('newMenuName').value.trim();
             const price = parseInt(document.getElementById('newMenuPrice').value);
-
+            
             if (!name) {
                 showError('menuError', 'メニュー名を入力してください');
                 return;
             }
-
+            
             if (!price || price <= 0) {
                 showError('menuError', '正しい価格を入力してください');
                 return;
             }
-
+            
             // 同名メニューチェック
             if (menuDatabase.some(menu => menu.name === name)) {
                 showError('menuError', '同じ名前のメニューが既に存在します');
                 return;
             }
-
+            
             // メニュー追加
             menuDatabase.push({
                 id: menuIdCounter++,
                 name: name,
                 price: price
             });
-
+            
             // フォームリセット
             document.getElementById('newMenuName').value = '';
             document.getElementById('newMenuPrice').value = '';
-
+            
             // 成功メッセージ
             showSuccess('menuSuccess', `「${name}」を追加しました`);
-
+            
             // リスト更新
             renderMenuManagement();
             hideError('menuError');
@@ -856,7 +481,7 @@
         function editMenu(menuId) {
             const menu = menuDatabase.find(m => m.id === menuId);
             if (!menu) return;
-
+            
             editingMenuId = menuId;
             document.getElementById('editMenuName').value = menu.name;
             document.getElementById('editMenuPrice').value = menu.price;
@@ -867,30 +492,30 @@
         function saveMenuEdit() {
             const name = document.getElementById('editMenuName').value.trim();
             const price = parseInt(document.getElementById('editMenuPrice').value);
-
+            
             if (!name) {
                 alert('メニュー名を入力してください');
                 return;
             }
-
+            
             if (!price || price <= 0) {
                 alert('正しい価格を入力してください');
                 return;
             }
-
+            
             // 同名メニューチェック（自分以外）
             if (menuDatabase.some(menu => menu.name === name && menu.id !== editingMenuId)) {
                 alert('同じ名前のメニューが既に存在します');
                 return;
             }
-
+            
             // メニュー更新
             const menuIndex = menuDatabase.findIndex(m => m.id === editingMenuId);
             if (menuIndex !== -1) {
                 menuDatabase[menuIndex].name = name;
                 menuDatabase[menuIndex].price = price;
             }
-
+            
             closeEditModal();
             showSuccess('menuSuccess', `「${name}」を更新しました`);
             renderMenuManagement();
@@ -907,15 +532,8 @@
             if (!confirm(`「${menuName}」を削除しますか？`)) {
                 return;
             }
-
+            
             menuDatabase = menuDatabase.filter(menu => menu.id !== menuId);
-            
-            // カートからも削除
-            if (cart[menuId]) {
-                delete cart[menuId];
-                updateCartDisplay();
-            }
-            
             showSuccess('menuSuccess', `「${menuName}」を削除しました`);
             renderMenuManagement();
         }
@@ -926,93 +544,35 @@
             section.style.display = section.style.display === 'none' ? 'block' : 'none';
         }
 
-        // 注文確定処理
-        function confirmOrder() {
-            if (Object.keys(cart).length === 0) {
-                showError('purchaseError', 'カートが空です。商品を選択してください');
-                return;
-            }
-
-            // 注文番号を生成
-            const callNumber = `A${String(orderCounter).padStart(3, '0')}`;
-
-            // 注文詳細を作成
-            let orderItems = [];
-            let totalPrice = 0;
-            
-            Object.entries(cart).forEach(([menuId, quantity]) => {
-                const menu = menuDatabase.find(m => m.id == menuId);
-                if (menu) {
-                    const subtotal = menu.price * quantity;
-                    orderItems.push({
-                        name: menu.name,
-                        price: menu.price,
-                        quantity: quantity,
-                        subtotal: subtotal
-                    });
-                    totalPrice += subtotal;
-                }
-            });
-
-            // 注文を履歴に追加
-            const order = {
-                id: orderCounter,
-                callNumber: callNumber,
-                items: orderItems,
-                totalPrice: totalPrice,
-                user: currentUser.name,
-                time: new Date().toLocaleTimeString('ja-JP'),
-                status: '調理中'
-            };
-
-            orderHistory.unshift(order);
-            orderCounter++;
-
-            // 呼び出し番号を表示
-            document.getElementById('callNumber').textContent = callNumber;
-            
-            // 注文内容を表示
-            const orderSummary = document.getElementById('orderSummary');
-            orderSummary.innerHTML = `
-                <strong>注文内容:</strong><br>
-                ${orderItems.map(item => `${item.name} × ${item.quantity}`).join('<br>')}
-                <br><strong>合計: ¥${totalPrice.toLocaleString()}</strong>
-            `;
-
-            // カートをリセット
-            cart = {};
-
-            showScreen('orderComplete');
-        }
-
         // 管理者統計更新
         function updateAdminStats() {
             const totalOrders = orderHistory.length;
             const totalRevenue = orderHistory.reduce((sum, order) => sum + order.totalPrice, 0);
-
+            
             document.getElementById('totalOrders').textContent = totalOrders;
             document.getElementById('totalRevenue').textContent = `¥${totalRevenue.toLocaleString()}`;
-
+            
             // 注文履歴テーブル更新
             const tbody = document.getElementById('orderHistoryBody');
             if (orderHistory.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #666;">注文履歴がありません</td></tr>';
             } else {
-                tbody.innerHTML = orderHistory.map(order => `
-                    <tr>
-                        <td>${order.callNumber}</td>
-                        <td>
-                            ${order.items.map(item => `${item.name} × ${item.quantity}`).join('<br>')}
-                        </td>
-                        <td>¥${order.totalPrice.toLocaleString()}</td>
-                        <td>${order.time}</td>
-                        <td>
-                            <span style="color: ${order.status === '調理中' ? '#ffc107' : '#28a745'}">
-                                ${order.status}
-                            </span>
-                        </td>
-                    </tr>
-                `).join('');
+                tbody.innerHTML = orderHistory.map(order => {
+                    const itemsText = order.items.map(item => `${item.menu.name}×${item.quantity}`).join(', ');
+                    return `
+                        <tr>
+                            <td>${order.callNumber}</td>
+                            <td>${itemsText}</td>
+                            <td>¥${order.totalPrice}</td>
+                            <td>${order.time}</td>
+                            <td>
+                                <span style="color: ${order.status === '調理中' ? '#ffc107' : '#28a745'}">
+                                    ${order.status}
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
             }
         }
 
@@ -1048,20 +608,20 @@
             successDiv.style.display = 'none';
         }
 
-        // Enterキーでログイン
-        document.addEventListener('DOMContentLoaded', function () {
+        // 初期化処理
+        document.addEventListener('DOMContentLoaded', function() {
             const passwordInput = document.getElementById('password');
-            passwordInput.addEventListener('keypress', function (e) {
+            passwordInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     handleLogin();
                 }
             });
-
+            
             // 初期メニュー表示
             renderMenuGrid();
-
+            
             // モーダル外クリックで閉じる
-            document.getElementById('editMenuModal').addEventListener('click', function (e) {
+            document.getElementById('editMenuModal').addEventListener('click', function(e) {
                 if (e.target === this) {
                     closeEditModal();
                 }
@@ -1069,5 +629,4 @@
         });
     </script>
 </body>
-
 </html>
