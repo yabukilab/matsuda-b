@@ -4,98 +4,198 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>津田沼校舎食堂 モバイルオーダーシステム</title>
-    <!-- CSSは省略（前のままでOK） -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 中略: HTML構造は元のまま -->
+    <div class="container">
+        <!-- ログイン画面 -->
+        <div id="login" class="screen active">
+            <h1>津田沼校舎食堂 モバイルオーダーシステム</h1>
+            <p class="login-subtitle">ログイン番号とパスワードを入力してください</p>
+            
+            <div class="form-group">
+                <label for="loginId">ログイン番号</label>
+                <input type="text" id="loginId" placeholder="ログイン番号を入力" value="student001">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">パスワード</label>
+                <input type="password" id="password" placeholder="パスワードを入力" value="password">
+            </div>
+            
+            <div id="loginError" class="error" style="display: none;"></div>
+            
+            <button class="btn btn-primary">ログイン</button>
+            
+            <div class="test-accounts">
+                <strong>テスト用アカウント:</strong><br>
+                学生: student001 / password<br>
+                管理者: admin / admin123
+            </div>
+        </div>
 
-    <div id="selectedMenuInfo" style="display: none; text-align: center; margin: 20px 0; padding: 15px; background: #e8f5e8; border-radius: 8px;">
-        <strong>選択中: </strong><span id="selectedMenuName"></span> - <span id="selectedMenuPrice"></span>
-    </div>
+        <!-- TOP画面 -->
+        <div id="top" class="screen">
+            <h2>メインメニュー</h2>
+            <div class="user-info">
+                ようこそ、田中太郎さん
+            </div>
+            <button class="btn btn-primary">🍽️ 注文する</button>
+            <button class="btn btn-secondary">⚙️ 管理者画面</button>
+            <button class="btn btn-secondary">📤 ログアウト</button>
+        </div>
 
-    <!-- JavaScriptの末尾に以下を追加・修正 -->
-    <script>
-        let currentUser = null;
-        let selectedMenus = [];
-        let orderHistory = [];
-        let orderCounter = 1;
-
-        let menuDatabase = [
-            { id: 1, name: '工大ランチ', price: 450 },
-            { id: 2, name: 'カレー', price: 350 },
-            { id: 3, name: 'サンドイッチ', price: 280 },
-            { id: 4, name: 'そば', price: 380 }
-        ];
-
-        function renderMenuGrid() {
-            const menuGrid = document.getElementById('menuGrid');
-            menuGrid.innerHTML = menuDatabase.map(menu => `
-                <div class="menu-item" onclick="toggleMenuSelection('${menu.name}', ${menu.price}, this)">
-                    <div class="menu-name">${menu.name}</div>
-                    <div class="menu-price">¥${menu.price}</div>
+        <!-- 購入画面 -->
+        <div id="purchase" class="screen">
+            <button class="back-btn">← 戻る</button>
+            <div class="user-info">
+                ログイン中: 田中太郎
+            </div>
+            <h2>本日のメニュー</h2>
+            
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-name">工大ランチ</div>
+                    <div class="menu-price">¥450</div>
                 </div>
-            `).join('');
-        }
+                <div class="menu-item selected">
+                    <div class="menu-name">カレー</div>
+                    <div class="menu-price">¥350</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-name">サンドイッチ</div>
+                    <div class="menu-price">¥280</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-name">そば</div>
+                    <div class="menu-price">¥380</div>
+                </div>
+            </div>
+            
+            <div class="selected-menu-info">
+                <strong>選択中: </strong>カレー - ¥350
+            </div>
+            
+            <button class="btn btn-success">注文確定</button>
+        </div>
 
-        function toggleMenuSelection(name, price, element) {
-            const index = selectedMenus.findIndex(menu => menu.name === name);
-            if (index > -1) {
-                selectedMenus.splice(index, 1);
-                element.classList.remove('selected');
-            } else {
-                selectedMenus.push({ name, price });
-                element.classList.add('selected');
-            }
-            updateSelectedMenuInfo();
-        }
+        <!-- 注文完了画面 -->
+        <div id="orderComplete" class="screen">
+            <div class="success">
+                <h2>🎉 注文が完了しました！</h2>
+                <p>お呼び出し番号</p>
+                <div class="call-number">A001</div>
+                <p>番号が呼ばれるまでお待ちください</p>
+            </div>
+            <button class="btn btn-primary">メインメニューに戻る</button>
+        </div>
 
-        function updateSelectedMenuInfo() {
-            const infoDiv = document.getElementById('selectedMenuInfo');
-            const nameSpan = document.getElementById('selectedMenuName');
-            const priceSpan = document.getElementById('selectedMenuPrice');
+        <!-- 管理者画面 -->
+        <div id="admin" class="screen">
+            <button class="back-btn">← 戻る</button>
+            <h2>管理者画面</h2>
+            
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">本日の注文数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">¥1,180</div>
+                    <div class="stat-label">本日の売上</div>
+                </div>
+            </div>
 
-            if (selectedMenus.length > 0) {
-                const names = selectedMenus.map(m => m.name).join('、');
-                const total = selectedMenus.reduce((sum, m) => sum + m.price, 0);
-                nameSpan.textContent = names;
-                priceSpan.textContent = `合計 ¥${total}`;
-                infoDiv.style.display = 'block';
-                document.getElementById('orderBtn').disabled = false;
-            } else {
-                infoDiv.style.display = 'none';
-                document.getElementById('orderBtn').disabled = true;
-            }
-        }
+            <div class="admin-buttons">
+                <button class="btn btn-primary">📝 メニュー編集</button>
+                <button class="btn btn-secondary">📊 注文履歴</button>
+            </div>
+            
+            <div class="order-history-section">
+                <h3>注文履歴</h3>
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>番号</th>
+                            <th>商品</th>
+                            <th>金額</th>
+                            <th>時刻</th>
+                            <th>状態</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A003</td>
+                            <td>そば</td>
+                            <td>¥380</td>
+                            <td>14:30</td>
+                            <td><span class="status-cooking">調理中</span></td>
+                        </tr>
+                        <tr>
+                            <td>A002</td>
+                            <td>カレー</td>
+                            <td>¥350</td>
+                            <td>14:15</td>
+                            <td><span class="status-ready">完成</span></td>
+                        </tr>
+                        <tr>
+                            <td>A001</td>
+                            <td>工大ランチ</td>
+                            <td>¥450</td>
+                            <td>14:00</td>
+                            <td><span class="status-ready">完成</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <button class="btn btn-danger clear-orders-btn">すべての注文をクリア</button>
+            </div>
+        </div>
 
-        function confirmOrder() {
-            if (selectedMenus.length === 0) {
-                showError('purchaseError', 'メニューを選択してください');
-                return;
-            }
-
-            const callNumber = `A${String(orderCounter).padStart(3, '0')}`;
-            const totalPrice = selectedMenus.reduce((sum, m) => sum + m.price, 0);
-            const menuNames = selectedMenus.map(m => m.name).join('、');
-
-            const order = {
-                id: orderCounter,
-                callNumber,
-                menu: menuNames,
-                price: totalPrice,
-                user: currentUser.name,
-                time: new Date().toLocaleTimeString('ja-JP'),
-                status: '調理中'
-            };
-
-            orderHistory.unshift(order);
-            orderCounter++;
-
-            document.getElementById('callNumber').textContent = callNumber;
-            selectedMenus = [];
-            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('selected'));
-            updateSelectedMenuInfo();
-            showScreen('orderComplete');
-        }
-    </script>
+        <!-- メニュー管理画面 -->
+        <div id="menuManagement" class="screen">
+            <button class="back-btn">← 戻る</button>
+            <h2>メニュー管理</h2>
+            
+            <!-- 新しいメニュー追加 -->
+            <div class="add-menu-section">
+                <h3>新しいメニューを追加</h3>
+                <div class="form-group">
+                    <label for="newMenuName">メニュー名</label>
+                    <input type="text" id="newMenuName" placeholder="例：工大スペシャル">
+                </div>
+                <div class="form-group">
+                    <label for="newMenuPrice">価格（円）</label>
+                    <input type="number" id="newMenuPrice" placeholder="例：500" min="0">
+                </div>
+                <button class="btn btn-success">➕ メニューを追加</button>
+            </div>
+            
+            <!-- 既存メニュー一覧 -->
+            <h3 class="menu-list-title">現在のメニュー</h3>
+            <div class="menu-list">
+                <div class="menu-management-item">
+                    <div class="menu-info">
+                        <div class="menu-name">工大ランチ</div>
+                        <div class="menu-price">¥450</div>
+                    </div>
+                    <div class="menu-actions">
+                        <button class="btn btn-edit">✏️ 編集</button>
+                        <button class="btn btn-delete">🗑️ 削除</button>
+                    </div>
+                </div>
+                <div class="menu-management-item">
+                    <div class="menu-info">
+                        <div class="menu-name">カレー</div>
+                        <div class="menu-price">¥350</div>
+                    </div>
+                    <div class="menu-actions">
+                        <button class="btn btn-edit">✏️ 編集</button>
+                        <button class="btn btn-delete">🗑️ 削除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
