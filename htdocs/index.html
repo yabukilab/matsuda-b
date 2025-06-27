@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>津田沼校舎食堂 モバイルオーダーシステム</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <!-- ログイン画面 -->
         <div id="login" class="screen active">
             <h1>津田沼校舎食堂 モバイルオーダーシステム</h1>
             <p style="text-align: center; margin-bottom: 30px; color: #666;">ログイン番号とパスワードを入力してください</p>
-            
+
             <div class="form-group">
                 <label for="loginId">ログイン番号</label>
                 <input type="text" id="loginId" placeholder="ログイン番号を入力" value="student001">
             </div>
-            
+
             <div class="form-group">
                 <label for="password">パスワード</label>
                 <input type="password" id="password" placeholder="パスワードを入力" value="password">
             </div>
-            
+
             <div id="loginError" class="error" style="display: none;"></div>
-            
+
             <button class="btn btn-primary" onclick="handleLogin()">ログイン</button>
-            
+
             <div style="margin-top: 20px; font-size: 12px; color: #666; text-align: center;">
                 <strong>テスト用アカウント:</strong><br>
                 学生: student001 / password<br>
@@ -52,17 +54,18 @@
                 ログイン中: <span id="currentUserName"></span>
             </div>
             <h2>本日のメニュー</h2>
-            
+
             <div id="purchaseError" class="error" style="display: none;"></div>
-            
+
             <div class="menu-grid" id="menuGrid">
                 <!-- メニューは動的に生成されます -->
             </div>
-            
-            <div id="selectedMenuInfo" style="display: none; text-align: center; margin: 20px 0; padding: 15px; background: #e8f5e8; border-radius: 8px;">
+
+            <div id="selectedMenuInfo"
+                style="display: none; text-align: center; margin: 20px 0; padding: 15px; background: #e8f5e8; border-radius: 8px;">
                 <strong>選択中: </strong><span id="selectedMenuName"></span> - <span id="selectedMenuPrice"></span>
             </div>
-            
+
             <button class="btn btn-success" onclick="confirmOrder()" id="orderBtn" disabled>注文確定</button>
         </div>
 
@@ -81,7 +84,7 @@
         <div id="admin" class="screen">
             <button class="back-btn" onclick="showScreen('top')">← 戻る</button>
             <h2>管理者画面</h2>
-            
+
             <div class="admin-stats">
                 <div class="stat-card">
                     <div class="stat-number" id="totalOrders">0</div>
@@ -97,7 +100,7 @@
                 <button class="btn btn-primary" onclick="showScreen('menuManagement')">📝 メニュー編集</button>
                 <button class="btn btn-secondary" onclick="showOrderHistory()">📊 注文履歴</button>
             </div>
-            
+
             <div id="orderHistorySection" style="display: none;">
                 <h3 style="margin: 20px 0 10px 0; color: #555;">注文履歴</h3>
                 <table class="order-table" id="orderHistoryTable">
@@ -116,7 +119,7 @@
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <button class="btn btn-danger" onclick="clearAllOrders()" style="margin-top: 20px;">すべての注文をクリア</button>
             </div>
         </div>
@@ -125,10 +128,10 @@
         <div id="menuManagement" class="screen">
             <button class="back-btn" onclick="showScreen('admin')">← 戻る</button>
             <h2>メニュー管理</h2>
-            
+
             <div id="menuError" class="error" style="display: none;"></div>
             <div id="menuSuccess" class="success" style="display: none;"></div>
-            
+
             <!-- 新しいメニュー追加 -->
             <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
                 <h3 style="margin: 0 0 15px 0; color: #555;">新しいメニューを追加</h3>
@@ -142,15 +145,17 @@
                 </div>
                 <button class="btn btn-success" onclick="addNewMenu()">➕ メニューを追加</button>
             </div>
-            
+
             <!-- 既存メニュー一覧 -->
             <h3 style="margin: 20px 0 15px 0; color: #555;">現在のメニュー</h3>
             <div id="menuList"></div>
         </div>
 
         <!-- メニュー編集モーダル -->
-        <div id="editMenuModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px;">
+        <div id="editMenuModal"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            <div
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px;">
                 <h3 style="margin: 0 0 20px 0; color: #555;">メニューを編集</h3>
                 <div class="form-group">
                     <label for="editMenuName">メニュー名</label>
@@ -197,20 +202,20 @@
             // すべての画面を非表示
             const screens = document.querySelectorAll('.screen');
             screens.forEach(screen => screen.classList.remove('active'));
-            
+
             // 指定された画面を表示
             document.getElementById(screenId).classList.add('active');
-            
+
             // 管理者画面の場合、統計を更新
             if (screenId === 'admin') {
                 updateAdminStats();
             }
-            
+
             // 購入画面の場合、メニューを更新
             if (screenId === 'purchase') {
                 renderMenuGrid();
             }
-            
+
             // メニュー管理画面の場合、メニューリストを更新
             if (screenId === 'menuManagement') {
                 renderMenuManagement();
@@ -234,11 +239,11 @@
                     name: users[loginId].name,
                     role: users[loginId].role
                 };
-                
+
                 // ユーザー名を各画面に設定
                 document.getElementById('currentUserName').textContent = currentUser.name;
                 document.getElementById('topUserName').textContent = currentUser.name;
-                
+
                 // 管理者でない場合は管理者ボタンを非表示
                 const adminBtn = document.getElementById('adminBtn');
                 if (currentUser.role !== 'admin') {
@@ -246,7 +251,7 @@
                 } else {
                     adminBtn.style.display = 'block';
                 }
-                
+
                 hideError('loginError');
                 showScreen('top');
             } else {
@@ -280,19 +285,19 @@
             // 以前の選択をクリア
             const menuItems = document.querySelectorAll('.menu-item');
             menuItems.forEach(item => item.classList.remove('selected'));
-            
+
             // 新しい選択を設定
             element.classList.add('selected');
             selectedMenu = { name, price };
-            
+
             // 選択されたメニュー情報を表示
             document.getElementById('selectedMenuName').textContent = name;
             document.getElementById('selectedMenuPrice').textContent = `¥${price}`;
             document.getElementById('selectedMenuInfo').style.display = 'block';
-            
+
             // 注文ボタンを有効化
             document.getElementById('orderBtn').disabled = false;
-            
+
             hideError('purchaseError');
         }
 
@@ -303,7 +308,7 @@
                 menuList.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">メニューがありません</p>';
                 return;
             }
-            
+
             menuList.innerHTML = menuDatabase.map(menu => `
                 <div class="menu-management-item">
                     <div class="menu-info">
@@ -322,37 +327,37 @@
         function addNewMenu() {
             const name = document.getElementById('newMenuName').value.trim();
             const price = parseInt(document.getElementById('newMenuPrice').value);
-            
+
             if (!name) {
                 showError('menuError', 'メニュー名を入力してください');
                 return;
             }
-            
+
             if (!price || price <= 0) {
                 showError('menuError', '正しい価格を入力してください');
                 return;
             }
-            
+
             // 同名メニューチェック
             if (menuDatabase.some(menu => menu.name === name)) {
                 showError('menuError', '同じ名前のメニューが既に存在します');
                 return;
             }
-            
+
             // メニュー追加
             menuDatabase.push({
                 id: menuIdCounter++,
                 name: name,
                 price: price
             });
-            
+
             // フォームリセット
             document.getElementById('newMenuName').value = '';
             document.getElementById('newMenuPrice').value = '';
-            
+
             // 成功メッセージ
             showSuccess('menuSuccess', `「${name}」を追加しました`);
-            
+
             // リスト更新
             renderMenuManagement();
             hideError('menuError');
@@ -362,7 +367,7 @@
         function editMenu(menuId) {
             const menu = menuDatabase.find(m => m.id === menuId);
             if (!menu) return;
-            
+
             editingMenuId = menuId;
             document.getElementById('editMenuName').value = menu.name;
             document.getElementById('editMenuPrice').value = menu.price;
@@ -373,30 +378,30 @@
         function saveMenuEdit() {
             const name = document.getElementById('editMenuName').value.trim();
             const price = parseInt(document.getElementById('editMenuPrice').value);
-            
+
             if (!name) {
                 alert('メニュー名を入力してください');
                 return;
             }
-            
+
             if (!price || price <= 0) {
                 alert('正しい価格を入力してください');
                 return;
             }
-            
+
             // 同名メニューチェック（自分以外）
             if (menuDatabase.some(menu => menu.name === name && menu.id !== editingMenuId)) {
                 alert('同じ名前のメニューが既に存在します');
                 return;
             }
-            
+
             // メニュー更新
             const menuIndex = menuDatabase.findIndex(m => m.id === editingMenuId);
             if (menuIndex !== -1) {
                 menuDatabase[menuIndex].name = name;
                 menuDatabase[menuIndex].price = price;
             }
-            
+
             closeEditModal();
             showSuccess('menuSuccess', `「${name}」を更新しました`);
             renderMenuManagement();
@@ -413,7 +418,7 @@
             if (!confirm(`「${menuName}」を削除しますか？`)) {
                 return;
             }
-            
+
             menuDatabase = menuDatabase.filter(menu => menu.id !== menuId);
             showSuccess('menuSuccess', `「${menuName}」を削除しました`);
             renderMenuManagement();
@@ -434,7 +439,7 @@
 
             // 注文番号を生成
             const callNumber = `A${String(orderCounter).padStart(3, '0')}`;
-            
+
             // 注文を履歴に追加
             const order = {
                 id: orderCounter,
@@ -445,20 +450,20 @@
                 time: new Date().toLocaleTimeString('ja-JP'),
                 status: '調理中'
             };
-            
+
             orderHistory.unshift(order);
             orderCounter++;
-            
+
             // 呼び出し番号を表示
             document.getElementById('callNumber').textContent = callNumber;
-            
+
             // 選択をリセット
             const menuItems = document.querySelectorAll('.menu-item');
             menuItems.forEach(item => item.classList.remove('selected'));
             selectedMenu = null;
             document.getElementById('selectedMenuInfo').style.display = 'none';
             document.getElementById('orderBtn').disabled = true;
-            
+
             showScreen('orderComplete');
         }
 
@@ -466,10 +471,10 @@
         function updateAdminStats() {
             const totalOrders = orderHistory.length;
             const totalRevenue = orderHistory.reduce((sum, order) => sum + order.price, 0);
-            
+
             document.getElementById('totalOrders').textContent = totalOrders;
             document.getElementById('totalRevenue').textContent = `¥${totalRevenue.toLocaleString()}`;
-            
+
             // 注文履歴テーブル更新
             const tbody = document.getElementById('orderHistoryBody');
             if (orderHistory.length === 0) {
@@ -524,19 +529,19 @@
         }
 
         // Enterキーでログイン
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const passwordInput = document.getElementById('password');
-            passwordInput.addEventListener('keypress', function(e) {
+            passwordInput.addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     handleLogin();
                 }
             });
-            
+
             // 初期メニュー表示
             renderMenuGrid();
-            
+
             // モーダル外クリックで閉じる
-            document.getElementById('editMenuModal').addEventListener('click', function(e) {
+            document.getElementById('editMenuModal').addEventListener('click', function (e) {
                 if (e.target === this) {
                     closeEditModal();
                 }
@@ -544,4 +549,5 @@
         });
     </script>
 </body>
+
 </html>
