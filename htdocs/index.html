@@ -39,11 +39,19 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             color: #333;
             text-align: center;
             margin-bottom: 20px;
@@ -424,13 +432,13 @@
 
 <body>
     <div class="container">
-        <!-- ログイン画面 -->
         <div id="login" class="screen active">
             <h1>津田沼校舎食堂 モバイルオーダーシステム</h1>
             <p style="text-align: center; margin-bottom: 30px; color: #666;">ログイン番号とパスワードを入力してください</p>
 
             <div class="form-group">
                 <label for="loginId">ログイン番号</label>
+
                 <input type="text" id="loginId" placeholder="ログイン番号を入力" value="student001">
             </div>
 
@@ -438,6 +446,7 @@
                 <label for="password">パスワード</label>
                 <input type="password" id="password" placeholder="パスワードを入力" value="password">
             </div>
+
 
             <div id="loginError" class="error" style="display: none;"></div>
 
@@ -447,24 +456,25 @@
                 <strong>テスト用アカウント:</strong><br>
                 学生: student001 / password<br>
                 管理者: admin / admin123
+
             </div>
         </div>
 
-        <!-- TOP画面 -->
         <div id="top" class="screen">
             <h2>メインメニュー</h2>
             <div class="user-info">
                 ようこそ、<span id="topUserName"></span>さん
             </div>
+
             <button class="btn btn-primary" onclick="showScreen('purchase')">🍽️ 注文する</button>
             <button class="btn btn-secondary" onclick="showScreen('admin')" id="adminBtn">⚙️ 管理者画面</button>
             <button class="btn btn-secondary" onclick="logout()">📤 ログアウト</button>
         </div>
 
-        <!-- 購入画面 -->
         <div id="purchase" class="screen">
             <button class="back-btn" onclick="showScreen('top')">← 戻る</button>
             <div class="user-info">
+
                 ログイン中: <span id="currentUserName"></span>
             </div>
             <h2>本日のメニュー</h2>
@@ -472,81 +482,93 @@
             <div id="purchaseError" class="error" style="display: none;"></div>
 
             <div class="menu-grid" id="menuGrid">
-                <!-- メニューは動的に生成されます -->
-            </div>
+                </div>
 
-            <!-- カート表示 -->
             <div id="cartSection" class="cart-section" style="display: none;">
                 <div class="cart-header">
                     <span>🛒 カート</span>
-                    <button class="btn-danger" onclick="clearCart()" style="padding: 5px 10px; font-size: 12px;">全て削除</button>
+                    <button class="btn-danger" onclick="clearCart()" style="padding: 5px 10px;
+font-size: 12px;">全て削除</button>
                 </div>
                 <div id="cartItems"></div>
                 <div class="total-section">
                     <div class="total-amount">合計: ¥<span id="totalAmount">0</span></div>
                 </div>
+
             </div>
 
             <button class="btn btn-success" onclick="confirmOrder()" id="orderBtn" disabled>注文確定</button>
         </div>
 
-        <!-- 注文完了画面 -->
         <div id="orderComplete" class="screen">
             <div class="success">
                 <h2>🎉 注文が完了しました！</h2>
                 <p>お呼び出し番号</p>
+
                 <div class="call-number" id="callNumber">A001</div>
                 <p>番号が呼ばれるまでお待ちください</p>
-                <div id="orderSummary" style="margin-top: 20px; font-size: 14px; color: #666;"></div>
+                <div id="orderSummary" style="margin-top: 20px;
+font-size: 14px; color: #666;"></div>
             </div>
             <button class="btn btn-primary" onclick="showScreen('top')">メインメニューに戻る</button>
         </div>
 
-        <!-- 管理者画面 -->
         <div id="admin" class="screen">
             <button class="back-btn" onclick="showScreen('top')">← 戻る</button>
             <h2>管理者画面</h2>
 
             <div class="admin-stats">
+
                 <div class="stat-card">
                     <div class="stat-number" id="totalOrders">0</div>
                     <div class="stat-label">本日の注文数</div>
                 </div>
                 <div class="stat-card">
+
                     <div class="stat-number" id="totalRevenue">¥0</div>
                     <div class="stat-label">本日の売上</div>
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0;">
+            <div style="display: grid;
+grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0;">
                 <button class="btn btn-primary" onclick="showScreen('menuManagement')">📝 メニュー編集</button>
                 <button class="btn btn-secondary" onclick="showOrderHistory()">📊 注文履歴</button>
             </div>
 
             <div id="orderHistorySection" style="display: none;">
-                <h3 style="margin: 20px 0 10px 0; color: #555;">注文履歴</h3>
+                <h3 style="margin: 20px 0 10px 0;
+color: #555;">注文履歴</h3>
+                <div class="form-group" style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input type="text" id="searchInput" placeholder="呼び出し番号で検索" style="flex-grow: 1;">
+                    <button class="btn btn-primary" onclick="searchOrders()">検索</button>
+                </div>
                 <table class="order-table" id="orderHistoryTable">
                     <thead>
                         <tr>
                             <th>番号</th>
+
                             <th>商品</th>
                             <th>金額</th>
                             <th>時刻</th>
+
                             <th>状態</th>
                         </tr>
                     </thead>
                     <tbody id="orderHistoryBody">
                         <tr>
-                            <td colspan="5" style="text-align: center; color: #666;">注文履歴がありません</td>
+
+                            <td colspan="5" style="text-align: center;
+color: #666;">注文履歴がありません</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <button class="btn btn-danger" onclick="clearAllOrders()" style="margin-top: 20px;">すべての注文をクリア</button>
             </div>
+
         </div>
 
-        <!-- メニュー管理画面 -->
         <div id="menuManagement" class="screen">
             <button class="back-btn" onclick="showScreen('admin')">← 戻る</button>
             <h2>メニュー管理</h2>
@@ -554,40 +576,49 @@
             <div id="menuError" class="error" style="display: none;"></div>
             <div id="menuSuccess" class="success" style="display: none;"></div>
 
-            <!-- 新しいメニュー追加 -->
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                <h3 style="margin: 0 0 15px 0; color: #555;">新しいメニューを追加</h3>
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;
+margin-bottom: 20px;">
+                <h3 style="margin: 0 0 15px 0;
+color: #555;">新しいメニューを追加</h3>
                 <div class="form-group">
                     <label for="newMenuName">メニュー名</label>
                     <input type="text" id="newMenuName" placeholder="例：工大スペシャル">
                 </div>
                 <div class="form-group">
+
                     <label for="newMenuPrice">価格（円）</label>
                     <input type="number" id="newMenuPrice" placeholder="例：500" min="0">
                 </div>
                 <button class="btn btn-success" onclick="addNewMenu()">➕ メニューを追加</button>
             </div>
 
-            <!-- 既存メニュー一覧 -->
-            <h3 style="margin: 20px 0 15px 0; color: #555;">現在のメニュー</h3>
+
+            <h3 style="margin: 20px 0 15px 0;
+color: #555;">現在のメニュー</h3>
             <div id="menuList"></div>
         </div>
 
-        <!-- メニュー編集モーダル -->
         <div id="editMenuModal"
-            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+            style="display: none;
+position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);
+z-index: 1000;">
             <div
-                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px;">
-                <h3 style="margin: 0 0 20px 0; color: #555;">メニューを編集</h3>
+                style="position: absolute;
+top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; width: 90%;
+max-width: 400px;">
+                <h3 style="margin: 0 0 20px 0;
+color: #555;">メニューを編集</h3>
                 <div class="form-group">
                     <label for="editMenuName">メニュー名</label>
                     <input type="text" id="editMenuName">
                 </div>
                 <div class="form-group">
+
                     <label for="editMenuPrice">価格（円）</label>
                     <input type="number" id="editMenuPrice" min="0">
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px;">
+                <div style="display: grid;
+grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px;">
                     <button class="btn btn-primary" onclick="saveMenuEdit()">💾 保存</button>
                     <button class="btn btn-secondary" onclick="closeEditModal()">❌ キャンセル</button>
                 </div>
@@ -596,6 +627,7 @@
     </div>
 
     <script>
+
         // グローバル変数
         let currentUser = null;
         let cart = {}; // { menuId: quantity }
@@ -618,7 +650,6 @@
             'student002': { password: 'pass123', name: '佐藤花子', role: 'student' },
             'admin': { password: 'admin123', name: '管理者', role: 'admin' }
         };
-
         // 画面遷移関数
         function showScreen(screenId) {
             // すべての画面を非表示
@@ -627,7 +658,6 @@
 
             // 指定された画面を表示
             document.getElementById(screenId).classList.add('active');
-
             // 管理者画面の場合、統計を更新
             if (screenId === 'admin') {
                 updateAdminStats();
@@ -662,7 +692,6 @@
                     name: users[loginId].name,
                     role: users[loginId].role
                 };
-
                 // ユーザー名を各画面に設定
                 document.getElementById('currentUserName').textContent = currentUser.name;
                 document.getElementById('topUserName').textContent = currentUser.name;
@@ -677,7 +706,6 @@
 
                 // カートをリセット
                 cart = {};
-
                 hideError('loginError');
                 showScreen('top');
             } else {
@@ -703,10 +731,12 @@
                     <div class="menu-name">${menu.name}</div>
                     <div class="menu-price">¥${menu.price}</div>
                     <div class="quantity-controls">
+
                         <button class="quantity-btn" onclick="updateQuantity(${menu.id}, -1)" ${cart[menu.id] ? '' : 'disabled'}>−</button>
                         <span class="quantity-display">${cart[menu.id] || 0}</span>
                         <button class="quantity-btn" onclick="updateQuantity(${menu.id}, 1)">＋</button>
                     </div>
+
                 </div>
             `).join('');
         }
@@ -735,7 +765,6 @@
             const orderBtn = document.getElementById('orderBtn');
 
             const cartEntries = Object.entries(cart);
-            
             if (cartEntries.length === 0) {
                 cartSection.style.display = 'none';
                 orderBtn.disabled = true;
@@ -743,18 +772,19 @@
             }
 
             cartSection.style.display = 'block';
-            
             let total = 0;
             cartItems.innerHTML = cartEntries.map(([menuId, quantity]) => {
                 const menu = menuDatabase.find(m => m.id == menuId);
                 if (!menu) return '';
-                
+
                 const subtotal = menu.price * quantity;
+
                 total += subtotal;
-                
+
                 return `
                     <div class="cart-item">
                         <div class="cart-item-info">
+
                             <div class="cart-item-name">${menu.name}</div>
                             <div class="cart-item-price">¥${menu.price} × ${quantity} = ¥${subtotal}</div>
                         </div>
@@ -762,6 +792,7 @@
                             <button class="quantity-btn" onclick="updateQuantity(${menuId}, -1)">−</button>
                             <span class="quantity-display">${quantity}</span>
                             <button class="quantity-btn" onclick="updateQuantity(${menuId}, 1)">＋</button>
+
                             <button class="remove-btn" onclick="removeFromCart(${menuId})">削除</button>
                         </div>
                     </div>
@@ -782,7 +813,6 @@
         // カート全削除
         function clearCart() {
             if (Object.keys(cart).length === 0) return;
-            
             if (confirm('カートの中身をすべて削除しますか？')) {
                 cart = {};
                 renderMenuGrid();
@@ -802,11 +832,13 @@
                 <div class="menu-management-item">
                     <div class="menu-info">
                         <div class="menu-name">${menu.name}</div>
+
                         <div class="menu-price">¥${menu.price}</div>
                     </div>
                     <div class="menu-actions">
                         <button class="btn btn-edit" onclick="editMenu(${menu.id})">✏️ 編集</button>
-                        <button class="btn btn-delete" onclick="deleteMenu(${menu.id}, '${menu.name}')">🗑️ 削除</button>
+                        <button class="btn 
+btn-delete" onclick="deleteMenu(${menu.id}, '${menu.name}')">🗑️ 削除</button>
                     </div>
                 </div>
             `).join('');
@@ -839,14 +871,11 @@
                 name: name,
                 price: price
             });
-
             // フォームリセット
             document.getElementById('newMenuName').value = '';
             document.getElementById('newMenuPrice').value = '';
-
             // 成功メッセージ
             showSuccess('menuSuccess', `「${name}」を追加しました`);
-
             // リスト更新
             renderMenuManagement();
             hideError('menuError');
@@ -909,13 +938,12 @@
             }
 
             menuDatabase = menuDatabase.filter(menu => menu.id !== menuId);
-            
             // カートからも削除
             if (cart[menuId]) {
                 delete cart[menuId];
                 updateCartDisplay();
             }
-            
+
             showSuccess('menuSuccess', `「${menuName}」を削除しました`);
             renderMenuManagement();
         }
@@ -924,6 +952,10 @@
         function showOrderHistory() {
             const section = document.getElementById('orderHistorySection');
             section.style.display = section.style.display === 'none' ? 'block' : 'none';
+            // 履歴が表示される際に、常に最新の状態を反映するために呼び出す
+            if (section.style.display === 'block') {
+                updateAdminStats();
+            }
         }
 
         // 注文確定処理
@@ -935,42 +967,41 @@
 
             // 注文番号を生成
             const callNumber = `A${String(orderCounter).padStart(3, '0')}`;
-
             // 注文詳細を作成
             let orderItems = [];
             let totalPrice = 0;
-            
+
             Object.entries(cart).forEach(([menuId, quantity]) => {
                 const menu = menuDatabase.find(m => m.id == menuId);
                 if (menu) {
                     const subtotal = menu.price * quantity;
                     orderItems.push({
+
                         name: menu.name,
                         price: menu.price,
                         quantity: quantity,
                         subtotal: subtotal
+
                     });
                     totalPrice += subtotal;
                 }
             });
-
             // 注文を履歴に追加
             const order = {
                 id: orderCounter,
                 callNumber: callNumber,
                 items: orderItems,
                 totalPrice: totalPrice,
+
                 user: currentUser.name,
                 time: new Date().toLocaleTimeString('ja-JP'),
                 status: '調理中'
             };
-
             orderHistory.unshift(order);
             orderCounter++;
 
             // 呼び出し番号を表示
             document.getElementById('callNumber').textContent = callNumber;
-            
             // 注文内容を表示
             const orderSummary = document.getElementById('orderSummary');
             orderSummary.innerHTML = `
@@ -978,27 +1009,33 @@
                 ${orderItems.map(item => `${item.name} × ${item.quantity}`).join('<br>')}
                 <br><strong>合計: ¥${totalPrice.toLocaleString()}</strong>
             `;
-
             // カートをリセット
             cart = {};
 
             showScreen('orderComplete');
         }
 
-        // 管理者統計更新
-        function updateAdminStats() {
+        // 管理者統計と注文履歴テーブルを更新
+        // searchを行い、検索結果があればその結果を元に表示を行う
+        function updateAdminStats(searchQuery = '') {
             const totalOrders = orderHistory.length;
             const totalRevenue = orderHistory.reduce((sum, order) => sum + order.totalPrice, 0);
 
             document.getElementById('totalOrders').textContent = totalOrders;
             document.getElementById('totalRevenue').textContent = `¥${totalRevenue.toLocaleString()}`;
 
-            // 注文履歴テーブル更新
             const tbody = document.getElementById('orderHistoryBody');
-            if (orderHistory.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #666;">注文履歴がありません</td></tr>';
+            // 検索クエリに基づいてフィルタリング
+            const filteredOrders = orderHistory.filter(order =>
+                order.callNumber.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+
+            if (filteredOrders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #666;">' +
+                                  (searchQuery ? '検索条件に一致する注文履歴がありません' : '注文履歴がありません') +
+                                  '</td></tr>';
             } else {
-                tbody.innerHTML = orderHistory.map(order => `
+                tbody.innerHTML = filteredOrders.map(order => `
                     <tr>
                         <td>${order.callNumber}</td>
                         <td>
@@ -1014,6 +1051,12 @@
                     </tr>
                 `).join('');
             }
+        }
+        
+        // 注文を検索する関数
+        function searchOrders() {
+            const searchQuery = document.getElementById('searchInput').value.trim();
+            updateAdminStats(searchQuery);
         }
 
         // 全注文クリア
@@ -1054,6 +1097,7 @@
             passwordInput.addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     handleLogin();
+
                 }
             });
 
@@ -1063,6 +1107,7 @@
             // モーダル外クリックで閉じる
             document.getElementById('editMenuModal').addEventListener('click', function (e) {
                 if (e.target === this) {
+
                     closeEditModal();
                 }
             });
