@@ -163,8 +163,24 @@ if (isset($_GET['delete_menu'])) {
     exit;
 }
 
-// 注文履歴の取得
-function getOrderHistory($db) {
+// 注文状態の更新
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
+    if (empty($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+        die("管理者権限が必要です");
+    }
+
+    $orderId = (int)$_POST['order_id'];
+    $status = $_POST['status'];
+
+    $stmt = $db->prepare("UPDATE orders SET status = ? WHERE id = ?");
+    $stmt->execute([$status, $orderId]);
+
+    header("Location: ".$_SERVER['PHP_SELF'].'?screen=admin');
+    exit;
+}
+
+// 注文履歴の取得（管理者用）
+function getAdminOrderHistory($db) {
     $stmt = $db->query("
         SELECT o.id, o.call_number, o.total_price, o.order_time, o.status, u.name AS user_name
         FROM orders o
@@ -186,6 +202,31 @@ function getOrderDetails($db, $orderId) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+// 本日の注文統計
+function getTodayStats($db) {
+    $stats = [
+        'order_count' => 0,
+        'total_revenue' => 0
+    ];
+    
+    $stmt = $db->prepare("
+        SELECT 
+            COUNT(*) AS order_count,
+            SUM(total_price) AS total_revenue
+        FROM orders 
+        WHERE DATE(order_time) = CURDATE()
+    ");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($result) {
+        $stats['order_count'] = $result['order_count'] ?: 0;
+        $stats['total_revenue'] = $result['total_revenue'] ?: 0;
+    }
+    
+    return $stats;
+}
+
 // 画面状態の管理
 $screen = 'login';
 if (isset($_GET['screen'])) {
@@ -196,6 +237,9 @@ if (isset($_GET['screen'])) {
 
 // メニューデータを取得
 $menus = getMenus($db);
+
+// 本日の統計データを取得
+$todayStats = getTodayStats($db);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -292,7 +336,8 @@ $menus = getMenus($db);
         input[type="text"],
         input[type="password"],
         input[type="number"],
-        input[type="date"] {
+        input[type="date"],
+        select {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #e1e5e9;
@@ -301,7 +346,7 @@ $menus = getMenus($db);
             transition: border-color 0.3s ease;
         }
 
-        input:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: #667eea;
         }
@@ -401,11 +446,6 @@ $menus = getMenus($db);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .menu-item.selected {
-            border-color: #17a2b8;
-            background: #e3f2fd;
-        }
-
         .menu-name {
             font-weight: bold;
             font-size: 16px;
@@ -460,12 +500,13 @@ $menus = getMenus($db);
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            font-size: 14px;
         }
 
         .order-table th,
         .order-table td {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 10px;
             text-align: left;
         }
 
@@ -562,6 +603,51 @@ $menus = getMenus($db);
 
         .btn-delete:hover {
             background: #c82333;
+        }
+        
+        .status-cooking {
+            color: #ffc107;
+            font-weight: bold;
+        }
+        
+        .status-completed {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .remove-btn {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -684,20 +770,13 @@ $menus = getMenus($db);
                     <div class="admin-stats">
                         <div class="stat-card">
                             <div class="stat-number" id="totalOrders">
-                                <?php
-                                    $stmt = $db->query("SELECT COUNT(*) FROM orders WHERE DATE(order_time) = CURDATE()");
-                                    echo h($stmt->fetchColumn());
-                                ?>
+                                <?= h($todayStats['order_count']) ?>
                             </div>
                             <div class="stat-label">本日の注文数</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-number" id="totalRevenue">
-                                <?php
-                                    $stmt = $db->query("SELECT SUM(total_price) FROM orders WHERE DATE(order_time) = CURDATE()");
-                                    $total = $stmt->fetchColumn();
-                                    echo '¥'.number_format($total ?: 0);
-                                ?>
+                                ¥<?= number_format($todayStats['total_revenue']) ?>
                             </div>
                             <div class="stat-label">本日の売上</div>
                         </div>
@@ -713,23 +792,26 @@ $menus = getMenus($db);
                         <table class="order-table" id="orderHistoryTable">
                             <thead>
                                 <tr>
-                                    <th>番号</th>
+                                    <th>呼出番号</th>
+                                    <th>注文者</th>
                                     <th>商品</th>
                                     <th>金額</th>
                                     <th>時刻</th>
                                     <th>状態</th>
+                                    <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody id="orderHistoryBody">
                                 <?php
-                                    $orders = getOrderHistory($db);
+                                    $orders = getAdminOrderHistory($db);
                                     if (empty($orders)) {
-                                        echo '<tr><td colspan="5" style="text-align: center; color: #666;">注文履歴がありません</td></tr>';
+                                        echo '<tr><td colspan="7" style="text-align: center; color: #666;">注文履歴がありません</td></tr>';
                                     } else {
                                         foreach ($orders as $order) {
                                             $details = getOrderDetails($db, $order['id']);
                                             echo '<tr>';
                                             echo '<td>'.h($order['call_number']).'</td>';
+                                            echo '<td>'.h($order['user_name']).'</td>';
                                             echo '<td>';
                                             foreach ($details as $detail) {
                                                 echo h($detail['name']).' × '.h($detail['quantity']).'<br>';
@@ -737,7 +819,28 @@ $menus = getMenus($db);
                                             echo '</td>';
                                             echo '<td>¥'.number_format($order['total_price']).'</td>';
                                             echo '<td>'.h($order['order_time']).'</td>';
-                                            echo '<td>'.h($order['status']).'</td>';
+                                            
+                                            // 状態表示（色付き）
+                                            echo '<td>';
+                                            if ($order['status'] === '調理中') {
+                                                echo '<span class="status-cooking">調理中</span>';
+                                            } else {
+                                                echo '<span class="status-completed">完了</span>';
+                                            }
+                                            echo '</td>';
+                                            
+                                            // 状態更新フォーム
+                                            echo '<td>';
+                                            echo '<form method="POST" style="display:flex;gap:5px;">';
+                                            echo '<input type="hidden" name="update_status" value="1">';
+                                            echo '<input type="hidden" name="order_id" value="'.h($order['id']).'">';
+                                            echo '<select name="status" onchange="this.form.submit()">';
+                                            echo '<option value="調理中" '.($order['status'] === '調理中' ? 'selected' : '').'>調理中</option>';
+                                            echo '<option value="完了" '.($order['status'] === '完了' ? 'selected' : '').'>完了</option>';
+                                            echo '</select>';
+                                            echo '</form>';
+                                            echo '</td>';
+                                            
                                             echo '</tr>';
                                         }
                                     }
@@ -752,8 +855,9 @@ $menus = getMenus($db);
                     <button class="back-btn" onclick="location.href='?screen=admin'">← 戻る</button>
                     <h2>メニュー管理</h2>
 
-                    <div id="menuError" class="error" style="display: none;"></div>
-                    <div id="menuSuccess" class="success" style="display: none;"></div>
+                    <?php if (isset($_GET['success'])): ?>
+                        <div class="success">操作が完了しました</div>
+                    <?php endif; ?>
 
                     <!-- 新しいメニュー追加 -->
                     <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
@@ -830,11 +934,6 @@ $menus = getMenus($db);
         // グローバル変数
         let cart = {}; // { menuId: {id, name, price, quantity} }
 
-        // 画面遷移関数
-        function showScreen(screenId) {
-            location.href = `?screen=${screenId}`;
-        }
-
         // 数量更新処理
         function updateQuantity(menuId, change) {
             const currentQuantity = cart[menuId] ? cart[menuId].quantity : 0;
@@ -865,7 +964,6 @@ $menus = getMenus($db);
             }
 
             updateCartDisplay();
-            hideError('purchaseError');
         }
 
         // カート表示更新
@@ -954,25 +1052,26 @@ $menus = getMenus($db);
         // 注文履歴表示切り替え
         function toggleOrderHistory() {
             const section = document.getElementById('orderHistorySection');
-            section.style.display = section.style.display === 'none' ? 'block' : 'none';
+            if (section.style.display === 'none') {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
         }
 
-        // エラー表示・非表示ヘルパー関数
+        // エラー表示
         function showError(elementId, message) {
             const errorDiv = document.getElementById(elementId);
             errorDiv.textContent = message;
             errorDiv.style.display = 'block';
         }
 
-        function hideError(elementId) {
-            const errorDiv = document.getElementById(elementId);
-            errorDiv.style.display = 'none';
-        }
-
         // 初期化
         document.addEventListener('DOMContentLoaded', function () {
-            // カート表示を更新
-            updateCartDisplay();
+            // 管理者画面で注文履歴をデフォルトで表示
+            <?php if ($screen === 'admin'): ?>
+                document.getElementById('orderHistorySection').style.display = 'block';
+            <?php endif; ?>
         });
     </script>
 </body>
